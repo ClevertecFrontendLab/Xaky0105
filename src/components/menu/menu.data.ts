@@ -1,0 +1,92 @@
+export const categoriesBookNav = [
+  {
+    name: 'Все книги',
+    id: 1,
+    category: 'all',
+    quantity: null,
+  },
+  {
+    name: 'Бизнес-книги',
+    id: 2,
+    category: 'business',
+    quantity: 32,
+  },
+  {
+    name: 'Детективы',
+    id: 3,
+    category: 'detectives',
+    quantity: 20,
+  },
+  {
+    name: 'Детские книги',
+    id: 4,
+    category: 'children',
+    quantity: 5,
+  },
+  {
+    name: 'Зарубежная литература',
+    id: 5,
+    category: 'foreign-literature',
+    quantity: 11,
+  },
+  {
+    name: 'История',
+    id: 6,
+    category: 'history',
+    quantity: 1,
+  },
+  {
+    name: 'Классическая литература',
+    id: 7,
+    category: 'classic-literature',
+    quantity: 4,
+  },
+  {
+    name: 'Книги по психологии',
+    id: 8,
+    category: 'psychology-books',
+    quantity: 9,
+  },
+  {
+    name: 'Компьютерная литература',
+    id: 9,
+    category: 'computer-literature',
+    quantity: 26,
+  },
+  {
+    name: 'Культура и искусство',
+    id: 10,
+    category: 'сulture-and-art',
+    quantity: 14,
+  },
+  {
+    name: 'Наука и образование',
+    id: 11,
+    category: 'science-and-education',
+    quantity: 5,
+  },
+  {
+    name: 'Публицистическая литература',
+    id: 12,
+    category: 'journalistic-literature',
+    quantity: 8,
+  },
+  {
+    name: 'Справочники',
+    id: 13,
+    category: 'reference-books',
+    quantity: 42,
+  },
+  {
+    name: 'Фантастика',
+    id: 14,
+    category: 'fantasy',
+    quantity: 31,
+  },
+  {
+    name: 'Юмористическая литература',
+    id: 15,
+    category: 'humorous',
+    quantity: 60,
+  },
+]

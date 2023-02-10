@@ -1,0 +1,24 @@
+import { FC } from 'react'
+
+import { Container } from '@/components/container'
+
+import { footerLinks } from './footer.data'
+
+import styles from './footer.module.scss'
+
+export const Footer: FC = () => (
+  <Container>
+    <footer className={styles.footer}>
+      <span className={styles.sub}>&copy; 2020-2023 Cleverland. Все права защищены.</span>
+      <ul className={styles.linkList}>
+        {footerLinks.map(({ img, alt, to }) => (
+          <li className={styles.linkItem} key={alt}>
+            <a href={to} target='_blank' rel='noreferrer'>
+              <img src={img} alt={alt} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </footer>
+  </Container>
+)

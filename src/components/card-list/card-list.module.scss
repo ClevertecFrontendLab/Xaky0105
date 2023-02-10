@@ -1,0 +1,14 @@
+.cardList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 186px);
+  gap: 21.5px 24px;
+  justify-content: center;
+
+  @media (max-width: 360px) {
+    grid-template-columns: none;
+  }
+}
+
+.cardListLine {
+  grid-template-columns: 1fr;
+}

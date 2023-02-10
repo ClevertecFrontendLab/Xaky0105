@@ -1,0 +1,42 @@
+.toast {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1110px;
+  width: 100%;
+  padding: 24px 32px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  border-radius: 5px;
+  z-index: 10;
+
+  &.positive {
+    border: 2px solid var(--positive);
+    background-color: var(--positive-background);
+  }
+
+  &.negative {
+    border: 2px solid var(--negative);
+    background-color: var(--negative-background);
+  }
+
+  .message {
+    display: flex;
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 28px;
+    }
+  }
+
+  .closeIcon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+}

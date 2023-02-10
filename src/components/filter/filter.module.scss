@@ -1,0 +1,45 @@
+.filter {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+  margin-bottom: 24px;
+  .sorting {
+    display: flex;
+    .block {
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+      .searchInputWrapper {
+        width: 274px;
+
+        @media (max-width: 580px) {
+          display: none;
+        }
+      }
+      .wrapper {
+        @media (max-width: 580px) {
+          display: none;
+        }
+      }
+
+      .wrapperButton {
+        display: none;
+        @media (max-width: 580px) {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .listType {
+    .itemWrapper {
+      display: inline-block;
+      margin-left: 16px;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}

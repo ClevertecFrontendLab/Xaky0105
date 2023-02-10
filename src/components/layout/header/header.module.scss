@@ -1,0 +1,63 @@
+.headerWrapper {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    margin-bottom: 22px;
+    .titleBlock {
+      display: flex;
+      align-items: center;
+
+      .logoWrapper {
+        margin-right: 120px;
+
+        @media (max-width: 1150px) {
+          display: none;
+        }
+      }
+      .title {
+        font-size: 32px;
+        line-height: 40px;
+
+        @media (max-width: 320px) {
+          font-size: 18px;
+          line-height: 28px;
+        }
+      }
+    }
+    .user {
+      display: flex;
+      align-items: center;
+      .userName {
+        font-weight: 600;
+        margin-right: 16px;
+      }
+      .avatarWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        box-shadow: var(--box-shadow);
+        transition: var(--transition);
+        cursor: pointer;
+        img {
+          border-radius: 50%;
+          height: 100%;
+          object-fit: cover;
+          width: 100%;
+        }
+        &:hover {
+          box-shadow: var(--box-shadow-hover);
+        }
+      }
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+}

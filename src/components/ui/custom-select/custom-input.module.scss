@@ -1,0 +1,20 @@
+.select {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  box-shadow: var(--box-shadow);
+  border-radius: 20px;
+  padding: 11px 16px;
+  border: none;
+  background-color: inherit;
+  color: var(--black40);
+  cursor: pointer;
+
+  .imgWrap {
+    display: flex;
+    align-items: center;
+    min-width: 20px;
+    min-height: 20px;
+    margin-right: 5px;
+  }
+}

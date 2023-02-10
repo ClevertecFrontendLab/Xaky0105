@@ -1,0 +1,42 @@
+import { FC } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
+import clsx from 'clsx'
+
+import { useBooleanState } from '@/hooks/use-boolean-state'
+
+import { MenuList } from '../menu-list/menu-list'
+
+import styles from './menu-mobile.module.scss'
+
+interface IMenuMobile {
+  hideMobileMenu: () => void
+  isOpened: boolean
+}
+
+export const MenuMobile: FC<IMenuMobile> = ({ hideMobileMenu, isOpened }) => {
+  const { pathname } = useLocation()
+  const { category: categoryLocation } = useParams()
+
+  const {
+    state: isOpenGenre,
+    toggle: toggleIsOpenGenre,
+    setTrue: showGenreList,
+  } = useBooleanState(true)
+
+  return (
+    <nav
+      className={clsx(styles.navMobile, isOpened && styles.active)}
+      data-test-id='burger-navigation'
+    >
+      <MenuList
+        pathname={pathname}
+        categoryLocation={categoryLocation}
+        toggleIsOpenGenre={toggleIsOpenGenre}
+        showGenreList={showGenreList}
+        isOpenGenre={isOpenGenre}
+        hideMobileMenu={hideMobileMenu}
+        type='mobile'
+      />
+    </nav>
+  )
+}
