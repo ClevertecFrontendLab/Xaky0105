@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import classNames from 'classnames'
 
 import { errorHandler } from '@/utils/errors'
@@ -15,7 +14,7 @@ interface IToast {
   onClose: () => void
 }
 
-export const Toast: FC<IToast> = ({ message, type, onClose }) => (
+export const Toast = ({ message, type, onClose }: IToast) => (
   <div
     className={classNames(
       styles.toast,

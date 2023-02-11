@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { useEffect } from 'react'
 import classNames from 'classnames'
 import noScroll from 'no-scroll'
 
@@ -9,7 +9,7 @@ interface IOverlayMask {
   isOpened: boolean
 }
 
-export const OverlayMask: FC<IOverlayMask> = ({ onClose, isOpened }) => {
+export const OverlayMask = ({ onClose, isOpened }: IOverlayMask) => {
   useEffect(() => (isOpened ? noScroll.on() : noScroll.off()), [isOpened])
 
   return (

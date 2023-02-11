@@ -1,7 +1,7 @@
-import { FC, PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 
 import styles from './container.module.scss'
 
-export const Container: FC<PropsWithChildren> = ({ children }) => (
+export const Container = ({ children }: PropsWithChildren) => (
   <div className={styles.container}>{children}</div>
 )

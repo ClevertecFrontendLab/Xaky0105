@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import classNames from 'classnames'
 
 import styles from './button.module.scss'
@@ -13,7 +12,7 @@ interface IButton {
   dataTestId?: string
 }
 
-export const Button: FC<IButton> = ({
+export const Button = ({
   type = 'button',
   name,
   clickHandler,
@@ -21,7 +20,7 @@ export const Button: FC<IButton> = ({
   variant = 'primary',
   size = 'small',
   dataTestId,
-}) => (
+}: IButton) => (
   <button
     className={classNames(
       styles.btn,

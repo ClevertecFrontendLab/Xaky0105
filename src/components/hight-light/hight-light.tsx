@@ -1,4 +1,4 @@
-import { FC, Fragment, memo, useCallback } from 'react'
+import { Fragment, memo, useCallback } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import styles from './hight-light.module.scss'
@@ -9,7 +9,7 @@ interface IHightLight {
   classNameHL: string
 }
 
-export const HightLight: FC<IHightLight> = memo(({ searchWord, text, classNameHL }) => {
+export const HightLight = memo(({ searchWord, text, classNameHL }: IHightLight) => {
   const generateHightLightText = useCallback(
     (str: string) => {
       if (!searchWord) {

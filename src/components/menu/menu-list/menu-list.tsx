@@ -1,4 +1,4 @@
-import { FC, Fragment, useMemo } from 'react'
+import { Fragment, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
 
@@ -39,7 +39,7 @@ interface IMenuList {
   showGenreList: () => void
 }
 
-export const MenuList: FC<IMenuList> = ({
+export const MenuList = ({
   pathname,
   toggleIsOpenGenre,
   isOpenGenre,
@@ -47,7 +47,7 @@ export const MenuList: FC<IMenuList> = ({
   type,
   hideMobileMenu,
   showGenreList,
-}) => {
+}: IMenuList) => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 

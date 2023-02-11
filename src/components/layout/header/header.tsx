@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Container } from '@/components/container'
@@ -13,7 +12,7 @@ import logo from '@/assets/images/logo.png'
 
 import styles from './header.module.scss'
 
-export const Header: FC = () => {
+export const Header = () => {
   const {
     state: isShowMobileMenu,
     setFalse: hideMobileMenu,

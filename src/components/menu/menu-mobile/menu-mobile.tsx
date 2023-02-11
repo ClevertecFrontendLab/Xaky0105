@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import classNames from 'classnames'
 
@@ -13,7 +12,7 @@ interface IMenuMobile {
   isOpened: boolean
 }
 
-export const MenuMobile: FC<IMenuMobile> = ({ hideMobileMenu, isOpened }) => {
+export const MenuMobile = ({ hideMobileMenu, isOpened }: IMenuMobile) => {
   const { pathname } = useLocation()
   const { category: categoryLocation } = useParams()
 

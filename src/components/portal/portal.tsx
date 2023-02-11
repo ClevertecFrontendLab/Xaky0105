@@ -1,11 +1,11 @@
-import { FC, ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 
 type PortalType = {
   children: ReactNode
 }
 
-export const Portal: FC<PortalType> = ({ children }) => {
+export const Portal = ({ children }: PortalType) => {
   const [container] = useState(() => document.createElement('div'))
 
   useEffect(() => {

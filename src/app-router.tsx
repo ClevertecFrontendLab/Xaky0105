@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import { Layout } from '@/components/layout'
@@ -11,7 +10,7 @@ import { TermsPage } from '@/pages/terms'
 
 import { RoutePath } from '@/types/other'
 
-export const AppRouter: FC = () => (
+export const AppRouter = () => (
   <HashRouter>
     <Routes>
       <Route path={RoutePath.main} element={<Layout />}>

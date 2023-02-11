@@ -1,4 +1,4 @@
-import { FC, ReactNode, useEffect, useRef } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import classNames from 'classnames'
 import noScroll from 'no-scroll'
@@ -15,13 +15,13 @@ type OverlayType = {
   timeout?: boolean
 }
 
-export const OverlayWithPortal: FC<OverlayType> = ({
+export const OverlayWithPortal = ({
   children,
   onClose,
   isOpened,
   type = 'blur',
   timeout = true,
-}) => {
+}: OverlayType) => {
   const nodeRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => (isOpened ? noScroll.on() : noScroll.off()), [isOpened])

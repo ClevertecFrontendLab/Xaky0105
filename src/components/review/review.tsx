@@ -1,5 +1,3 @@
-import { FC } from 'react'
-
 import { IComment } from '@/types/books'
 
 import { formatDate } from '@/utils/date'
@@ -12,7 +10,7 @@ import { Rating } from '../ui/rating'
 
 import styles from './review.module.scss'
 
-export const Review: FC<IComment> = ({ text, user, rating, createdAt }) => (
+export const Review = ({ text, user, rating, createdAt }: IComment) => (
   <li className={styles.review}>
     <div className={styles.userData}>
       <div className={styles.imgWrapper}>

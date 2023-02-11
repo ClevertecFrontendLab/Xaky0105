@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 
 import { useBooleanState } from '@/hooks/use-boolean-state'
@@ -7,7 +6,7 @@ import { MenuList } from '../menu-list/menu-list'
 
 import styles from './menu-desktop.module.scss'
 
-export const MenuDesktop: FC = () => {
+export const MenuDesktop = () => {
   const { pathname } = useLocation()
   const { category: categoryLocation } = useParams()
 

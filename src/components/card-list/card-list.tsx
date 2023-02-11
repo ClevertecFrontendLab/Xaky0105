@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import classNames from 'classnames'
 
 import { Card } from '@/components/card/card'
@@ -14,7 +13,7 @@ interface ICardList {
   inputText: string
 }
 
-export const CardList: FC<ICardList> = ({ selectSorting, cardsData, inputText }) => (
+export const CardList = ({ selectSorting, cardsData, inputText }: ICardList) => (
   <ul className={classNames(styles.cardList, selectSorting === 'list' && styles.cardListLine)}>
     {cardsData.map(cardData => (
       <Card

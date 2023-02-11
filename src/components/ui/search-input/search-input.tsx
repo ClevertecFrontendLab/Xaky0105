@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import classNames from 'classnames'
 
 import { useBooleanState } from '@/hooks/use-boolean-state'
@@ -17,14 +17,14 @@ interface ISearchInput {
   autofocus?: boolean
 }
 
-export const SearchInput: FC<ISearchInput> = ({
+export const SearchInput = ({
   placeholder,
   size = 'normal',
   inputText,
   changeInputText,
   closeHandler,
   autofocus = false,
-}) => {
+}: ISearchInput) => {
   const { state: isFocus, setTrue, setFalse } = useBooleanState()
   const inputElement = useRef<HTMLInputElement>(null)
 

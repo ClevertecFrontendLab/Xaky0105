@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react'
+import { useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import classNames from 'classnames'
 
@@ -17,7 +17,7 @@ interface IReviewList {
   reviews: IComment[]
 }
 
-export const ReviewsList: FC<IReviewList> = ({ reviews }) => {
+export const ReviewsList = ({ reviews }: IReviewList) => {
   const { state: shouldShowReviews, toggle } = useBooleanState()
 
   const ref = useRef<HTMLUListElement>(null)

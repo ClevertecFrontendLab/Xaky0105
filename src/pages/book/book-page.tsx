@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { Breadcrumbs } from '@/components/breadcrumbs'
@@ -21,7 +21,7 @@ type BookParams = {
   bookId: string
 }
 
-export const BookPage: FC = () => {
+export const BookPage = () => {
   const { bookId } = useParams<keyof BookParams>() as BookParams
 
   const dispatch = useAppDispatch()

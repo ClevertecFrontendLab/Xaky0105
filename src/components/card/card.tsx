@@ -1,4 +1,4 @@
-import { FC, Fragment, memo } from 'react'
+import { Fragment, memo } from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 
@@ -23,12 +23,12 @@ interface ICardProps {
   inputText: string
 }
 
-export const Card: FC<ICardProps> = memo(
+export const Card = memo(
   ({
     selectSorting,
     inputText,
     cardData: { title, image, rating, authors, issueYear, id, booking, categories },
-  }) => {
+  }: ICardProps) => {
     const categoryByName = useAppSelector(selectCategoriesByName(categories[0]))
 
     const buttonMessage = () => {

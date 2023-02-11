@@ -1,4 +1,4 @@
-import { FC, Fragment, useState } from 'react'
+import { Fragment, useState } from 'react'
 import classNames from 'classnames'
 import SwiperCore, { EffectFade, FreeMode, Pagination, Scrollbar, Thumbs } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -17,7 +17,7 @@ interface ISlider {
   images: [{ url: string }]
 }
 
-export const Slider: FC<ISlider> = ({ images }) => {
+export const Slider = ({ images }: ISlider) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore>()
 
   return (

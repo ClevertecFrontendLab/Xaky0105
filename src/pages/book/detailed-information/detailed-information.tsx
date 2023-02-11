@@ -1,5 +1,3 @@
-import { FC } from 'react'
-
 import { SubTitle } from '@/components/ui/sub-title'
 
 import { IBookDetailed } from '@/types/books'
@@ -12,7 +10,7 @@ interface IDetailedInformation {
   book: IBookDetailed
 }
 
-export const DetailedInformation: FC<IDetailedInformation> = ({ book }) => (
+export const DetailedInformation = ({ book }: IDetailedInformation) => (
   <div className={styles.detailedInformation}>
     <SubTitle text='Подробная информация' />
     <ul className={styles.infoList}>

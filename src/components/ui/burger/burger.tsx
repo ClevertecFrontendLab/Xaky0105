@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import classNames from 'classnames'
 
 import styles from './burger.module.scss'
@@ -8,7 +7,7 @@ interface IBurger {
   toggle: () => void
 }
 
-export const Burger: FC<IBurger> = ({ isMenuOpen, toggle }) => (
+export const Burger = ({ isMenuOpen, toggle }: IBurger) => (
   <button
     className={classNames(styles.burger, isMenuOpen && styles.cross)}
     onClick={toggle}

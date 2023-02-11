@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import styles from './breadcrumbs.module.scss'
@@ -13,7 +12,7 @@ interface IBreadcrumbs {
   categoryName: string
 }
 
-export const Breadcrumbs: FC<IBreadcrumbs> = ({ categoryName, title }) => {
+export const Breadcrumbs = ({ categoryName, title }: IBreadcrumbs) => {
   const { bookId, category } = useParams<keyof BreadcrumbsParams>() as BreadcrumbsParams
 
   return (

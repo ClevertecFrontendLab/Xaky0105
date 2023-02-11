@@ -1,4 +1,4 @@
-import { FC, Fragment } from 'react'
+import { Fragment } from 'react'
 
 import { CustomSelect } from '@/components/ui/custom-select'
 import { RoundButton } from '@/components/ui/round-button'
@@ -17,12 +17,7 @@ interface IFilter {
   changeInputText: (value: string) => void
 }
 
-export const Filter: FC<IFilter> = ({
-  changeSorting,
-  selectSorting,
-  inputText,
-  changeInputText,
-}) => {
+export const Filter = ({ changeSorting, selectSorting, inputText, changeInputText }: IFilter) => {
   const { state: isShowOnlySearchInput, setFalse, setTrue } = useBooleanState()
 
   return (

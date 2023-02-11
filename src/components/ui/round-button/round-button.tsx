@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import classNames from 'classnames'
 
 import { TypeSortMainPage } from '@/types/other'
@@ -19,14 +18,14 @@ interface IRoundButton {
   dataTestId?: string
 }
 
-export const RoundButton: FC<IRoundButton> = ({
+export const RoundButton = ({
   iconType,
   changeSorting,
   selectSorting,
   sortingType,
   handler,
   dataTestId,
-}) => {
+}: IRoundButton) => {
   const clickHandler = () => {
     if (selectSorting && changeSorting && sortingType) {
       changeSorting(sortingType)

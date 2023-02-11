@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import { selectIsLoadingBook } from '@/store/book/book.selector'
@@ -17,7 +17,7 @@ import { Header } from './header'
 
 import styles from './layout.module.scss'
 
-export const Layout: FC = () => {
+export const Layout = () => {
   useScrollToTop()
 
   const dispatch = useAppDispatch()

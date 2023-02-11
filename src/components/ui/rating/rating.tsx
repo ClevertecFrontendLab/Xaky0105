@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import classNames from 'classnames'
 
 import { ReactComponent as RatingIcon } from '@/assets/images/rating/rating.svg'
@@ -11,7 +10,7 @@ interface IRating {
   size?: 'medium' | 'large'
 }
 
-export const Rating: FC<IRating> = ({ value, size = 'medium' }) => {
+export const Rating = ({ value, size = 'medium' }: IRating) => {
   const stars = [1, 2, 3, 4, 5]
 
   return (

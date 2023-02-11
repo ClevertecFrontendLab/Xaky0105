@@ -1,12 +1,10 @@
-import { FC } from 'react'
-
 import styles from './terms.module.scss'
 
 interface ITermsPage {
   contentView: 'terms' | 'contract'
 }
 
-export const TermsPage: FC<ITermsPage> = ({ contentView }) => {
+export const TermsPage = ({ contentView }: ITermsPage) => {
   const title = contentView === 'terms' ? 'Правила пользования' : 'Договор оферты'
 
   return (

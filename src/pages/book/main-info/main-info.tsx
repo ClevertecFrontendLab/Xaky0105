@@ -1,4 +1,4 @@
-import { FC, Fragment } from 'react'
+import { Fragment } from 'react'
 
 import { Slider } from '@/components/slider'
 import { Button } from '@/components/ui/button'
@@ -12,7 +12,7 @@ interface IMainInfo {
   book: IBookDetailed
 }
 
-export const MainInfo: FC<IMainInfo> = ({ book }) => {
+export const MainInfo = ({ book }: IMainInfo) => {
   const { images, title, authors, issueYear, description } = book
 
   return (

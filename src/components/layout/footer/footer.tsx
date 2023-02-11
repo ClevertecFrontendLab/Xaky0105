@@ -1,12 +1,10 @@
-import { FC } from 'react'
-
 import { Container } from '@/components/container'
 
 import { footerLinks } from './footer.data'
 
 import styles from './footer.module.scss'
 
-export const Footer: FC = () => (
+export const Footer = () => (
   <Container>
     <footer className={styles.footer}>
       <span className={styles.sub}>&copy; 2020-2023 Cleverland. Все права защищены.</span>
