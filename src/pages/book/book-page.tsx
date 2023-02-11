@@ -13,7 +13,7 @@ import {
   selectErrorBook,
   selectIsLoadingBook,
 } from '@/store/book/book.selector'
-import { getBookFailure, getBookFetch } from '@/store/book/book.slice'
+import { clearBook, getBookFailure, getBookFetch } from '@/store/book/book.slice'
 
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
 
@@ -38,6 +38,10 @@ export const BookPage: FC = () => {
 
   useEffect(() => {
     dispatch(getBookFetch(+bookId))
+
+    return () => {
+      dispatch(clearBook())
+    }
   }, [dispatch, bookId])
 
   return (
