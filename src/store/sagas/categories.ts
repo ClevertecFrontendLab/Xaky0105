@@ -11,8 +11,8 @@ function* workGetCategoriesFetch() {
     const categories: ICategory[] = yield call(categoriesService.getCategories)
 
     yield put(getCategoriesSuccess(categories))
-  } catch (error: any) {
-    yield put(getCategoriesFailure(error.message))
+  } catch {
+    yield put(getCategoriesFailure('Что-то пошло не так. Обновите страницу через некоторое время'))
   }
 }
 

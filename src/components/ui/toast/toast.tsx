@@ -1,7 +1,5 @@
 import classNames from 'classnames'
 
-import { errorHandler } from '@/utils/errors'
-
 import { ReactComponent as CloseIcon } from '@/assets/images/action/close.svg'
 import { ReactComponent as PositiveIcon } from '@/assets/images/other/positive-circle.svg'
 import { ReactComponent as NegativeIcon } from '@/assets/images/other/warning-circle.svg'
@@ -29,7 +27,7 @@ export const Toast = ({ message, type, onClose }: IToast) => (
       ) : (
         <NegativeIcon className={styles.icon} />
       )}
-      <p>{errorHandler(message)}</p>
+      <p>{message}</p>
     </div>
     <CloseIcon className={styles.closeIcon} onClick={onClose} />
   </div>

@@ -11,8 +11,8 @@ function* workGetBooksFetch() {
     const books: IBook[] = yield call(booksService.getBooks)
 
     yield put(getBooksSuccess(books))
-  } catch (error: any) {
-    yield put(getBooksFailure(error.message))
+  } catch {
+    yield put(getBooksFailure('Что-то пошло не так. Обновите страницу через некоторое время'))
   }
 }
 

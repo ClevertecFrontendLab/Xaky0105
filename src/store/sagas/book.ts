@@ -14,8 +14,8 @@ function* workGetBookFetch(action: PayloadAction<number>) {
     const book: IBookDetailed = yield call(booksService.getBookDetailed, id)
 
     yield put(getBookSuccess(book))
-  } catch (error: any) {
-    yield put(getBookFailure(error.message))
+  } catch {
+    yield put(getBookFailure('Что-то пошло не так. Обновите страницу через некоторое время'))
   }
 }
 
