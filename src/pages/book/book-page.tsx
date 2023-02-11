@@ -56,7 +56,7 @@ export const BookPage: FC = () => {
           <Container>
             <MainInfo book={bookDetailed} />
             <RatingBlock rating={bookDetailed.rating} />
-            <DetailedInformation />
+            <DetailedInformation book={bookDetailed} />
             <ReviewsList reviews={bookDetailed.comments} />
           </Container>
         </>

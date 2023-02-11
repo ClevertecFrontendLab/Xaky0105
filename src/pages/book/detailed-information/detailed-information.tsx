@@ -2,18 +2,24 @@ import { FC } from 'react'
 
 import { SubTitle } from '@/components/ui/sub-title'
 
-import { detailedInfoData } from './detailed-information.data'
+import { IBookDetailed } from '@/types/books'
+
+import { detailInfoData } from './detailed-information.data'
 
 import styles from './detailed-information.module.scss'
 
-export const DetailedInformation: FC = () => (
+interface IDetailedInformation {
+  book: IBookDetailed
+}
+
+export const DetailedInformation: FC<IDetailedInformation> = ({ book }) => (
   <div className={styles.detailedInformation}>
     <SubTitle text='Подробная информация' />
     <ul className={styles.infoList}>
-      {detailedInfoData.map(({ category, value }) => (
-        <li className={styles.infoItem} key={category}>
-          <span className={styles.typeInfo}>{category}</span>
-          <span className={styles.valueInfo}>{value}</span>
+      {detailInfoData(book).map(info => (
+        <li className={styles.infoItem} key={info.type}>
+          <span className={styles.typeInfo}>{info.type}</span>
+          <span className={styles.valueInfo}>{info.value}</span>
         </li>
       ))}
     </ul>

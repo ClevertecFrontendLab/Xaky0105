@@ -1,43 +1,40 @@
-interface IDetailedInfoData {
-  category: string
-  value: string
-}
+import { IBookDetailed } from '@/types/books'
 
-export const detailedInfoData: IDetailedInfoData[] = [
+export const detailInfoData = (book: IBookDetailed) => [
   {
-    category: 'Издательство',
-    value: 'Питер',
+    type: 'Издательство',
+    value: book.publish,
   },
   {
-    category: 'Год издания',
-    value: '2018',
+    type: 'Год издания',
+    value: book.issueYear,
   },
   {
-    category: 'Страниц',
-    value: '288',
+    type: 'Страниц',
+    value: book.pages,
   },
   {
-    category: 'Переплёт',
-    value: 'Мягкая обложка',
+    type: 'Переплет',
+    value: book.cover,
   },
   {
-    category: 'Формат',
-    value: '70х100',
+    type: 'Формат',
+    value: book.format,
   },
   {
-    category: 'Жанр',
-    value: 'Компьютерная литература',
+    type: 'Жанр',
+    value: book.categories,
   },
   {
-    category: 'Вес',
-    value: '370 г',
+    type: 'Вес',
+    value: book.weight,
   },
   {
-    category: 'ISBN',
-    value: '978-5-4461-0923-4',
+    type: 'ISBN',
+    value: book.ISBN,
   },
   {
-    category: 'Изготовитель',
-    value: ' ООО «Питер Мейл». РФ, 198 206, г. Санкт-Петербург, Петергофское ш, д. 73, лит. А29',
+    type: 'Изготовитель',
+    value: book.producer,
   },
 ]
