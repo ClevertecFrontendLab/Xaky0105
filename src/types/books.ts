@@ -1,24 +1,3 @@
-export interface ICardData {
-  name: string
-  rating: number | null
-  images: string[]
-  authors: string[]
-  year: number
-  isBusy: boolean
-  id: string
-  booked: boolean
-  category: string
-  reviews: IReview[]
-}
-export interface IReview {
-  text: string
-  userName: string
-  avatar: string
-  rating: number
-  date: string
-  id: number
-}
-
 export interface IBook {
   issueYear: string
   rating: number
@@ -29,6 +8,65 @@ export interface IBook {
   }
   categories: string[]
   id: number
+  booking: {
+    id: number
+    order: boolean
+    dateOrder: string
+    customerId: number
+    customerFirstName: string
+    customerLastName: string
+  }
+  delivery: {
+    id: number
+    handed: boolean
+    dateHandedFrom: string
+    dateHandedTo: string
+    recipientId: number
+    recipientFirstName: string
+    recipientLastName: string
+  }
+  histories: [
+    {
+      id: number
+      userId: number
+    }
+  ]
+}
+
+export interface IComment {
+  text: string
+  createdAt: string
+  rating: number
+  id: number
+  user: {
+    commentUserId: number
+    firstName: string
+    lastName: string
+    avatarUrl: string
+  }
+}
+
+export interface IBookDetailed {
+  id: number
+  title: string
+  rating: number
+  issueYear: string
+  description: string
+  publish: string
+  pages: string
+  cover: string
+  weight: string
+  format: string
+  ISBN: string
+  producer: string
+  authors: string[]
+  images: [
+    {
+      url: string
+    }
+  ]
+  categories: string[]
+  comments: IComment[]
   booking: {
     id: number
     order: boolean
