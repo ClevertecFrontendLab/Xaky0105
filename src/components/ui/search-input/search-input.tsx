@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef } from 'react'
-import clsx from 'clsx'
+import classNames from 'classnames'
 
 import { useBooleanState } from '@/hooks/use-boolean-state'
 
@@ -40,15 +40,15 @@ export const SearchInput: FC<ISearchInput> = ({
 
   return (
     <div
-      className={clsx(styles.inputWrap, size === 'small' && styles.small)}
+      className={classNames(styles.inputWrap, size === 'small' && styles.small)}
       data-test-id='input-search'
     >
       {size === 'normal' && (
-        <SearchIcon className={clsx(styles.searchIcon, isFocus && styles.searchIconColor)} />
+        <SearchIcon className={classNames(styles.searchIcon, isFocus && styles.searchIconColor)} />
       )}
       <input
         type='text'
-        className={clsx(
+        className={classNames(
           styles.searchInput,
           size === 'normal' && styles.normal,
           size === 'small' && styles.small
@@ -61,7 +61,7 @@ export const SearchInput: FC<ISearchInput> = ({
         ref={inputElement}
       />
       <CloseIcon
-        className={clsx(styles.closeIcon, isFocus && styles.closeIconColor)}
+        className={classNames(styles.closeIcon, isFocus && styles.closeIconColor)}
         onClick={closeHandler}
         data-test-id='button-search-close'
       />

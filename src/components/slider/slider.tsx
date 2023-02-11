@@ -1,5 +1,5 @@
 import { FC, Fragment, useState } from 'react'
-import clsx from 'clsx'
+import classNames from 'classnames'
 import SwiperCore, { EffectFade, FreeMode, Pagination, Scrollbar, Thumbs } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -22,7 +22,7 @@ export const Slider: FC<ISlider> = ({ images }) => {
 
   return (
     <div
-      className={clsx(
+      className={classNames(
         'slider',
         !images?.length && 'not-found-image',
         images?.length === 1 && 'one-image'
@@ -56,7 +56,7 @@ export const Slider: FC<ISlider> = ({ images }) => {
             scrollbar={{ draggable: true }}
             modules={[Thumbs, Scrollbar]}
             watchSlidesProgress={true}
-            className={clsx('second-swiper', images?.length < 5 && 'second-swiper-center')}
+            className={classNames('second-swiper', images?.length < 5 && 'second-swiper-center')}
           >
             {images.map(image => (
               <SwiperSlide key={image.url} data-test-id='slide-mini'>

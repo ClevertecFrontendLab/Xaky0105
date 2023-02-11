@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import clsx from 'clsx'
+import classNames from 'classnames'
 
 import { TypeSortMainPage } from '@/types/other'
 
@@ -35,7 +35,10 @@ export const RoundButton: FC<IRoundButton> = ({
     }
   }
 
-  const cn = clsx(styles.roundButton, sortingType && sortingType === selectSorting && styles.active)
+  const cn = classNames(
+    styles.roundButton,
+    sortingType && sortingType === selectSorting && styles.active
+  )
 
   const getImage = () => {
     switch (iconType) {

@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import clsx from 'clsx'
+import classNames from 'classnames'
 
 import styles from './button.module.scss'
 
@@ -23,7 +23,7 @@ export const Button: FC<IButton> = ({
   dataTestId,
 }) => (
   <button
-    className={clsx(
+    className={classNames(
       styles.btn,
       variant === 'primary' && styles.primary,
       variant === 'secondary' && styles.secondary,

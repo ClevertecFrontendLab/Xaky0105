@@ -1,6 +1,6 @@
 import { FC, Fragment, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import clsx from 'clsx'
+import classNames from 'classnames'
 
 import { Toast } from '@/components/ui/toast'
 
@@ -63,7 +63,7 @@ export const MenuList: FC<IMenuList> = ({
       <ul className={styles.categoriesMenuList}>
         <li>
           <button
-            className={clsx(
+            className={classNames(
               styles.categoriesMenuItem,
               pathname.includes('/books') && styles.active
             )}
@@ -80,31 +80,31 @@ export const MenuList: FC<IMenuList> = ({
           >
             <span>Витрина книг</span>
             <span
-              className={clsx(
+              className={classNames(
                 styles.iconWrapper,
                 isOpenGenre && pathname.includes('/books') && styles.active
               )}
             >
               <Chevron
-                className={clsx(styles.icon, pathname.includes('/books') && styles.active)}
+                className={classNames(styles.icon, pathname.includes('/books') && styles.active)}
               />
             </span>
           </button>
           <ul
-            className={clsx(
+            className={classNames(
               styles.genreList,
               isOpenGenre && pathname.includes('/books') && styles.visible
             )}
           >
             {navCategories.map(({ id, path, name, quantity }) => (
               <li
-                className={clsx(styles.genre)}
+                className={classNames(styles.genre)}
                 key={id}
                 data-test-id={getDataTestIdBooks(path, type)}
               >
                 <Link
                   to={`/books/${path}`}
-                  className={clsx(
+                  className={classNames(
                     styles.genreLink,
                     categoryLocation === path && styles.activeGenreLink
                   )}
@@ -118,7 +118,10 @@ export const MenuList: FC<IMenuList> = ({
           </ul>
         </li>
         <li
-          className={clsx(styles.categoriesMenuItem, pathname === RoutePath.terms && styles.active)}
+          className={classNames(
+            styles.categoriesMenuItem,
+            pathname === RoutePath.terms && styles.active
+          )}
           data-test-id={type === 'desktop' ? 'navigation-terms' : 'burger-terms'}
         >
           <Link to={RoutePath.terms} onClick={hideMobileMenu}>
@@ -126,7 +129,7 @@ export const MenuList: FC<IMenuList> = ({
           </Link>
         </li>
         <li
-          className={clsx(
+          className={classNames(
             styles.categoriesMenuItem,
             pathname === RoutePath.contract && styles.active
           )}
@@ -140,7 +143,7 @@ export const MenuList: FC<IMenuList> = ({
       {type === 'mobile' && (
         <ul className={styles.categoriesMenuList}>
           <li
-            className={clsx(
+            className={classNames(
               styles.categoriesMenuItem,
               pathname === RoutePath.profile && styles.active
             )}
@@ -150,7 +153,7 @@ export const MenuList: FC<IMenuList> = ({
             <Link to={RoutePath.profile}>Профиль</Link>
           </li>
           <li
-            className={clsx(styles.categoriesMenuItem)}
+            className={classNames(styles.categoriesMenuItem)}
             onClick={hideMobileMenu}
             role='presentation'
           >

@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import clsx from 'clsx'
+import classNames from 'classnames'
 
 import { Card } from '@/components/card/card'
 
@@ -15,7 +15,7 @@ interface ICardList {
 }
 
 export const CardList: FC<ICardList> = ({ selectSorting, cardsData, inputText }) => (
-  <ul className={clsx(styles.cardList, selectSorting === 'list' && styles.cardListLine)}>
+  <ul className={classNames(styles.cardList, selectSorting === 'list' && styles.cardListLine)}>
     {cardsData.map(cardData => (
       <Card
         cardData={cardData}

@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react'
-import clsx from 'clsx'
+import classNames from 'classnames'
 import noScroll from 'no-scroll'
 
 import styles from './overlay-mask.module.scss'
@@ -14,7 +14,7 @@ export const OverlayMask: FC<IOverlayMask> = ({ onClose, isOpened }) => {
 
   return (
     <div
-      className={clsx(styles.overlay, !isOpened && styles.hide)}
+      className={classNames(styles.overlay, !isOpened && styles.hide)}
       onClick={onClose}
       role='presentation'
     />

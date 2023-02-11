@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import clsx from 'clsx'
+import classNames from 'classnames'
 
 import { errorHandler } from '@/utils/errors'
 
@@ -17,7 +17,7 @@ interface IToast {
 
 export const Toast: FC<IToast> = ({ message, type, onClose }) => (
   <div
-    className={clsx(
+    className={classNames(
       styles.toast,
       type === 'positive' && styles.positive,
       type === 'negative' && styles.negative

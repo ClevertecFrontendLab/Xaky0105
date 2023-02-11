@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import clsx from 'clsx'
+import classNames from 'classnames'
 
 import { ReactComponent as RatingIcon } from '@/assets/images/rating/rating.svg'
 import { ReactComponent as RatingIconEmpty } from '@/assets/images/rating/rating-empty.svg'
@@ -17,7 +17,7 @@ export const Rating: FC<IRating> = ({ value, size = 'medium' }) => {
   return (
     <div className={styles.rating}>
       {stars.map(star => (
-        <div className={clsx(styles.ratingItem, size === 'large' && styles.large)} key={star}>
+        <div className={classNames(styles.ratingItem, size === 'large' && styles.large)} key={star}>
           {value < star ? <RatingIconEmpty /> : <RatingIcon />}
         </div>
       ))}

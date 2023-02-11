@@ -1,6 +1,6 @@
 import { FC, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import clsx from 'clsx'
+import classNames from 'classnames'
 
 import { Review } from '@/components/review'
 import { Button } from '@/components/ui/button'
@@ -24,11 +24,11 @@ export const ReviewsList: FC<IReviewList> = ({ reviews }) => {
 
   return (
     <div className={styles.reviews}>
-      <h3 className={clsx(styles.subTitle, shouldShowReviews && styles.withUnderline)}>
+      <h3 className={classNames(styles.subTitle, shouldShowReviews && styles.withUnderline)}>
         <span className={styles.subTitleName}>Отзывы</span>
         <span className={styles.amountReviews}>{reviews?.length}</span>
         <button
-          className={clsx(styles.chevronBtn, shouldShowReviews && styles.active)}
+          className={classNames(styles.chevronBtn, shouldShowReviews && styles.active)}
           onClick={toggle}
           type='button'
           data-test-id='button-hide-reviews'

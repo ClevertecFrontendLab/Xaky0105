@@ -1,6 +1,6 @@
 import { FC, Fragment, memo } from 'react'
 import { Link } from 'react-router-dom'
-import clsx from 'clsx'
+import classNames from 'classnames'
 
 import { HightLight } from '@/components/hight-light'
 import { Button } from '@/components/ui/button'
@@ -42,14 +42,14 @@ export const Card: FC<ICardProps> = memo(
     return (
       <li key={id} data-test-id='card'>
         <Link
-          className={clsx(
+          className={classNames(
             styles.card,
             selectSorting === 'tile' && styles.cardTile,
             selectSorting === 'list' && styles.cardList
           )}
           to={`/books/${categoryByName.path}/${id}`}
         >
-          <div className={clsx(styles.imageWrapper, !image && styles.notFoundImage)}>
+          <div className={classNames(styles.imageWrapper, !image && styles.notFoundImage)}>
             {image && <img src={`${BASE_URL}${image.url}`} alt={title} />}
           </div>
           <div className={styles.cardContent}>

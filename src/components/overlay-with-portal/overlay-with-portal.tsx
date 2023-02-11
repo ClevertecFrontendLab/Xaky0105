@@ -1,6 +1,6 @@
 import { FC, ReactNode, useEffect, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import clsx from 'clsx'
+import classNames from 'classnames'
 import noScroll from 'no-scroll'
 
 import { Portal } from '../portal/portal'
@@ -43,7 +43,7 @@ export const OverlayWithPortal: FC<OverlayType> = ({
         <div className={styles.container}>
           <div
             ref={nodeRef}
-            className={clsx(
+            className={classNames(
               styles.overlay,
               type === 'orange' && styles.orange,
               type === 'blur' && styles.blur,

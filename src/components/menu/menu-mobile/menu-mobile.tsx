@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import clsx from 'clsx'
+import classNames from 'classnames'
 
 import { useBooleanState } from '@/hooks/use-boolean-state'
 
@@ -25,7 +25,7 @@ export const MenuMobile: FC<IMenuMobile> = ({ hideMobileMenu, isOpened }) => {
 
   return (
     <nav
-      className={clsx(styles.navMobile, isOpened && styles.active)}
+      className={classNames(styles.navMobile, isOpened && styles.active)}
       data-test-id='burger-navigation'
     >
       <MenuList
