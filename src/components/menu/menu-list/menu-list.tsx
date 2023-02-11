@@ -2,16 +2,10 @@ import { FC, Fragment, useEffect, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
 
-import { Loader } from '@/components/loader'
-import { OverlayWithPortal } from '@/components/overlay-with-portal'
 import { Toast } from '@/components/ui/toast'
 
 import { selectBooksAll } from '@/store/books/books.selector'
-import {
-  selectCategories,
-  selectErrorCategories,
-  selectIsLoadingCategories,
-} from '@/store/categories/categories.selector'
+import { selectCategories, selectErrorCategories } from '@/store/categories/categories.selector'
 import { getCategoriesFailure, getCategoriesFetch } from '@/store/categories/categories.slice'
 
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
@@ -47,7 +41,6 @@ export const MenuList: FC<IMenuList> = ({
   const dispatch = useAppDispatch()
 
   const categories = useAppSelector(selectCategories)
-  const isLoadingCategories = useAppSelector(selectIsLoadingCategories)
   const categoriesError = useAppSelector(selectErrorCategories)
 
   const books = useAppSelector(selectBooksAll)
@@ -167,9 +160,6 @@ export const MenuList: FC<IMenuList> = ({
           </li>
         </ul>
       )}
-      <OverlayWithPortal type='blur' isOpened={isLoadingCategories}>
-        <Loader />
-      </OverlayWithPortal>
       {categoriesError && (
         <Toast
           message={categoriesError}
