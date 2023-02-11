@@ -6,13 +6,19 @@ import { HightLight } from '@/components/hight-light'
 import { Button } from '@/components/ui/button'
 import { Rating } from '@/components/ui/rating'
 
-import { ICardData } from '@/types/books'
+import { selectCategoriesByName } from '@/store/categories/categories.selector'
+
+import { useAppSelector } from '@/hooks/use-redux'
+
+import { IBook } from '@/types/books'
 import { TypeSortMainPage } from '@/types/other'
+
+import { BASE_URL } from '@/api/api'
 
 import styles from './card.module.scss'
 
 interface ICardProps {
-  cardData: ICardData
+  cardData: IBook
   selectSorting: TypeSortMainPage
   inputText: string
 }
@@ -21,14 +27,13 @@ export const Card: FC<ICardProps> = memo(
   ({
     selectSorting,
     inputText,
-    cardData: { name, images, rating, authors, year, id, isBusy, booked, category },
+    cardData: { title, image, rating, authors, issueYear, id, booking, categories },
   }) => {
+    const categoryByName = useAppSelector(selectCategoriesByName(categories[0]))
+
     const buttonMessage = () => {
-      if (isBusy) {
+      if (booking) {
         return 'Занята до 03.05'
-      }
-      if (booked) {
-        return 'Забронирована'
       }
 
       return 'Забронировать'
@@ -42,24 +47,24 @@ export const Card: FC<ICardProps> = memo(
             selectSorting === 'tile' && styles.cardTile,
             selectSorting === 'list' && styles.cardList
           )}
-          to={`/books/${category}/${id}`}
+          to={`/books/${categoryByName.path}/${id}`}
         >
-          <div className={clsx(styles.imageWrapper, !images.length && styles.notFoundImage)}>
-            {images.length > 0 && <img src={images[0]} alt={name} />}
+          <div className={clsx(styles.imageWrapper, !image && styles.notFoundImage)}>
+            {image && <img src={`${BASE_URL}${image.url}`} alt={title} />}
           </div>
           <div className={styles.cardContent}>
             <div className={styles.nameWrap}>
-              <HightLight classNameHL={styles.name} searchWord={inputText} text={name} />
+              <HightLight classNameHL={styles.name} searchWord={inputText} text={title} />
             </div>
             <p className={styles.author}>
               {authors.map(author => (
                 <Fragment key={author}>{author}, </Fragment>
               ))}
-              {year}
+              {issueYear}
             </p>
             {rating ? (
               <div className={styles.ratingWrap}>
-                <Rating value={rating} />
+                <Rating value={Math.round(rating)} />
               </div>
             ) : (
               <p className={styles.dontRating}>еще нет оценок</p>
@@ -69,8 +74,8 @@ export const Card: FC<ICardProps> = memo(
                 name={buttonMessage()}
                 type='button'
                 clickHandler={() => {}}
-                isDisabled={isBusy}
-                variant={booked ? 'secondary' : 'primary'}
+                isDisabled={!!booking}
+                variant={booking ? 'secondary' : 'primary'}
               />
             </div>
           </div>

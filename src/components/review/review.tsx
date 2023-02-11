@@ -1,20 +1,28 @@
 import { FC } from 'react'
 
-import { IReview } from '@/types/books'
+import { IComment } from '@/types/books'
+
+import { formatDate } from '@/utils/date'
+
+import { BASE_URL } from '@/api/api'
+
+import userAvatar from '@/assets/images/user-review.png'
 
 import { Rating } from '../ui/rating'
 
 import styles from './review.module.scss'
 
-export const Review: FC<IReview> = ({ text, userName, avatar, rating, date }) => (
+export const Review: FC<IComment> = ({ text, user, rating, createdAt }) => (
   <li className={styles.review}>
     <div className={styles.userData}>
       <div className={styles.imgWrapper}>
-        <img src={avatar} alt='avatar' />
+        <img src={user.avatarUrl ? `${BASE_URL}${user.avatarUrl}` : userAvatar} alt='avatar' />
       </div>
       <div className={styles.userDateBlock}>
-        <span>{userName}</span>
-        <span>{date}</span>
+        <span>
+          {user.firstName} {user.lastName}
+        </span>
+        <span>{formatDate(createdAt)}</span>
       </div>
     </div>
     <Rating value={rating} />

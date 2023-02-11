@@ -9,7 +9,7 @@ import styles from './overlay-with-portal.module.scss'
 
 type OverlayType = {
   children: ReactNode
-  onClose: () => void
+  onClose?: () => void
   isOpened: boolean
   type?: 'orange' | 'blur' | 'transparent'
   timeout?: boolean

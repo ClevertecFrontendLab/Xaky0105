@@ -8,14 +8,14 @@ import { Button } from '@/components/ui/button'
 import { useBooleanState } from '@/hooks/use-boolean-state'
 import { useWindowSize } from '@/hooks/use-window-size'
 
-import { IReview } from '@/types/books'
+import { IComment } from '@/types/books'
 
 import { ReactComponent as Chevron } from '@/assets/images/chevrons/chevron-down.svg'
 
 import styles from './reviews-list.module.scss'
 
 interface IReviewList {
-  reviews: IReview[]
+  reviews: IComment[]
 }
 
 export const ReviewsList: FC<IReviewList> = ({ reviews }) => {
@@ -28,7 +28,7 @@ export const ReviewsList: FC<IReviewList> = ({ reviews }) => {
     <div className={styles.reviews}>
       <h3 className={clsx(styles.subTitle, shouldShowReviews && styles.withUnderline)}>
         <span className={styles.subTitleName}>Отзывы</span>
-        <span className={styles.amountReviews}>{reviews.length}</span>
+        <span className={styles.amountReviews}>{reviews?.length}</span>
         <button
           className={clsx(styles.chevronBtn, shouldShowReviews && styles.active)}
           onClick={toggle}
@@ -51,9 +51,7 @@ export const ReviewsList: FC<IReviewList> = ({ reviews }) => {
         unmountOnExit={true}
       >
         <ul className={styles.reviewsList} ref={ref}>
-          {reviews.map(review => (
-            <Review key={review.id} {...review} />
-          ))}
+          {reviews && reviews.map(review => <Review key={review.id} {...review} />)}
         </ul>
       </CSSTransition>
 

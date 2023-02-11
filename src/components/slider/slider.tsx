@@ -5,6 +5,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { useWindowSize } from '@/hooks/use-window-size'
 
+import { BASE_URL } from '@/api/api'
+
 import 'swiper/css/free-mode'
 import 'swiper/css/effect-fade'
 import 'swiper/css/scrollbar'
@@ -25,7 +27,7 @@ const getSpaceBetween = (windowSizeX: number) => {
 }
 
 interface ISlider {
-  images: string[]
+  images: [{ url: string }]
 }
 
 export const Slider: FC<ISlider> = ({ images }) => {
@@ -36,12 +38,12 @@ export const Slider: FC<ISlider> = ({ images }) => {
     <div
       className={clsx(
         'slider',
-        !images.length && 'not-found-image',
-        images.length === 1 && 'one-image'
+        !images?.length && 'not-found-image',
+        images?.length === 1 && 'one-image'
       )}
     >
-      {images.length === 1 && <img src={images[0]} alt='img' />}
-      {images.length > 1 && (
+      {images?.length === 1 && <img src={`${BASE_URL}${images[0].url}`} alt='img' />}
+      {images?.length > 1 && (
         <Fragment>
           <Swiper
             spaceBetween={10}
@@ -53,8 +55,8 @@ export const Slider: FC<ISlider> = ({ images }) => {
             pagination={{ clickable: true }}
           >
             {images.map(image => (
-              <SwiperSlide key={image}>
-                <img src={image} alt='img' />
+              <SwiperSlide key={image.url}>
+                <img src={`${BASE_URL}${image.url}`} alt='img' />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -65,11 +67,11 @@ export const Slider: FC<ISlider> = ({ images }) => {
             scrollbar={{ draggable: true }}
             modules={[Thumbs, Scrollbar]}
             watchSlidesProgress={true}
-            className={clsx('second-swiper', images.length < 5 && 'second-swiper-center')}
+            className={clsx('second-swiper', images?.length < 5 && 'second-swiper-center')}
           >
             {images.map(image => (
-              <SwiperSlide key={image} data-test-id='slide-mini'>
-                <img src={image} alt='img' />
+              <SwiperSlide key={image.url} data-test-id='slide-mini'>
+                <img src={`${BASE_URL}${image.url}`} alt='img' />
               </SwiperSlide>
             ))}
           </Swiper>

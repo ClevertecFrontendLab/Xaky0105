@@ -1,12 +1,26 @@
-import { FC, Fragment } from 'react'
+import { FC, Fragment, useEffect, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
 
+import { Loader } from '@/components/loader'
+import { OverlayWithPortal } from '@/components/overlay-with-portal'
+import { Toast } from '@/components/ui/toast'
+
+import { selectBooksAll } from '@/store/books/books.selector'
+import {
+  selectCategories,
+  selectErrorCategories,
+  selectIsLoadingCategories,
+} from '@/store/categories/categories.selector'
+import { getCategoriesFailure, getCategoriesFetch } from '@/store/categories/categories.slice'
+
+import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
+
 import { RoutePath } from '@/types/other'
 
-import { ReactComponent as Chevron } from '@/assets/images/chevrons/chevron-down.svg'
+import { createNavCategories } from '@/utils/categories'
 
-import { categoriesBookNav } from '../menu.data'
+import { ReactComponent as Chevron } from '@/assets/images/chevrons/chevron-down.svg'
 
 import styles from './menu-list.module.scss'
 
@@ -30,6 +44,20 @@ export const MenuList: FC<IMenuList> = ({
   showGenreList,
 }) => {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+
+  const categories = useAppSelector(selectCategories)
+  const isLoadingCategories = useAppSelector(selectIsLoadingCategories)
+  const categoriesError = useAppSelector(selectErrorCategories)
+
+  const books = useAppSelector(selectBooksAll)
+
+  useEffect(() => {
+    if (categories.length === 0) {
+      dispatch(getCategoriesFetch())
+    }
+  }, [dispatch, categories])
+
   const getDataTestBooks = (id: number) => {
     if (id === 1 && type === 'desktop') {
       return 'navigation-books'
@@ -40,6 +68,8 @@ export const MenuList: FC<IMenuList> = ({
 
     return ''
   }
+
+  const navCategories = useMemo(() => createNavCategories(books, categories), [books, categories])
 
   return (
     <Fragment>
@@ -79,13 +109,13 @@ export const MenuList: FC<IMenuList> = ({
               isOpenGenre && pathname.includes('/books') && styles.visible
             )}
           >
-            {categoriesBookNav.map(({ id, category, name, quantity }) => (
+            {navCategories.map(({ id, path, name, quantity }) => (
               <li className={clsx(styles.genre)} key={id} data-test-id={getDataTestBooks(id)}>
                 <Link
-                  to={`/books/${category}`}
+                  to={`/books/${path}`}
                   className={clsx(
                     styles.genreLink,
-                    categoryLocation === category && styles.activeGenreLink
+                    categoryLocation === path && styles.activeGenreLink
                   )}
                   onClick={hideMobileMenu}
                 >
@@ -136,6 +166,16 @@ export const MenuList: FC<IMenuList> = ({
             Выход
           </li>
         </ul>
+      )}
+      <OverlayWithPortal type='blur' isOpened={isLoadingCategories}>
+        <Loader />
+      </OverlayWithPortal>
+      {categoriesError && (
+        <Toast
+          message={categoriesError}
+          onClose={() => dispatch(getCategoriesFailure(''))}
+          type='negative'
+        />
       )}
     </Fragment>
   )

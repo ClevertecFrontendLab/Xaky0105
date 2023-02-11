@@ -20,6 +20,7 @@ export const Toast: FC<IToast> = ({ message, type, onClose }) => (
       type === 'positive' && styles.positive,
       type === 'negative' && styles.negative
     )}
+    data-test-id='error'
   >
     <div className={styles.message}>
       {type === 'positive' ? (
