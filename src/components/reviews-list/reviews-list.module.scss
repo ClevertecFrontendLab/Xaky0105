@@ -10,6 +10,13 @@
 
     @media (max-width: 500px) {
       margin-bottom: 20px;
+
+      button {
+        height: 40px;
+        font-size: 12px;
+        line-height: 18px;
+        border-radius: 20px;
+      }
     }
   }
 

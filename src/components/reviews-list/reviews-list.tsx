@@ -6,7 +6,6 @@ import { Review } from '@/components/review'
 import { Button } from '@/components/ui/button'
 
 import { useBooleanState } from '@/hooks/use-boolean-state'
-import { useWindowSize } from '@/hooks/use-window-size'
 
 import { IComment } from '@/types/books'
 
@@ -20,7 +19,6 @@ interface IReviewList {
 
 export const ReviewsList: FC<IReviewList> = ({ reviews }) => {
   const { state: shouldShowReviews, toggle } = useBooleanState()
-  const { x: windowWidth } = useWindowSize()
 
   const ref = useRef<HTMLUListElement>(null)
 
@@ -58,7 +56,7 @@ export const ReviewsList: FC<IReviewList> = ({ reviews }) => {
       <div className={styles.btnWrapper}>
         <Button
           type='button'
-          size={windowWidth > 500 ? 'large' : 'small'}
+          size='large'
           name='Оценить книгу'
           clickHandler={() => {}}
           variant='primary'
