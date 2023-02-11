@@ -1,4 +1,13 @@
-import { ICardData } from '@/types/books'
+import { IBook } from '@/types/books'
 
-export const getFilterCardsByName = (data: ICardData[], filter: string) =>
-  data.filter(elem => elem.name.toLowerCase().includes(filter.toLowerCase()))
+export const getFilterBooks = (books: IBook[], filter: string, category: string) =>
+  books.filter(elem => {
+    if (category !== 'Все книги') {
+      return (
+        elem.title.toLowerCase().includes(filter.toLowerCase()) &&
+        elem.categories.includes(category)
+      )
+    }
+
+    return elem.title.toLowerCase().includes(filter.toLowerCase())
+  })
