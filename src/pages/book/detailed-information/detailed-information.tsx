@@ -1,5 +1,3 @@
-import { SubTitle } from '@/components/ui/sub-title'
-
 import { IBookDetailed } from '@/types/books'
 
 import { detailInfoData } from './detailed-information.data'
@@ -12,7 +10,7 @@ interface IDetailedInformation {
 
 export const DetailedInformation = ({ book }: IDetailedInformation) => (
   <div className={styles.detailedInformation}>
-    <SubTitle text='Подробная информация' />
+    <h3 className={styles.subTitle}>Подробная информация</h3>
     <ul className={styles.infoList}>
       {detailInfoData(book).map(info => (
         <li className={styles.infoItem} key={info.type}>

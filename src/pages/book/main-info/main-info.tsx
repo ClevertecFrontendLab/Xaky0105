@@ -2,7 +2,6 @@ import { Fragment } from 'react'
 
 import { Slider } from '@/components/slider'
 import { Button } from '@/components/ui/button'
-import { SubTitle } from '@/components/ui/sub-title'
 
 import { IBookDetailed } from '@/types/books'
 
@@ -31,13 +30,13 @@ export const MainInfo = ({ book }: IMainInfo) => {
             <Button size='large' name='Забронировать' type='button' clickHandler={() => {}} />
           </div>
           <div className={styles.aboutBookFullScreen}>
-            <SubTitle text='О книге' />
+            <h3 className={styles.subTitle}>О книге</h3>
             <p>{description}</p>
           </div>
         </div>
       </div>
       <div className={styles.aboutBookTablet}>
-        <SubTitle text='О книге' />
+        <h3 className={styles.subTitle}>О книге</h3>
         <p>{description}</p>
       </div>
     </Fragment>
