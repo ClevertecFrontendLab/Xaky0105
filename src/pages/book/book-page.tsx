@@ -3,16 +3,10 @@ import { useParams } from 'react-router-dom'
 
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { Container } from '@/components/container'
-import { Loader } from '@/components/loader'
-import { OverlayWithPortal } from '@/components/overlay-with-portal'
 import { ReviewsList } from '@/components/reviews-list'
 import { Toast } from '@/components/ui/toast'
 
-import {
-  selectBookDetailed,
-  selectErrorBook,
-  selectIsLoadingBook,
-} from '@/store/book/book.selector'
+import { selectBookDetailed, selectErrorBook } from '@/store/book/book.selector'
 import { clearBook, getBookFailure, getBookFetch } from '@/store/book/book.slice'
 
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
@@ -32,7 +26,6 @@ export const BookPage: FC = () => {
 
   const dispatch = useAppDispatch()
 
-  const isLoadingBookDetailed = useAppSelector(selectIsLoadingBook)
   const bookDetailed = useAppSelector(selectBookDetailed)
   const bookError = useAppSelector(selectErrorBook)
 
@@ -61,9 +54,7 @@ export const BookPage: FC = () => {
           </Container>
         </>
       )}
-      <OverlayWithPortal isOpened={isLoadingBookDetailed}>
-        <Loader />
-      </OverlayWithPortal>
+
       {bookError && (
         <Toast type='negative' onClose={() => dispatch(getBookFailure(''))} message={bookError} />
       )}

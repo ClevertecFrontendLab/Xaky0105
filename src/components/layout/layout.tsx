@@ -1,10 +1,12 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 
+import { selectIsLoadingBook } from '@/store/book/book.selector'
 import { selectIsLoadingBooks } from '@/store/books/books.selector'
-import { selectIsLoadingCategories } from '@/store/categories/categories.selector'
+import { selectCategories, selectIsLoadingCategories } from '@/store/categories/categories.selector'
+import { getCategoriesFetch } from '@/store/categories/categories.slice'
 
-import { useAppSelector } from '@/hooks/use-redux'
+import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
 import { useScrollToTop } from '@/hooks/use-scroll-to-top'
 
 import { Loader } from '../loader'
@@ -17,15 +19,28 @@ import styles from './layout.module.scss'
 
 export const Layout: FC = () => {
   useScrollToTop()
+
+  const dispatch = useAppDispatch()
   const isLoadingBooks = useAppSelector(selectIsLoadingBooks)
   const isLoadingCategories = useAppSelector(selectIsLoadingCategories)
+  const isLoadingBookDetails = useAppSelector(selectIsLoadingBook)
+  const categories = useAppSelector(selectCategories)
+
+  useEffect(() => {
+    if (categories && !categories.length) {
+      dispatch(getCategoriesFetch())
+    }
+  }, [dispatch, categories])
 
   return (
     <div className={styles.layout}>
       <Header />
       <Outlet />
       <Footer />
-      <OverlayWithPortal type='blur' isOpened={isLoadingBooks || isLoadingCategories}>
+      <OverlayWithPortal
+        type='blur'
+        isOpened={isLoadingBooks || isLoadingCategories || isLoadingBookDetails}
+      >
         <Loader />
       </OverlayWithPortal>
     </div>

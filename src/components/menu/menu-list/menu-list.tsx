@@ -1,4 +1,4 @@
-import { FC, Fragment, useEffect, useMemo } from 'react'
+import { FC, Fragment, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
 
@@ -6,7 +6,7 @@ import { Toast } from '@/components/ui/toast'
 
 import { selectBooksAll } from '@/store/books/books.selector'
 import { selectCategories, selectErrorCategories } from '@/store/categories/categories.selector'
-import { getCategoriesFailure, getCategoriesFetch } from '@/store/categories/categories.slice'
+import { getCategoriesFailure } from '@/store/categories/categories.slice'
 
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
 
@@ -17,6 +17,17 @@ import { createNavCategories } from '@/utils/categories'
 import { ReactComponent as Chevron } from '@/assets/images/chevrons/chevron-down.svg'
 
 import styles from './menu-list.module.scss'
+
+const getDataTestIdBooks = (path: string, navType: string) => {
+  if (path === 'all' && navType === 'desktop') {
+    return 'navigation-books'
+  }
+  if (path === 'all' && navType === 'mobile') {
+    return 'burger-books'
+  }
+
+  return ''
+}
 
 interface IMenuList {
   pathname: string
@@ -44,23 +55,6 @@ export const MenuList: FC<IMenuList> = ({
   const categoriesError = useAppSelector(selectErrorCategories)
 
   const books = useAppSelector(selectBooksAll)
-
-  useEffect(() => {
-    if (categories.length === 0) {
-      dispatch(getCategoriesFetch())
-    }
-  }, [dispatch, categories])
-
-  const getDataTestBooks = (id: number) => {
-    if (id === 1 && type === 'desktop') {
-      return 'navigation-books'
-    }
-    if (id === 1 && type === 'mobile') {
-      return 'burger-books'
-    }
-
-    return ''
-  }
 
   const navCategories = useMemo(() => createNavCategories(books, categories), [books, categories])
 
@@ -103,7 +97,11 @@ export const MenuList: FC<IMenuList> = ({
             )}
           >
             {navCategories.map(({ id, path, name, quantity }) => (
-              <li className={clsx(styles.genre)} key={id} data-test-id={getDataTestBooks(id)}>
+              <li
+                className={clsx(styles.genre)}
+                key={id}
+                data-test-id={getDataTestIdBooks(path, type)}
+              >
                 <Link
                   to={`/books/${path}`}
                   className={clsx(
