@@ -90,15 +90,19 @@
   opacity: 1 !important;
   width: 7px !important;
   height: 7px !important;
-  margin: 0 5px !important;
   border-radius: 50%;
   background: var(--black20);
 }
 .swiper-pagination-bullet-active {
   opacity: 1 !important;
-  width: 9px !important;
-  height: 9px !important;
+  transform: scale(1.3) !important;
   background: var(--dark);
+}
+.swiper-pagination-bullet-active-next,
+.swiper-pagination-bullet-active-next-next,
+.swiper-pagination-bullet-active-prev,
+.swiper-pagination-bullet-active-prev-prev {
+  opacity: 0 !important;
 }
 
 @media (max-width: 1025px) {
@@ -125,7 +129,7 @@
     display: none;
   }
   .swiper-pagination {
-    display: flex;
+    display: block;
   }
   .main-swiper .swiper-wrapper {
     overflow: hidden;

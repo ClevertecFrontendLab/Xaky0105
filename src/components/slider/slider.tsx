@@ -3,8 +3,6 @@ import clsx from 'clsx'
 import SwiperCore, { EffectFade, FreeMode, Pagination, Scrollbar, Thumbs } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { useWindowSize } from '@/hooks/use-window-size'
-
 import { BASE_URL } from '@/api/api'
 
 import 'swiper/css/free-mode'
@@ -15,24 +13,12 @@ import 'swiper/css/thumbs'
 import 'swiper/css'
 import './slider.css'
 
-const getSpaceBetween = (windowSizeX: number) => {
-  if (windowSizeX < 500) {
-    return 10
-  }
-  if (windowSizeX >= 500 && windowSizeX <= 768) {
-    return 8
-  }
-
-  return 25
-}
-
 interface ISlider {
   images: [{ url: string }]
 }
 
 export const Slider: FC<ISlider> = ({ images }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore>()
-  const { x: windowSizeX } = useWindowSize()
 
   return (
     <div
@@ -46,13 +32,16 @@ export const Slider: FC<ISlider> = ({ images }) => {
       {images?.length > 1 && (
         <Fragment>
           <Swiper
-            spaceBetween={10}
             thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
             modules={[FreeMode, Thumbs, EffectFade, Pagination]}
             className='main-swiper'
             effect='fade'
             data-test-id='slide-big'
-            pagination={{ clickable: true }}
+            pagination={{
+              clickable: true,
+              dynamicBullets: true,
+              dynamicMainBullets: 9,
+            }}
           >
             {images.map(image => (
               <SwiperSlide key={image.url}>
@@ -62,7 +51,7 @@ export const Slider: FC<ISlider> = ({ images }) => {
           </Swiper>
           <Swiper
             onSwiper={setThumbsSwiper}
-            spaceBetween={getSpaceBetween(windowSizeX)}
+            spaceBetween={25}
             slidesPerView={5}
             scrollbar={{ draggable: true }}
             modules={[Thumbs, Scrollbar]}
