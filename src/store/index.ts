@@ -1,5 +1,5 @@
-import createSagaMiddleware from '@redux-saga/core'
 import { configureStore } from '@reduxjs/toolkit'
+import createSagaMiddleware from 'redux-saga'
 
 import { bookReducer } from './book/book.slice'
 import { booksReducer } from './books/books.slice'

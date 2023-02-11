@@ -53,7 +53,7 @@ export const MainPage = () => {
   }, [inputText, booksAll, categoryTranslate])
 
   useEffect(() => {
-    if (booksAll.length === 0) {
+    if (booksAll && !booksAll.length) {
       dispatch(getBooksFetch())
     }
   }, [booksAll, dispatch])
