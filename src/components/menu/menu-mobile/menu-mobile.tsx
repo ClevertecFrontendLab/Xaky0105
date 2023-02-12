@@ -7,12 +7,12 @@ import { MenuList } from '../menu-list/menu-list'
 
 import styles from './menu-mobile.module.scss'
 
-interface IMenuMobile {
+type MenuMobileProps = {
   hideMobileMenu: () => void
   isOpened: boolean
 }
 
-export const MenuMobile = ({ hideMobileMenu, isOpened }: IMenuMobile) => {
+export const MenuMobile = ({ hideMobileMenu, isOpened }: MenuMobileProps) => {
   const { pathname } = useLocation()
   const { category: categoryLocation } = useParams()
 

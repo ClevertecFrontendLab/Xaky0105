@@ -1,10 +1,10 @@
 import styles from './terms.module.scss'
 
-interface ITermsPage {
+type TermsPageProps = {
   contentView: 'terms' | 'contract'
 }
 
-export const TermsPage = ({ contentView }: ITermsPage) => {
+export const TermsPage = ({ contentView }: TermsPageProps) => {
   const title = contentView === 'terms' ? 'Правила пользования' : 'Договор оферты'
 
   return (

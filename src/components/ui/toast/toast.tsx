@@ -6,13 +6,13 @@ import NegativeIcon from './assets/warning-circle.svg'
 
 import styles from './toast.module.scss'
 
-interface IToast {
+type ToastProps = {
   message: string
   type: 'positive' | 'negative'
   onClose: () => void
 }
 
-export const Toast = ({ message, type, onClose }: IToast) => (
+export const Toast = ({ message, type, onClose }: ToastProps) => (
   <div
     className={classNames(
       styles.toast,

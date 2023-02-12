@@ -17,7 +17,7 @@ import { BASE_URL } from '@/api/api'
 
 import styles from './card.module.scss'
 
-interface ICardProps {
+type CardProps = {
   cardData: IBook
   selectSorting: TypeSortMainPage
   inputText: string
@@ -28,7 +28,7 @@ export const Card = memo(
     selectSorting,
     inputText,
     cardData: { title, image, rating, authors, issueYear, id, booking, categories },
-  }: ICardProps) => {
+  }: CardProps) => {
     const categoryByName = useAppSelector(selectCategoriesByName(categories[0]))
 
     const buttonMessage = () => {

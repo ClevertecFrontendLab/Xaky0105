@@ -2,7 +2,7 @@ import classNames from 'classnames'
 
 import styles from './button.module.scss'
 
-interface IButton {
+type ButtonProps = {
   type: 'button' | 'submit'
   name: string
   clickHandler: () => void
@@ -20,7 +20,7 @@ export const Button = ({
   variant = 'primary',
   size = 'small',
   dataTestId,
-}: IButton) => (
+}: ButtonProps) => (
   <button
     className={classNames(
       styles.btn,

@@ -11,11 +11,11 @@ import Chevron from './assets/chevron-down.svg'
 
 import styles from './reviews-list.module.scss'
 
-interface IReviewList {
+type ReviewListProps = {
   reviews: IComment[]
 }
 
-export const ReviewsList = ({ reviews }: IReviewList) => {
+export const ReviewsList = ({ reviews }: ReviewListProps) => {
   const { state: shouldShowReviews, toggle } = useBooleanState()
 
   return (

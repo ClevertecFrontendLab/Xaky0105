@@ -7,11 +7,11 @@ import { IBookDetailed } from '@/types/books'
 
 import styles from './main-info.module.scss'
 
-interface IMainInfo {
+type MainInfoProps = {
   book: IBookDetailed
 }
 
-export const MainInfo = ({ book }: IMainInfo) => {
+export const MainInfo = ({ book }: MainInfoProps) => {
   const { images, title, authors, issueYear, description } = book
 
   return (

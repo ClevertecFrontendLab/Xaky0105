@@ -1,10 +1,10 @@
 import styles from './checkbox.module.scss'
 
-interface ICheckbox {
+type CheckboxProps = {
   text?: string
 }
 
-export const Checkbox = ({ text }: ICheckbox) => (
+export const Checkbox = ({ text }: CheckboxProps) => (
   <label htmlFor='checkbox' className={styles.checkbox}>
     <input type='checkbox' id='checkbox' name='' />
     <span>{text}</span>

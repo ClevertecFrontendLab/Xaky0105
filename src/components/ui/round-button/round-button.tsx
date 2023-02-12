@@ -5,7 +5,7 @@ import { TypeSortMainPage } from '@/types/other'
 
 import styles from './round-button.module.scss'
 
-interface IRoundButton {
+type RoundButtonProps = {
   selectSorting?: TypeSortMainPage
   changeSorting?: (type: TypeSortMainPage) => void
   sortingType?: TypeSortMainPage
@@ -21,7 +21,7 @@ export const RoundButton = ({
   sortingType,
   handler,
   dataTestId,
-}: IRoundButton) => {
+}: RoundButtonProps) => {
   const clickHandler = () => {
     if (selectSorting && changeSorting && sortingType) {
       changeSorting(sortingType)

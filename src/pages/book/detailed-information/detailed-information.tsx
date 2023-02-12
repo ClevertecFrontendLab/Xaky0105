@@ -4,11 +4,11 @@ import { detailInfoData } from './detailed-information.data'
 
 import styles from './detailed-information.module.scss'
 
-interface IDetailedInformation {
+type DetailedInformationProps = {
   book: IBookDetailed
 }
 
-export const DetailedInformation = ({ book }: IDetailedInformation) => (
+export const DetailedInformation = ({ book }: DetailedInformationProps) => (
   <div className={styles.detailedInformation}>
     <h3 className={styles.subTitle}>Подробная информация</h3>
     <ul className={styles.infoList}>

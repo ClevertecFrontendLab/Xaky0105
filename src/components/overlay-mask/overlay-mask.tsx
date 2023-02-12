@@ -4,12 +4,12 @@ import noScroll from 'no-scroll'
 
 import styles from './overlay-mask.module.scss'
 
-interface IOverlayMask {
+type OverlayMaskProps = {
   onClose: () => void
   isOpened: boolean
 }
 
-export const OverlayMask = ({ onClose, isOpened }: IOverlayMask) => {
+export const OverlayMask = ({ onClose, isOpened }: OverlayMaskProps) => {
   useEffect(() => (isOpened ? noScroll.on() : noScroll.off()), [isOpened])
 
   return (

@@ -7,13 +7,13 @@ import { TypeSortMainPage } from '@/types/other'
 
 import styles from './card-list.module.scss'
 
-interface ICardList {
+type CardListProps = {
   selectSorting: TypeSortMainPage
   cardsData: IBook[]
   inputText: string
 }
 
-export const CardList = ({ selectSorting, cardsData, inputText }: ICardList) => (
+export const CardList = ({ selectSorting, cardsData, inputText }: CardListProps) => (
   <ul className={classNames(styles.cardList, selectSorting === 'list' && styles.cardListLine)}>
     {cardsData.map(cardData => (
       <Card

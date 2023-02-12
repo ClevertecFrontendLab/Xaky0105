@@ -6,13 +6,13 @@ import { Portal } from '../portal/portal'
 
 import styles from './overlay-with-portal.module.scss'
 
-type OverlayType = {
+type OverlayProps = {
   children: ReactNode
   onClose?: () => void
   type?: 'orange' | 'blur' | 'transparent'
 }
 
-export const OverlayWithPortal = ({ children, onClose, type = 'blur' }: OverlayType) => {
+export const OverlayWithPortal = ({ children, onClose, type = 'blur' }: OverlayProps) => {
   const nodeRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

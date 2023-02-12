@@ -29,7 +29,7 @@ const getDataTestIdBooks = (path: string, navType: string) => {
   return ''
 }
 
-interface IMenuList {
+type MenuListProps = {
   pathname: string
   toggleIsOpenGenre: () => void
   isOpenGenre: boolean
@@ -47,7 +47,7 @@ export const MenuList = ({
   type,
   hideMobileMenu,
   showGenreList,
-}: IMenuList) => {
+}: MenuListProps) => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 

@@ -2,12 +2,12 @@ import classNames from 'classnames'
 
 import styles from './burger.module.scss'
 
-interface IBurger {
+type BurgerProps = {
   isMenuOpen: boolean
   toggle: () => void
 }
 
-export const Burger = ({ isMenuOpen, toggle }: IBurger) => (
+export const Burger = ({ isMenuOpen, toggle }: BurgerProps) => (
   <button
     className={classNames(styles.burger, isMenuOpen && styles.cross)}
     onClick={toggle}

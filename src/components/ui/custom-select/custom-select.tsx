@@ -2,11 +2,11 @@ import sort from './assets/sort.svg'
 
 import styles from './custom-input.module.scss'
 
-interface ICustomSelect {
+type CustomSelectProps = {
   placeholder: string
 }
 
-export const CustomSelect = ({ placeholder }: ICustomSelect) => (
+export const CustomSelect = ({ placeholder }: CustomSelectProps) => (
   <button type='button' className={styles.select}>
     <div className={styles.imgWrap}>
       <img src={sort} alt={placeholder} />

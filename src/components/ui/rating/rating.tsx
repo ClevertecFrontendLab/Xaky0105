@@ -5,12 +5,12 @@ import RatingIconEmpty from './assets/rating-empty.svg'
 
 import styles from './rating.module.scss'
 
-interface IRating {
+type RatingProps = {
   value: number
   size?: 'medium' | 'large'
 }
 
-export const Rating = ({ value, size = 'medium' }: IRating) => {
+export const Rating = ({ value, size = 'medium' }: RatingProps) => {
   const stars = [1, 2, 3, 4, 5]
 
   return (

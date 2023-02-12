@@ -8,7 +8,7 @@ import { ReactComponent as SearchIcon } from './assets/search.svg'
 
 import styles from './search-input.module.scss'
 
-interface ISearchInput {
+type SearchInputType = {
   placeholder: string
   size?: 'normal' | 'small'
   inputText: string
@@ -24,7 +24,7 @@ export const SearchInput = ({
   changeInputText,
   closeHandler,
   autofocus = false,
-}: ISearchInput) => {
+}: SearchInputType) => {
   const { state: isFocus, setTrue, setFalse } = useBooleanState()
   const inputElement = useRef<HTMLInputElement>(null)
 

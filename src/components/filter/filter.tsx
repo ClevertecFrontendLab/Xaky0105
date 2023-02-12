@@ -15,14 +15,19 @@ import { ReactComponent as TileImg } from './assets/tile.svg'
 
 import styles from './filter.module.scss'
 
-interface IFilter {
+type FilterProps = {
   changeSorting: (type: TypeSortMainPage) => void
   selectSorting: TypeSortMainPage
   inputText: string
   changeInputText: (value: string) => void
 }
 
-export const Filter = ({ changeSorting, selectSorting, inputText, changeInputText }: IFilter) => {
+export const Filter = ({
+  changeSorting,
+  selectSorting,
+  inputText,
+  changeInputText,
+}: FilterProps) => {
   const { state: isShowOnlySearchInput, setFalse, setTrue } = useBooleanState()
 
   return (

@@ -13,11 +13,11 @@ import 'swiper/css/thumbs'
 import 'swiper/css'
 import './slider.css'
 
-interface ISlider {
+type SliderProps = {
   images: [{ url: string }]
 }
 
-export const Slider = ({ images }: ISlider) => {
+export const Slider = ({ images }: SliderProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore>()
 
   return (

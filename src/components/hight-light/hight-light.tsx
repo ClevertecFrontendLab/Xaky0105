@@ -3,13 +3,13 @@ import { v4 as uuidv4 } from 'uuid'
 
 import styles from './hight-light.module.scss'
 
-interface IHightLight {
+type HightLightProps = {
   searchWord: string
   text: string
   classNameHL: string
 }
 
-export const HightLight = memo(({ searchWord, text, classNameHL }: IHightLight) => {
+export const HightLight = memo(({ searchWord, text, classNameHL }: HightLightProps) => {
   const generateHightLightText = useCallback(
     (str: string) => {
       if (!searchWord) {
