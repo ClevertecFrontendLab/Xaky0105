@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-import { CSSTransition } from 'react-transition-group'
 import classNames from 'classnames'
 
 import { Review } from '@/components/review'
@@ -38,22 +37,10 @@ export const ReviewsList = ({ reviews }: IReviewList) => {
           </div>
         </button>
       </h3>
-      <CSSTransition
-        in={shouldShowReviews}
-        nodeRef={ref}
-        timeout={200}
-        classNames={{
-          enterActive: styles.enterActive,
-          enterDone: styles.enter,
-          exitActive: styles.exitActive,
-          exitDone: styles.exit,
-        }}
-        unmountOnExit={true}
-      >
-        <ul className={styles.reviewsList} ref={ref}>
-          {reviews && reviews.map(review => <Review key={review.id} {...review} />)}
-        </ul>
-      </CSSTransition>
+
+      <ul className={styles.reviewsList} ref={ref}>
+        {reviews && reviews.map(review => <Review key={review.id} {...review} />)}
+      </ul>
 
       <div className={styles.btnWrapper}>
         <Button

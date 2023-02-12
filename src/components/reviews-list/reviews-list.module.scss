@@ -64,24 +64,4 @@
       margin-bottom: 24px;
     }
   }
-
-  .enterActive {
-    opacity: 0;
-    transform: translateY(-20%);
-  }
-
-  .enter {
-    opacity: 1;
-    transition: all 0.2s ease-in-out;
-  }
-
-  .exit {
-    opacity: 1;
-  }
-
-  .exitActive {
-    opacity: 0;
-    transform: translateY(20%);
-    transition: all 0.2s ease-in-out;
-  }
 }

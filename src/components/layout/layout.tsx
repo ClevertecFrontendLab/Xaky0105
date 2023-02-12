@@ -32,17 +32,18 @@ export const Layout = () => {
     }
   }, [dispatch, categories])
 
+  const shouldShowLoader = isLoadingBooks || isLoadingCategories || isLoadingBookDetails
+
   return (
     <div className={styles.layout}>
       <Header />
       <Outlet />
       <Footer />
-      <OverlayWithPortal
-        type='blur'
-        isOpened={isLoadingBooks || isLoadingCategories || isLoadingBookDetails}
-      >
-        <Loader />
-      </OverlayWithPortal>
+      {shouldShowLoader && (
+        <OverlayWithPortal>
+          <Loader />
+        </OverlayWithPortal>
+      )}
     </div>
   )
 }
