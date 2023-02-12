@@ -15,8 +15,8 @@ export const bookSlice = createSlice({
   initialState,
   reducers: {
     getBookSuccess: (state, action: PayloadAction<BookDetailedType>) => {
-      state.book = action.payload
       state.isLoading = false
+      state.book = action.payload
     },
     getBookFetch: (state, _: PayloadAction<string>) => {
       state.book = null

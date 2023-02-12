@@ -16,8 +16,8 @@ export const categoriesSlice = createSlice({
   initialState,
   reducers: {
     getCategoriesSuccess: (state, action: PayloadAction<CategoryType[]>) => {
-      state.categories = action.payload
       state.isLoading = false
+      state.categories = action.payload
     },
     getCategoriesFetch: state => {
       state.categories = null
