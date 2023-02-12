@@ -1,4 +1,4 @@
-import sort from '@/assets/images/action/sort.svg'
+import sort from './assets/sort.svg'
 
 import styles from './custom-input.module.scss'
 

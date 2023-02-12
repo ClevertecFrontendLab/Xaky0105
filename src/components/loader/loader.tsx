@@ -1,4 +1,4 @@
-import loaderIcon from '@/assets/images/loader.svg'
+import loaderIcon from './assets/loader.svg'
 
 import styles from './loader.module.scss'
 

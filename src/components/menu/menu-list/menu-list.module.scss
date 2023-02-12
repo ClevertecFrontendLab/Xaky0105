@@ -44,8 +44,8 @@
       }
       .icon {
         &.active * {
-          color: var(--orange);
-          fill: var(--orange);
+          color: var(--orange) !important;
+          fill: var(--orange) !important;
         }
       }
     }

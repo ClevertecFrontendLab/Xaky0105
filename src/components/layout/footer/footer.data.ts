@@ -1,7 +1,7 @@
-import facebook from '@/assets/images/social/facebook.svg'
-import instagram from '@/assets/images/social/instagram.svg'
-import linkedin from '@/assets/images/social/linkedin.svg'
-import vk from '@/assets/images/social/vk.svg'
+import facebook from './assets/facebook.svg'
+import instagram from './assets/instagram.svg'
+import linkedin from './assets/linkedin.svg'
+import vk from './assets/vk.svg'
 
 interface IFooterLink {
   img: string

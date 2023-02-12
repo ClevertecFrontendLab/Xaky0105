@@ -14,7 +14,7 @@ import { RoutePath } from '@/types/other'
 
 import { createNavCategories } from '@/utils/categories'
 
-import { ReactComponent as Chevron } from '@/assets/images/chevrons/chevron-down.svg'
+import { ReactComponent as Chevron } from './assets/chevron-down.svg'
 
 import styles from './menu-list.module.scss'
 

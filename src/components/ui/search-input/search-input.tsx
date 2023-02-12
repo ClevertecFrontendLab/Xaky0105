@@ -3,8 +3,8 @@ import classNames from 'classnames'
 
 import { useBooleanState } from '@/hooks/use-boolean-state'
 
-import { ReactComponent as CloseIcon } from '@/assets/images/action/close.svg'
-import { ReactComponent as SearchIcon } from '@/assets/images/action/search.svg'
+import { ReactComponent as CloseIcon } from './assets/close.svg'
+import { ReactComponent as SearchIcon } from './assets/search.svg'
 
 import styles from './search-input.module.scss'
 

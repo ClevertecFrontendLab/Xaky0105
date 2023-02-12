@@ -45,10 +45,6 @@
         outline: none;
       }
 
-      .chevron * {
-        color: var(--dark);
-        fill: var(--dark);
-      }
       &.active {
         rotate: 180deg;
       }

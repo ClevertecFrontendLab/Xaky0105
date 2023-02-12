@@ -1,8 +1,8 @@
 import classNames from 'classnames'
 
-import { ReactComponent as CloseIcon } from '@/assets/images/action/close.svg'
-import { ReactComponent as PositiveIcon } from '@/assets/images/other/positive-circle.svg'
-import { ReactComponent as NegativeIcon } from '@/assets/images/other/warning-circle.svg'
+import CloseIcon from './assets/close.svg'
+import PositiveIcon from './assets/positive-circle.svg'
+import NegativeIcon from './assets/warning-circle.svg'
 
 import styles from './toast.module.scss'
 
@@ -23,12 +23,18 @@ export const Toast = ({ message, type, onClose }: IToast) => (
   >
     <div className={styles.message}>
       {type === 'positive' ? (
-        <PositiveIcon className={styles.icon} />
+        <div className={styles.icon}>
+          <img src={PositiveIcon} alt='positive-icon' />
+        </div>
       ) : (
-        <NegativeIcon className={styles.icon} />
+        <div className={styles.icon}>
+          <img src={NegativeIcon} alt='negative-icon' />
+        </div>
       )}
       <p>{message}</p>
     </div>
-    <CloseIcon className={styles.closeIcon} onClick={onClose} />
+    <button className={styles.closeIcon} onClick={onClose} type='button'>
+      <img src={CloseIcon} alt='close-icon' />
+    </button>
   </div>
 )

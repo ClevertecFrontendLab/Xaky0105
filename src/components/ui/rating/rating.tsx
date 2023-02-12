@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 
-import { ReactComponent as RatingIcon } from '@/assets/images/rating/rating.svg'
-import { ReactComponent as RatingIconEmpty } from '@/assets/images/rating/rating-empty.svg'
+import RatingIcon from './assets/rating.svg'
+import RatingIconEmpty from './assets/rating-empty.svg'
 
 import styles from './rating.module.scss'
 
@@ -17,7 +17,11 @@ export const Rating = ({ value, size = 'medium' }: IRating) => {
     <div className={styles.rating}>
       {stars.map(star => (
         <div className={classNames(styles.ratingItem, size === 'large' && styles.large)} key={star}>
-          {value < star ? <RatingIconEmpty /> : <RatingIcon />}
+          {value < star ? (
+            <img src={RatingIconEmpty} alt='rating-empty' />
+          ) : (
+            <img src={RatingIcon} alt='rating' />
+          )}
         </div>
       ))}
     </div>

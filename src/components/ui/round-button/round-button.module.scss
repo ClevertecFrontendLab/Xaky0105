@@ -14,7 +14,7 @@
     width: 32px;
     height: 32px;
   }
-  .icon {
+  .icon svg {
     width: 20px;
     height: 20px;
     position: absolute;
@@ -22,14 +22,14 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  .icon * {
+  .icon svg * {
     color: var(--black40);
     fill: var(--black40);
   }
 
   &.active {
     background: var(--button-hover);
-    .icon * {
+    .icon svg * {
       color: var(--white);
       fill: var(--white);
     }

@@ -9,7 +9,7 @@ import { useBooleanState } from '@/hooks/use-boolean-state'
 
 import { IComment } from '@/types/books'
 
-import { ReactComponent as Chevron } from '@/assets/images/chevrons/chevron-down.svg'
+import Chevron from './assets/chevron-down.svg'
 
 import styles from './reviews-list.module.scss'
 
@@ -33,7 +33,9 @@ export const ReviewsList = ({ reviews }: IReviewList) => {
           type='button'
           data-test-id='button-hide-reviews'
         >
-          <Chevron className={styles.chevron} />
+          <div className={styles.chevron}>
+            <img src={Chevron} alt='chevron' />
+          </div>
         </button>
       </h3>
       <CSSTransition

@@ -7,8 +7,8 @@ import { Burger } from '@/components/ui/burger'
 
 import { useBooleanState } from '@/hooks/use-boolean-state'
 
-import avatar from '@/assets/images/avatar.png'
-import logo from '@/assets/images/logo.png'
+import avatar from './assets/avatar.png'
+import logo from './assets/logo.png'
 
 import styles from './header.module.scss'
 

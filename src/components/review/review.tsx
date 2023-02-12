@@ -4,9 +4,9 @@ import { formatDate } from '@/utils/date'
 
 import { BASE_URL } from '@/api/api'
 
-import userAvatar from '@/assets/images/user-review.png'
-
 import { Rating } from '../ui/rating'
+
+import userAvatar from './assets/user-review.png'
 
 import styles from './review.module.scss'
 
