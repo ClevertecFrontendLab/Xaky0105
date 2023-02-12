@@ -4,9 +4,9 @@ import createSagaMiddleware from 'redux-saga'
 import { bookReducer } from './book/book.slice'
 import { booksReducer } from './books/books.slice'
 import { categoriesReducer } from './categories/categories.slice'
-import rootSaga from './sagas'
+import { rootSaga } from './sagas'
 
-const saga = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware()
 
 export const store = configureStore({
   reducer: {
@@ -14,10 +14,10 @@ export const store = configureStore({
     books: booksReducer,
     categories: categoriesReducer,
   },
-  middleware: [saga],
+  middleware: [sagaMiddleware],
 })
 
-saga.run(rootSaga)
+sagaMiddleware.run(rootSaga)
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

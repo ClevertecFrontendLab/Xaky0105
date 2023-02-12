@@ -71,7 +71,7 @@ export const Filter = ({
             </span>
           </div>
           <div className={styles.listType}>
-            <span className={styles.itemWrapper}>
+            <div className={styles.itemWrapper}>
               <RoundButton
                 changeSorting={changeSorting}
                 selectSorting={selectSorting}
@@ -80,8 +80,8 @@ export const Filter = ({
               >
                 <TileImg />
               </RoundButton>
-            </span>
-            <span className={styles.itemWrapper}>
+            </div>
+            <div className={styles.itemWrapper}>
               <RoundButton
                 changeSorting={changeSorting}
                 selectSorting={selectSorting}
@@ -90,7 +90,7 @@ export const Filter = ({
               >
                 <ListImg />
               </RoundButton>
-            </span>
+            </div>
           </div>
         </Fragment>
       )}

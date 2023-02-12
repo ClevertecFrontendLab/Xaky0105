@@ -1,3 +1,3 @@
 import { RootState } from '..'
 
-export const selectCategories = ({ categories }: RootState) => categories
+export const selectCategories = (state: RootState) => state.categories

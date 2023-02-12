@@ -1,23 +1,22 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
-
-import { categoriesService } from '@/services/categories-services'
+import { AxiosResponse } from 'axios'
+import { call, put, takeLatest } from 'redux-saga/effects'
 
 import { CategoryType } from '@/types/categories'
 
+import { axiosInstance } from '@/api/api'
+
 import { getCategoriesFailure, getCategoriesSuccess } from '../categories/categories.slice'
 
-function* workGetCategoriesFetch() {
+function* categoriesRequestWorker() {
   try {
-    const categories: CategoryType[] = yield call(categoriesService.getCategories)
+    const { data }: AxiosResponse<CategoryType[]> = yield call(axiosInstance.get, '/api/categories')
 
-    yield put(getCategoriesSuccess(categories))
+    yield put(getCategoriesSuccess(data))
   } catch {
     yield put(getCategoriesFailure('Что-то пошло не так. Обновите страницу через некоторое время'))
   }
 }
 
-function* categoriesSaga() {
-  yield takeEvery('categories/getCategoriesFetch', workGetCategoriesFetch)
+export function* categoriesRequestWatcher() {
+  yield takeLatest('categories/getCategoriesFetch', categoriesRequestWorker)
 }
-
-export const categories = categoriesSaga

@@ -1,26 +1,26 @@
 import { PayloadAction } from '@reduxjs/toolkit'
-import { call, put, takeEvery } from 'redux-saga/effects'
-
-import { booksService } from '@/services/books-services'
+import { AxiosResponse } from 'axios'
+import { call, put, takeLatest } from 'redux-saga/effects'
 
 import { BookDetailedType } from '@/types/books'
 
+import { axiosInstance } from '@/api/api'
+
 import { getBookFailure, getBookSuccess } from '../book/book.slice'
 
-function* workGetBookFetch(action: PayloadAction<number>) {
-  const id = action.payload
-
+function* bookRequestWorker({ payload }: PayloadAction<number>) {
   try {
-    const book: BookDetailedType = yield call(booksService.getBookDetailed, id)
+    const { data }: AxiosResponse<BookDetailedType> = yield call(
+      axiosInstance.get,
+      `/api/books/${payload}`
+    )
 
-    yield put(getBookSuccess(book))
+    yield put(getBookSuccess(data))
   } catch {
     yield put(getBookFailure('Что-то пошло не так. Обновите страницу через некоторое время'))
   }
 }
 
-function* bookSaga() {
-  yield takeEvery('book/getBookFetch', workGetBookFetch)
+export function* bookRequestWatcher() {
+  yield takeLatest('book/getBookFetch', bookRequestWorker)
 }
-
-export const book = bookSaga

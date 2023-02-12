@@ -1,23 +1,22 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
-
-import { booksService } from '@/services/books-services'
+import { AxiosResponse } from 'axios'
+import { call, put, takeLatest } from 'redux-saga/effects'
 
 import { BookType } from '@/types/books'
 
+import { axiosInstance } from '@/api/api'
+
 import { getBooksFailure, getBooksSuccess } from '../books/books.slice'
 
-function* workGetBooksFetch() {
+function* booksRequestWorker() {
   try {
-    const books: BookType[] = yield call(booksService.getBooks)
+    const { data }: AxiosResponse<BookType[]> = yield call(axiosInstance.get, '/api/books')
 
-    yield put(getBooksSuccess(books))
+    yield put(getBooksSuccess(data))
   } catch {
     yield put(getBooksFailure('Что-то пошло не так. Обновите страницу через некоторое время'))
   }
 }
 
-function* booksSaga() {
-  yield takeEvery('books/getBooksFetch', workGetBooksFetch)
+export function* booksRequestWatcher() {
+  yield takeLatest('books/getBooksFetch', booksRequestWorker)
 }
-
-export const books = booksSaga
