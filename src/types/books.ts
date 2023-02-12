@@ -1,93 +1,75 @@
-export interface IBook {
-  issueYear: string
-  rating: number
+export type BookType = {
+  issueYear: string | null
+  rating: number | null
   title: string
-  authors: string[]
-  image: {
-    url: string
-  }
-  categories: string[]
+  authors: string[] | null
+  image: BookImageType
+  categories: string[] | null
   id: number
-  booking: {
-    id: number
-    order: boolean
-    dateOrder: string
-    customerId: number
-    customerFirstName: string
-    customerLastName: string
-  }
-  delivery: {
-    id: number
-    handed: boolean
-    dateHandedFrom: string
-    dateHandedTo: string
-    recipientId: number
-    recipientFirstName: string
-    recipientLastName: string
-  }
-  histories: [
-    {
-      id: number
-      userId: number
-    }
-  ]
+  booking: BookingType | null
+  delivery: DeliveryType | null
+  histories: HistoryType[] | null
 }
 
-export interface IComment {
-  text: string
+export type BookDetailedType = {
+  id: number
+  title: string
+  rating: number | null
+  issueYear: string | null
+  description: string | null
+  publish: string | null
+  pages: string | null
+  cover: string | null
+  weight: string | null
+  format: string | null
+  ISBN: string | null
+  producer: string | null
+  authors: string[] | null
+  images: BookImageType[]
+  categories: string[]
+  comments: CommentType[] | null
+  booking: BookingType | null
+  delivery: DeliveryType | null
+  histories: HistoryType[] | null
+}
+
+export type BookImageType = {
+  url: string | null
+}
+
+type BookingType = {
+  id: number
+  order: boolean
+  dateOrder: string | null
+  customerId: number | null
+  customerFirstName: string | null
+  customerLastName: string | null
+}
+
+type DeliveryType = {
+  id: number
+  handed: boolean
+  dateHandedFrom: string | null
+  dateHandedTo: string | null
+  recipientId: number | null
+  recipientFirstName: string | null
+  recipientLastName: string | null
+}
+
+type HistoryType = {
+  id: number | null
+  userId: number | null
+}
+
+export type CommentType = {
+  text: string | null
   createdAt: string
-  rating: number
+  rating: number | null
   id: number
   user: {
     commentUserId: number
     firstName: string
     lastName: string
-    avatarUrl: string
+    avatarUrl: string | null
   }
-}
-
-export interface IBookDetailed {
-  id: number
-  title: string
-  rating: number
-  issueYear: string
-  description: string
-  publish: string
-  pages: string
-  cover: string
-  weight: string
-  format: string
-  ISBN: string
-  producer: string
-  authors: string[]
-  images: [
-    {
-      url: string
-    }
-  ]
-  categories: string[]
-  comments: IComment[]
-  booking: {
-    id: number
-    order: boolean
-    dateOrder: string
-    customerId: number
-    customerFirstName: string
-    customerLastName: string
-  }
-  delivery: {
-    id: number
-    handed: boolean
-    dateHandedFrom: string
-    dateHandedTo: string
-    recipientId: number
-    recipientFirstName: string
-    recipientLastName: string
-  }
-  histories: [
-    {
-      id: number
-      userId: number
-    }
-  ]
 }

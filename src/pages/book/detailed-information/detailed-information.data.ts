@@ -1,6 +1,6 @@
-import { IBookDetailed } from '@/types/books'
+import { BookDetailedType } from '@/types/books'
 
-export const detailInfoData = (book: IBookDetailed) => [
+export const detailInfoData = (book: BookDetailedType) => [
   {
     type: 'Издательство',
     value: book.publish,

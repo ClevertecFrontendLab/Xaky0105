@@ -3,6 +3,8 @@ import classNames from 'classnames'
 import SwiperCore, { EffectFade, FreeMode, Pagination, Scrollbar, Thumbs } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import { BookImageType } from '@/types/books'
+
 import { BASE_URL } from '@/api/api'
 
 import 'swiper/css/free-mode'
@@ -14,7 +16,7 @@ import 'swiper/css'
 import './slider.css'
 
 type SliderProps = {
-  images: [{ url: string }]
+  images: BookImageType[]
 }
 
 export const Slider = ({ images }: SliderProps) => {

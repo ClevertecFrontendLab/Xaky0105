@@ -6,7 +6,7 @@ import { Container } from '@/components/container'
 import { ReviewsList } from '@/components/reviews-list'
 import { Toast } from '@/components/ui/toast'
 
-import { selectBookDetailed, selectErrorBook } from '@/store/book/book.selector'
+import { selectBookDetailed } from '@/store/book/book.selector'
 import { clearBook, getBookFailure, getBookFetch } from '@/store/book/book.slice'
 
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
@@ -17,20 +17,17 @@ import { RatingBlock } from './rating-block'
 
 import styles from './book-page.module.scss'
 
-type BookParams = {
-  bookId: string
-}
-
 export const BookPage = () => {
-  const { bookId } = useParams<keyof BookParams>() as BookParams
+  const { bookId } = useParams()
 
   const dispatch = useAppDispatch()
 
-  const bookDetailed = useAppSelector(selectBookDetailed)
-  const bookError = useAppSelector(selectErrorBook)
+  const { book, error } = useAppSelector(selectBookDetailed)
 
   useEffect(() => {
-    dispatch(getBookFetch(+bookId))
+    if (bookId) {
+      dispatch(getBookFetch(bookId))
+    }
 
     return () => {
       dispatch(clearBook())
@@ -44,17 +41,17 @@ export const BookPage = () => {
           <Breadcrumbs />
         </Container>
       </div>
-      {bookDetailed.id && (
+      {book && (
         <Container>
-          <MainInfo book={bookDetailed} />
-          <RatingBlock rating={bookDetailed.rating} />
-          <DetailedInformation book={bookDetailed} />
-          <ReviewsList reviews={bookDetailed.comments} />
+          <MainInfo book={book} />
+          <RatingBlock rating={book.rating} />
+          <DetailedInformation book={book} />
+          <ReviewsList reviews={book.comments} />
         </Container>
       )}
 
-      {bookError && (
-        <Toast type='negative' onClose={() => dispatch(getBookFailure(''))} message={bookError} />
+      {error && (
+        <Toast type='negative' onClose={() => dispatch(getBookFailure(''))} message={error} />
       )}
     </section>
   )

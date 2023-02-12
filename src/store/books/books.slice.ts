@@ -1,24 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { IBook } from '@/types/books'
+import { BookType } from '@/types/books'
 
-import { IBooksState } from './books.interface'
+import { BooksState } from './books.types'
 
-const initialState: IBooksState = {
-  books: [],
+const initialState: BooksState = {
+  books: null,
   isLoading: false,
-  error: '',
+  error: null,
 }
 
 export const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {
-    getBooksSuccess: (state, action: PayloadAction<IBook[]>) => {
+    getBooksSuccess: (state, action: PayloadAction<BookType[]>) => {
       state.books = action.payload
       state.isLoading = false
     },
     getBooksFetch: state => {
+      state.books = null
+      state.error = null
       state.isLoading = true
     },
     getBooksFailure: (state, action: PayloadAction<string>) => {

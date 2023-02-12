@@ -2,14 +2,14 @@ import classNames from 'classnames'
 
 import { Card } from '@/components/card/card'
 
-import { IBook } from '@/types/books'
+import { BookType } from '@/types/books'
 import { TypeSortMainPage } from '@/types/other'
 
 import styles from './card-list.module.scss'
 
 type CardListProps = {
   selectSorting: TypeSortMainPage
-  cardsData: IBook[]
+  cardsData: BookType[]
   inputText: string
 }
 

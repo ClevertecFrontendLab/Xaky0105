@@ -6,11 +6,11 @@ import { HightLight } from '@/components/hight-light'
 import { Button } from '@/components/ui/button'
 import { Rating } from '@/components/ui/rating'
 
-import { selectCategoriesByName } from '@/store/categories/categories.selector'
+import { selectCategories } from '@/store/categories/categories.selector'
 
 import { useAppSelector } from '@/hooks/use-redux'
 
-import { IBook } from '@/types/books'
+import { BookType } from '@/types/books'
 import { TypeSortMainPage } from '@/types/other'
 
 import { BASE_URL } from '@/api/api'
@@ -18,7 +18,7 @@ import { BASE_URL } from '@/api/api'
 import styles from './card.module.scss'
 
 type CardProps = {
-  cardData: IBook
+  cardData: BookType
   selectSorting: TypeSortMainPage
   inputText: string
 }
@@ -27,9 +27,9 @@ export const Card = memo(
   ({
     selectSorting,
     inputText,
-    cardData: { title, image, rating, authors, issueYear, id, booking, categories },
+    cardData: { title, image, rating, authors, issueYear, id, booking },
   }: CardProps) => {
-    const categoryByName = useAppSelector(selectCategoriesByName(categories[0]))
+    const { currentCategory } = useAppSelector(selectCategories)
 
     const buttonMessage = () => {
       if (booking) {
@@ -47,7 +47,7 @@ export const Card = memo(
             selectSorting === 'tile' && styles.cardTile,
             selectSorting === 'list' && styles.cardList
           )}
-          to={`/books/${categoryByName.path}/${id}`}
+          to={`/books/${currentCategory?.path}/${id}`}
         >
           <div className={classNames(styles.imageWrapper, !image && styles.notFoundImage)}>
             {image && <img src={`${BASE_URL}${image.url}`} alt={title} />}
@@ -57,9 +57,7 @@ export const Card = memo(
               <HightLight classNameHL={styles.name} searchWord={inputText} text={title} />
             </div>
             <p className={styles.author}>
-              {authors.map(author => (
-                <Fragment key={author}>{author}, </Fragment>
-              ))}
+              {authors && authors.map(author => <Fragment key={author}>{author}, </Fragment>)}
               {issueYear}
             </p>
             {rating ? (

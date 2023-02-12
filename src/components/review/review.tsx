@@ -1,4 +1,4 @@
-import { IComment } from '@/types/books'
+import { CommentType } from '@/types/books'
 
 import { formatDate } from '@/utils/date'
 
@@ -10,7 +10,7 @@ import userAvatar from './assets/user-review.png'
 
 import styles from './review.module.scss'
 
-export const Review = ({ text, user, rating, createdAt }: IComment) => (
+export const Review = ({ text, user, rating, createdAt }: CommentType) => (
   <li className={styles.review}>
     <div className={styles.userData}>
       <div className={styles.imgWrapper}>
@@ -23,7 +23,7 @@ export const Review = ({ text, user, rating, createdAt }: IComment) => (
         <span>{formatDate(createdAt)}</span>
       </div>
     </div>
-    <Rating value={rating} />
+    <Rating value={rating ? rating : 0} />
     <p className={styles.userText}>{text}</p>
   </li>
 )

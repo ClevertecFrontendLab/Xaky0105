@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 
-import { selectIsLoadingBook } from '@/store/book/book.selector'
-import { selectIsLoadingBooks } from '@/store/books/books.selector'
-import { selectCategories, selectIsLoadingCategories } from '@/store/categories/categories.selector'
+import { selectBookDetailed } from '@/store/book/book.selector'
+import { selectBooks } from '@/store/books/books.selector'
+import { selectCategories } from '@/store/categories/categories.selector'
 import { getCategoriesFetch } from '@/store/categories/categories.slice'
 
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
@@ -21,13 +21,12 @@ export const Layout = () => {
   useScrollToTop()
 
   const dispatch = useAppDispatch()
-  const isLoadingBooks = useAppSelector(selectIsLoadingBooks)
-  const isLoadingCategories = useAppSelector(selectIsLoadingCategories)
-  const isLoadingBookDetails = useAppSelector(selectIsLoadingBook)
-  const categories = useAppSelector(selectCategories)
+  const { isLoading: isLoadingBooks } = useAppSelector(selectBooks)
+  const { isLoading: isLoadingCategories, categories } = useAppSelector(selectCategories)
+  const { isLoading: isLoadingBookDetails } = useAppSelector(selectBookDetailed)
 
   useEffect(() => {
-    if (categories && !categories.length) {
+    if (!categories) {
       dispatch(getCategoriesFetch())
     }
   }, [dispatch, categories])

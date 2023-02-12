@@ -3,12 +3,12 @@ import { Fragment } from 'react'
 import { Slider } from '@/components/slider'
 import { Button } from '@/components/ui/button'
 
-import { IBookDetailed } from '@/types/books'
+import { BookDetailedType } from '@/types/books'
 
 import styles from './main-info.module.scss'
 
 type MainInfoProps = {
-  book: IBookDetailed
+  book: BookDetailedType
 }
 
 export const MainInfo = ({ book }: MainInfoProps) => {
@@ -21,10 +21,7 @@ export const MainInfo = ({ book }: MainInfoProps) => {
         <div className={styles.aboutBlock}>
           <h2 className={styles.title}>{title}</h2>
           <div className={styles.author}>
-            {authors.map(author => (
-              <span key={author}>{author}</span>
-            ))}
-            , {issueYear}
+            {authors && authors.map(author => <span key={author}>{author}</span>)}, {issueYear}
           </div>
           <div className={styles.btnWrapper}>
             <Button size='large' name='Забронировать' type='button' clickHandler={() => {}} />

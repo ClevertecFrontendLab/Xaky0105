@@ -1,11 +1,11 @@
-import { IBookDetailed } from '@/types/books'
+import { BookDetailedType } from '@/types/books'
 
 import { detailInfoData } from './detailed-information.data'
 
 import styles from './detailed-information.module.scss'
 
 type DetailedInformationProps = {
-  book: IBookDetailed
+  book: BookDetailedType
 }
 
 export const DetailedInformation = ({ book }: DetailedInformationProps) => (

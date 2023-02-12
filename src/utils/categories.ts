@@ -1,13 +1,16 @@
-import { IBook } from '@/types/books'
-import { ICategory } from '@/types/categories'
+import { BookType } from '@/types/books'
+import { CategoryType } from '@/types/categories'
 
-interface ICategoryWithQuantity extends ICategory {
+type CategoryWithQuantityType = {
   quantity: number
+  name: string
+  path: string
+  id: number
 }
 
-export const createNavCategories = (books: IBook[], categories: ICategory[]) => {
+export const createNavCategories = (books: BookType[], categories: CategoryType[]) => {
   const quantityMap = books.reduce((acc: Record<string, number>, book) => {
-    book.categories.forEach(category => {
+    book.categories?.forEach(category => {
       if (acc[category]) {
         acc[category] += 1
 
@@ -21,7 +24,7 @@ export const createNavCategories = (books: IBook[], categories: ICategory[]) => 
     return acc
   }, {})
 
-  return categories.reduce((acc: ICategoryWithQuantity[], category, index) => {
+  return categories.reduce((acc: CategoryWithQuantityType[], category, index) => {
     if (index === 0) {
       return [
         ...acc,
@@ -32,10 +35,4 @@ export const createNavCategories = (books: IBook[], categories: ICategory[]) => 
 
     return [...acc, { ...category, quantity: quantityMap[category.name] }]
   }, [])
-}
-
-export const getTranslateCategory = (category: string, categories: ICategory[], books: IBook[]) => {
-  const navCategories = createNavCategories(books, categories)
-
-  return navCategories.filter(item => item.path === category)[0]?.name
 }

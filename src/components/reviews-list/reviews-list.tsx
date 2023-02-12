@@ -5,14 +5,14 @@ import { Button } from '@/components/ui/button'
 
 import { useBooleanState } from '@/hooks/use-boolean-state'
 
-import { IComment } from '@/types/books'
+import { CommentType } from '@/types/books'
 
 import Chevron from './assets/chevron-down.svg'
 
 import styles from './reviews-list.module.scss'
 
 type ReviewListProps = {
-  reviews: IComment[]
+  reviews: CommentType[] | null
 }
 
 export const ReviewsList = ({ reviews }: ReviewListProps) => {

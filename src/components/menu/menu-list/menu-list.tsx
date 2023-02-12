@@ -1,12 +1,12 @@
-import { Fragment, useMemo } from 'react'
+import { Fragment, useEffect, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
 
 import { Toast } from '@/components/ui/toast'
 
-import { selectBooksAll } from '@/store/books/books.selector'
-import { selectCategories, selectErrorCategories } from '@/store/categories/categories.selector'
-import { getCategoriesFailure } from '@/store/categories/categories.slice'
+import { selectBooks } from '@/store/books/books.selector'
+import { selectCategories } from '@/store/categories/categories.selector'
+import { getCategoriesFailure, setCurrentCategory } from '@/store/categories/categories.slice'
 
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
 
@@ -51,12 +51,23 @@ export const MenuList = ({
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const categories = useAppSelector(selectCategories)
-  const categoriesError = useAppSelector(selectErrorCategories)
+  const { categories } = useAppSelector(selectCategories)
+  const { books, error } = useAppSelector(selectBooks)
 
-  const books = useAppSelector(selectBooksAll)
+  const navCategories = useMemo(
+    () => books && categories && createNavCategories(books, categories),
+    [books, categories]
+  )
 
-  const navCategories = useMemo(() => createNavCategories(books, categories), [books, categories])
+  const findCategory = categories && categories.find(category => category.path === categoryLocation)
+
+  useEffect(() => {
+    if (categoryLocation) {
+      dispatch(
+        setCurrentCategory(findCategory ? findCategory : { id: 0, name: 'Все книги', path: 'all' })
+      )
+    }
+  }, [dispatch, categoryLocation, findCategory])
 
   return (
     <Fragment>
@@ -96,25 +107,26 @@ export const MenuList = ({
               isOpenGenre && pathname.includes('/books') && styles.visible
             )}
           >
-            {navCategories.map(({ id, path, name, quantity }) => (
-              <li
-                className={classNames(styles.genre)}
-                key={id}
-                data-test-id={getDataTestIdBooks(path, type)}
-              >
-                <Link
-                  to={`/books/${path}`}
-                  className={classNames(
-                    styles.genreLink,
-                    categoryLocation === path && styles.activeGenreLink
-                  )}
-                  onClick={hideMobileMenu}
+            {navCategories &&
+              navCategories.map(({ id, path, name, quantity }) => (
+                <li
+                  className={classNames(styles.genre)}
+                  key={id}
+                  data-test-id={getDataTestIdBooks(path, type)}
                 >
-                  {name}
-                  <span className={styles.quantity}>{quantity}</span>
-                </Link>
-              </li>
-            ))}
+                  <Link
+                    to={`/books/${path}`}
+                    className={classNames(
+                      styles.genreLink,
+                      categoryLocation === path && styles.activeGenreLink
+                    )}
+                    onClick={hideMobileMenu}
+                  >
+                    {name}
+                    <span className={styles.quantity}>{quantity}</span>
+                  </Link>
+                </li>
+              ))}
           </ul>
         </li>
         <li
@@ -161,12 +173,8 @@ export const MenuList = ({
           </li>
         </ul>
       )}
-      {categoriesError && (
-        <Toast
-          message={categoriesError}
-          onClose={() => dispatch(getCategoriesFailure(''))}
-          type='negative'
-        />
+      {error && (
+        <Toast message={error} onClose={() => dispatch(getCategoriesFailure(''))} type='negative' />
       )}
     </Fragment>
   )

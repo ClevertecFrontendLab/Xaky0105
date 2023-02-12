@@ -1,10 +1,8 @@
 import { RootState } from '..'
 
-export const selectBooksAll = ({ books: { books } }: RootState) => books
-export const selectIsLoadingBooks = ({ books: { isLoading } }: RootState) => isLoading
-export const selectErrorBooks = ({ books: { error } }: RootState) => error
+export const selectBooks = ({ books }: RootState) => books
 
 export const selectBookById =
-  (id: number) =>
+  (id: string) =>
   ({ books: { books } }: RootState) =>
-    books.find(book => book.id === id)
+    books?.find(book => book.id === +id)

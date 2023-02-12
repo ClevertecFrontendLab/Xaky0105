@@ -2,13 +2,13 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 
 import { booksService } from '@/services/books-services'
 
-import { IBook } from '@/types/books'
+import { BookType } from '@/types/books'
 
 import { getBooksFailure, getBooksSuccess } from '../books/books.slice'
 
 function* workGetBooksFetch() {
   try {
-    const books: IBook[] = yield call(booksService.getBooks)
+    const books: BookType[] = yield call(booksService.getBooks)
 
     yield put(getBooksSuccess(books))
   } catch {

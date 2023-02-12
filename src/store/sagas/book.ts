@@ -3,7 +3,7 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 
 import { booksService } from '@/services/books-services'
 
-import { IBookDetailed } from '@/types/books'
+import { BookDetailedType } from '@/types/books'
 
 import { getBookFailure, getBookSuccess } from '../book/book.slice'
 
@@ -11,7 +11,7 @@ function* workGetBookFetch(action: PayloadAction<number>) {
   const id = action.payload
 
   try {
-    const book: IBookDetailed = yield call(booksService.getBookDetailed, id)
+    const book: BookDetailedType = yield call(booksService.getBookDetailed, id)
 
     yield put(getBookSuccess(book))
   } catch {

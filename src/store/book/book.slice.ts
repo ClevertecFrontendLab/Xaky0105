@@ -1,24 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { IBookDetailed } from '@/types/books'
+import { BookDetailedType } from '@/types/books'
 
-import { IBookState } from './book.interface'
+import { BookState } from './book.types'
 
-const initialState: IBookState = {
-  book: {} as IBookDetailed,
+const initialState: BookState = {
+  book: null,
   isLoading: false,
-  error: '',
+  error: null,
 }
 
 export const bookSlice = createSlice({
   name: 'book',
   initialState,
   reducers: {
-    getBookSuccess: (state, action: PayloadAction<IBookDetailed>) => {
+    getBookSuccess: (state, action: PayloadAction<BookDetailedType>) => {
       state.book = action.payload
       state.isLoading = false
     },
-    getBookFetch: (state, _: PayloadAction<number>) => {
+    getBookFetch: (state, _: PayloadAction<string>) => {
+      state.book = null
+      state.error = null
       state.isLoading = true
     },
     getBookFailure: (state, action: PayloadAction<string>) => {
@@ -26,7 +28,8 @@ export const bookSlice = createSlice({
       state.error = action.payload
     },
     clearBook: state => {
-      state.book = {} as IBookDetailed
+      state.error = null
+      state.book = null
     },
   },
 })
