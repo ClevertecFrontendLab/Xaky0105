@@ -19,11 +19,11 @@ export const Breadcrumbs = () => {
   const bookDetailed = useAppSelector(selectBookDetailed)
   const categories = useAppSelector(selectCategories)
 
+  const selectCategory = categories.find(categoryBook => categoryBook.path === category)?.name
+
   return (
     <div className={styles.breadcrumbs}>
-      <Link to={`/books/${category}`}>
-        {categories.find(categoryBook => categoryBook.path === category)?.name}
-      </Link>
+      <Link to={`/books/${category}`}>{selectCategory ? selectCategory : 'Все книги'}</Link>
       <Link to={`/books/${category}/${bookId}`}>
         {bookDetailed.id ? bookDetailed.title : bookById?.title}
       </Link>
