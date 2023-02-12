@@ -23,13 +23,9 @@ export const Toast = ({ message, type, onClose }: ToastProps) => (
   >
     <div className={styles.message}>
       {type === 'positive' ? (
-        <div className={styles.icon}>
-          <img src={PositiveIcon} alt='positive-icon' />
-        </div>
+        <img className={styles.icon} src={PositiveIcon} alt='positive-icon' />
       ) : (
-        <div className={styles.icon}>
-          <img src={NegativeIcon} alt='negative-icon' />
-        </div>
+        <img className={styles.icon} src={NegativeIcon} alt='negative-icon' />
       )}
       <p>{message}</p>
     </div>

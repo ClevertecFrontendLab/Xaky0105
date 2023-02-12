@@ -53,14 +53,14 @@ export const Filter = ({
                   size='normal'
                 />
               </div>
-              <div className={styles.wrapperButton} data-test-id='button-search-open'>
-                <RoundButton handler={setTrue}>
+              <div className={styles.wrapperButton}>
+                <RoundButton handler={setTrue} dataTestId='button-search-open'>
                   <Search />
                 </RoundButton>
               </div>
             </span>
             <span className={styles.block}>
-              <div className={styles.wrapper}>
+              <div className={styles.wrapperSelect}>
                 <CustomSelect placeholder='По рейтингу' />
               </div>
               <div className={styles.wrapperButton}>
@@ -71,26 +71,22 @@ export const Filter = ({
             </span>
           </div>
           <div className={styles.listType}>
-            <div className={styles.itemWrapper}>
-              <RoundButton
-                changeSorting={changeSorting}
-                selectSorting={selectSorting}
-                sortingType={TypeSortMainPage.tile}
-                dataTestId='button-menu-view-window'
-              >
-                <TileImg />
-              </RoundButton>
-            </div>
-            <div className={styles.itemWrapper}>
-              <RoundButton
-                changeSorting={changeSorting}
-                selectSorting={selectSorting}
-                sortingType={TypeSortMainPage.list}
-                dataTestId='button-menu-view-list'
-              >
-                <ListImg />
-              </RoundButton>
-            </div>
+            <RoundButton
+              changeSorting={changeSorting}
+              selectSorting={selectSorting}
+              sortingType={TypeSortMainPage.tile}
+              dataTestId='button-menu-view-window'
+            >
+              <TileImg />
+            </RoundButton>
+            <RoundButton
+              changeSorting={changeSorting}
+              selectSorting={selectSorting}
+              sortingType={TypeSortMainPage.list}
+              dataTestId='button-menu-view-list'
+            >
+              <ListImg />
+            </RoundButton>
           </div>
         </Fragment>
       )}

@@ -18,7 +18,7 @@
           display: none;
         }
       }
-      .wrapper {
+      .wrapperSelect {
         @media (max-width: 580px) {
           display: none;
         }
@@ -34,7 +34,7 @@
   }
 
   .listType {
-    .itemWrapper {
+    button {
       display: inline-block;
       margin-left: 16px;
       &:first-child {

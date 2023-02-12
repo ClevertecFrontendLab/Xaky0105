@@ -27,13 +27,9 @@ export const bookSlice = createSlice({
       state.isLoading = false
       state.error = action.payload
     },
-    clearBook: state => {
-      state.error = null
-      state.book = null
-    },
   },
 })
 
-export const { getBookSuccess, getBookFetch, getBookFailure, clearBook } = bookSlice.actions
+export const { getBookSuccess, getBookFetch, getBookFailure } = bookSlice.actions
 
 export const bookReducer = bookSlice.reducer

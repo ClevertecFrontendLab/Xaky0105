@@ -3,13 +3,13 @@ import instagram from './assets/instagram.svg'
 import linkedin from './assets/linkedin.svg'
 import vk from './assets/vk.svg'
 
-interface IFooterLink {
+type FooterLinkType = {
   img: string
   alt: string
   to: string
 }
 
-export const footerLinks: IFooterLink[] = [
+export const footerLinks: FooterLinkType[] = [
   {
     img: facebook,
     alt: 'facebook',

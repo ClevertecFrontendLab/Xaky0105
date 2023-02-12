@@ -7,7 +7,7 @@ import { ReviewsList } from '@/components/reviews-list'
 import { Toast } from '@/components/ui/toast'
 
 import { selectBookDetailed } from '@/store/book/book.selector'
-import { clearBook, getBookFailure, getBookFetch } from '@/store/book/book.slice'
+import { getBookFailure, getBookFetch } from '@/store/book/book.slice'
 
 import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
 
@@ -27,10 +27,6 @@ export const BookPage = () => {
   useEffect(() => {
     if (bookId) {
       dispatch(getBookFetch(bookId))
-    }
-
-    return () => {
-      dispatch(clearBook())
     }
   }, [dispatch, bookId])
 

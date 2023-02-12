@@ -1,7 +1,1 @@
-declare module '*.scss'
-declare module '*.css'
-declare module '*.svg'
-declare module '*.png'
-declare module '*.jpg'
-declare module 'react-transition-group'
-declare module 'no-scroll'
+/// <reference types="react-scripts" />

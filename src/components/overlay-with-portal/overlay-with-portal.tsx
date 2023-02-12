@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef } from 'react'
+import { ReactNode, useEffect } from 'react'
 import classNames from 'classnames'
 import noScroll from 'no-scroll'
 
@@ -13,8 +13,6 @@ type OverlayProps = {
 }
 
 export const OverlayWithPortal = ({ children, onClose, type = 'blur' }: OverlayProps) => {
-  const nodeRef = useRef<HTMLDivElement>(null)
-
   useEffect(() => {
     noScroll.on()
 
@@ -27,7 +25,6 @@ export const OverlayWithPortal = ({ children, onClose, type = 'blur' }: OverlayP
     <Portal>
       <div className={styles.container}>
         <div
-          ref={nodeRef}
           className={classNames(
             styles.overlay,
             type === 'orange' && styles.orange,
