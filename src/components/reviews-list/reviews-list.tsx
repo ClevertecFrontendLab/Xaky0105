@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import classNames from 'classnames'
 
 import { Review } from '@/components/review'
@@ -19,8 +18,6 @@ interface IReviewList {
 export const ReviewsList = ({ reviews }: IReviewList) => {
   const { state: shouldShowReviews, toggle } = useBooleanState()
 
-  const ref = useRef<HTMLUListElement>(null)
-
   return (
     <div className={styles.reviews}>
       <h3 className={classNames(styles.subTitle, shouldShowReviews && styles.withUnderline)}>
@@ -38,9 +35,11 @@ export const ReviewsList = ({ reviews }: IReviewList) => {
         </button>
       </h3>
 
-      <ul className={styles.reviewsList} ref={ref}>
-        {reviews && reviews.map(review => <Review key={review.id} {...review} />)}
-      </ul>
+      {shouldShowReviews && (
+        <ul className={styles.reviewsList}>
+          {reviews && reviews.map(review => <Review key={review.id} {...review} />)}
+        </ul>
+      )}
 
       <div className={styles.btnWrapper}>
         <Button
