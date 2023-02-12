@@ -39,20 +39,18 @@ export const BookPage = () => {
 
   return (
     <section className={styles.bookPage}>
+      <div className={styles.breadcrumbsWrap}>
+        <Container>
+          <Breadcrumbs />
+        </Container>
+      </div>
       {bookDetailed.id && (
-        <>
-          <div className={styles.breadcrumbsWrap}>
-            <Container>
-              <Breadcrumbs categoryName={bookDetailed.categories[0]} title={bookDetailed.title} />
-            </Container>
-          </div>
-          <Container>
-            <MainInfo book={bookDetailed} />
-            <RatingBlock rating={bookDetailed.rating} />
-            <DetailedInformation book={bookDetailed} />
-            <ReviewsList reviews={bookDetailed.comments} />
-          </Container>
-        </>
+        <Container>
+          <MainInfo book={bookDetailed} />
+          <RatingBlock rating={bookDetailed.rating} />
+          <DetailedInformation book={bookDetailed} />
+          <ReviewsList reviews={bookDetailed.comments} />
+        </Container>
       )}
 
       {bookError && (
