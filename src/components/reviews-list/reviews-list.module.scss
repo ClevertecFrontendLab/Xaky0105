@@ -64,4 +64,17 @@
       margin-bottom: 24px;
     }
   }
+
+  .reviewsList {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: var(--transition);
+    height: 0px;
+
+    &.active {
+      opacity: 1;
+      transform: translateX(0px);
+      height: 100%;
+    }
+  }
 }

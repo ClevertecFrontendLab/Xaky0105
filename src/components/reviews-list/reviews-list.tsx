@@ -35,11 +35,9 @@ export const ReviewsList = ({ reviews }: IReviewList) => {
         </button>
       </h3>
 
-      {shouldShowReviews && (
-        <ul className={styles.reviewsList}>
-          {reviews && reviews.map(review => <Review key={review.id} {...review} />)}
-        </ul>
-      )}
+      <ul className={classNames(styles.reviewsList, shouldShowReviews && styles.active)}>
+        {reviews && reviews.map(review => <Review key={review.id} {...review} />)}
+      </ul>
 
       <div className={styles.btnWrapper}>
         <Button
