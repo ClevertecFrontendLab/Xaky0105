@@ -6,30 +6,32 @@ interface ICategoryWithQuantity extends ICategory {
 }
 
 export const createNavCategories = (books: IBook[], categories: ICategory[]) => {
-  const quantity = {} as { [key: string]: number }
-
-  books.forEach(book => {
+  const quantityMap = books.reduce((acc: Record<string, number>, book) => {
     book.categories.forEach(category => {
-      if (quantity[category]) {
-        quantity[category] += 1
-      } else {
-        quantity[category] = 1
+      if (acc[category]) {
+        acc[category] += 1
+
+        return acc
       }
+      acc[category] = 1
+
+      return acc
     })
-  })
 
-  const result = [] as ICategoryWithQuantity[]
+    return acc
+  }, {})
 
-  categories.forEach((category, index) =>
-    index === 0
-      ? result.push(
-          { id: 0, name: 'Все книги', path: 'all', quantity: books.length },
-          { ...category, quantity: quantity[category.name] }
-        )
-      : result.push({ ...category, quantity: quantity[category.name] })
-  )
+  return categories.reduce((acc: ICategoryWithQuantity[], category, index) => {
+    if (index === 0) {
+      return [
+        ...acc,
+        { id: 0, name: 'Все книги', path: 'all', quantity: books.length },
+        { ...category, quantity: quantityMap[category.name] },
+      ]
+    }
 
-  return result
+    return [...acc, { ...category, quantity: quantityMap[category.name] }]
+  }, [])
 }
 
 export const getTranslateCategory = (category: string, categories: ICategory[], books: IBook[]) => {
