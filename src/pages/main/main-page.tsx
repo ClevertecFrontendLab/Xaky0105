@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 
 import { CardList } from '../../components/card-list'
 import { Filter } from '../../components/filter'
+import { Loader } from '../../components/loader'
+import { OverlayWithPortal } from '../../components/overlay-with-portal'
 import { Toast } from '../../components/ui/toast'
 import { useAppDispatch, useAppSelector } from '../../hooks/use-redux'
 import { selectBooks } from '../../store/books/books.selector'
 import { getBooksFailure, getBooksFetch } from '../../store/books/books.slice'
-import { selectCategories } from '../../store/categories/categories.selector'
 import { TypeSortMainPage } from '../../types/other'
 import { getFilterBooks } from '../../utils/filter'
 
@@ -17,8 +18,8 @@ export const MainPage = () => {
   const [selectSorting, setSelectSorting] = useState(TypeSortMainPage.tile)
   const [inputText, setInputText] = useState('')
 
-  const { books: booksAll, error } = useAppSelector(selectBooks)
-  const { currentCategory } = useAppSelector(selectCategories)
+  const { books: booksAll, error, isLoading } = useAppSelector(selectBooks)
+  const { currentCategory } = useAppSelector(selectBooks)
 
   const [books, setBooks] = useState(booksAll)
 
@@ -37,10 +38,10 @@ export const MainPage = () => {
   }, [inputText, booksAll, currentCategory])
 
   useEffect(() => {
-    if (!booksAll) {
+    if (!books) {
       dispatch(getBooksFetch())
     }
-  }, [booksAll, dispatch])
+  }, [dispatch, books])
 
   return (
     <section className={styles.mainPage}>
@@ -60,7 +61,12 @@ export const MainPage = () => {
         </div>
       )}
       {error && (
-        <Toast message={error} onClose={() => dispatch(getBooksFailure(''))} type='negative' />
+        <Toast message={error} onClose={() => dispatch(getBooksFailure(null))} type='negative' />
+      )}
+      {isLoading && (
+        <OverlayWithPortal>
+          <Loader />
+        </OverlayWithPortal>
       )}
     </section>
   )

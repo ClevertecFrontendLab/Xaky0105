@@ -4,14 +4,9 @@ import classNames from 'classnames'
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/use-redux'
 import { selectBooks } from '../../../store/books/books.selector'
-import { selectCategories } from '../../../store/categories/categories.selector'
-import {
-  getCategoriesFailure,
-  setCurrentCategory,
-} from '../../../store/categories/categories.slice'
+import { setCurrentCategory } from '../../../store/books/books.slice'
 import { RoutePath } from '../../../types/other'
 import { createNavCategories } from '../../../utils/categories'
-import { Toast } from '../../ui/toast'
 
 import { ReactComponent as Chevron } from './assets/chevron-down.svg'
 
@@ -50,8 +45,8 @@ export const MenuList = ({
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const { categories } = useAppSelector(selectCategories)
-  const { books, error } = useAppSelector(selectBooks)
+  const { categories } = useAppSelector(selectBooks)
+  const { books } = useAppSelector(selectBooks)
 
   const navCategories = useMemo(
     () => books && categories && createNavCategories(books, categories),
@@ -171,9 +166,6 @@ export const MenuList = ({
             Выход
           </li>
         </ul>
-      )}
-      {error && (
-        <Toast message={error} onClose={() => dispatch(getCategoriesFailure(''))} type='negative' />
       )}
     </Fragment>
   )

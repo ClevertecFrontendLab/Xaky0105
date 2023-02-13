@@ -7,7 +7,7 @@ export const RatingBlock = ({ rating }: { rating: number | null }) => (
     <h3 className={styles.subTitle}>Рейтинг</h3>
     <div className={styles.ratingWrap}>
       <Rating value={rating ? Math.round(rating) : 0} size='large' />
-      <span>{rating}</span>
+      {rating ? <span>{rating}</span> : <span className={styles.dontRating}>еще нет оценок</span>}
     </div>
   </div>
 )

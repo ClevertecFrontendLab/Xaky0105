@@ -3,11 +3,16 @@ import { useParams } from 'react-router-dom'
 
 import { Breadcrumbs } from '../../components/breadcrumbs'
 import { Container } from '../../components/container'
+import { Loader } from '../../components/loader'
+import { OverlayWithPortal } from '../../components/overlay-with-portal'
 import { ReviewsList } from '../../components/reviews-list'
 import { Toast } from '../../components/ui/toast'
 import { useAppDispatch, useAppSelector } from '../../hooks/use-redux'
-import { selectBookDetailed } from '../../store/book/book.selector'
-import { getBookFailure, getBookFetch } from '../../store/book/book.slice'
+import { selectBookDetailed } from '../../store/book-detailed/book-detailed.selector'
+import {
+  getBookDetailedFailure,
+  getBookDetailedFetch,
+} from '../../store/book-detailed/book-detailed.slice'
 
 import { DetailedInformation } from './detailed-information'
 import { MainInfo } from './main-info'
@@ -20,11 +25,11 @@ export const BookPage = () => {
 
   const dispatch = useAppDispatch()
 
-  const { book, error } = useAppSelector(selectBookDetailed)
+  const { book, error, isLoading } = useAppSelector(selectBookDetailed)
 
   useEffect(() => {
     if (bookId) {
-      dispatch(getBookFetch(bookId))
+      dispatch(getBookDetailedFetch(bookId))
     }
   }, [dispatch, bookId])
 
@@ -45,7 +50,16 @@ export const BookPage = () => {
       )}
 
       {error && (
-        <Toast type='negative' onClose={() => dispatch(getBookFailure(''))} message={error} />
+        <Toast
+          type='negative'
+          onClose={() => dispatch(getBookDetailedFailure(null))}
+          message={error}
+        />
+      )}
+      {isLoading && (
+        <OverlayWithPortal>
+          <Loader />
+        </OverlayWithPortal>
       )}
     </section>
   )

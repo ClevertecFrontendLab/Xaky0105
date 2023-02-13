@@ -1,9 +1,9 @@
-import { all } from 'redux-saga/effects'
+import { fork } from 'redux-saga/effects'
 
-import { bookRequestWatcher } from './book'
+import { bookDetailedRequestWatcher } from './book-detailed'
 import { booksRequestWatcher } from './books'
-import { categoriesRequestWatcher } from './categories'
 
 export function* rootSaga() {
-  yield all([bookRequestWatcher(), booksRequestWatcher(), categoriesRequestWatcher()])
+  yield fork(booksRequestWatcher)
+  yield fork(bookDetailedRequestWatcher)
 }

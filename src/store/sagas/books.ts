@@ -1,15 +1,23 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { AxiosResponse } from 'axios'
 
 import { axiosInstance } from '../../api/api'
 import { BookType } from '../../types/books'
-import { getBooksFailure, getBooksFetch, getBooksSuccess } from '../books/books.slice'
+import { CategoryType } from '../../types/categories'
+import {
+  getBooksFailure,
+  getBooksFetch,
+  getBooksSuccess,
+  getCategoriesSuccess,
+} from '../books/books.slice'
 
 function* booksRequestWorker() {
   try {
-    const { data }: AxiosResponse<BookType[]> = yield call(axiosInstance.get, '/api/books')
+    const [categories, books]: [AxiosResponse<CategoryType[]>, AxiosResponse<BookType[]>] =
+      yield all([call(axiosInstance.get, '/api/categories'), call(axiosInstance.get, '/api/books')])
 
-    yield put(getBooksSuccess(data))
+    yield put(getCategoriesSuccess(categories.data))
+    yield put(getBooksSuccess(books.data))
   } catch {
     yield put(getBooksFailure('Что-то пошло не так. Обновите страницу через некоторое время'))
   }

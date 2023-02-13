@@ -1,6 +1,6 @@
 import { BookDetailedType } from '../../types/books'
 
-export type BookState = {
+export type BookDetailedState = {
   book: BookDetailedType | null
   isLoading: boolean
   error: string | null

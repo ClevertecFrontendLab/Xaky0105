@@ -4,7 +4,7 @@ import classNames from 'classnames'
 
 import { BASE_URL } from '../../api/api'
 import { useAppSelector } from '../../hooks/use-redux'
-import { selectCategories } from '../../store/categories/categories.selector'
+import { selectBooks } from '../../store/books/books.selector'
 import { BookType } from '../../types/books'
 import { TypeSortMainPage } from '../../types/other'
 import { buttonBookingMessage } from '../../utils/buttons'
@@ -26,7 +26,7 @@ export const Card = memo(
     inputText,
     cardData: { title, image, rating, authors, issueYear, id, booking },
   }: CardProps) => {
-    const { currentCategory } = useAppSelector(selectCategories)
+    const { currentCategory } = useAppSelector(selectBooks)
 
     return (
       <li key={id} data-test-id='card'>
@@ -42,9 +42,7 @@ export const Card = memo(
             {image && <img src={`${BASE_URL}${image.url}`} alt={title} />}
           </div>
           <div className={styles.cardContent}>
-            <div className={styles.nameWrap}>
-              <HightLight classNameHL={styles.name} searchWord={inputText} text={title} />
-            </div>
+            <HightLight classNameHL={styles.name} searchWord={inputText} text={title} />
             <p className={styles.author}>
               {authors && authors.map(author => <Fragment key={author}>{author}, </Fragment>)}
               {issueYear}

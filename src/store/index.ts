@@ -1,9 +1,8 @@
 import createSagaMiddleware from 'redux-saga'
-import { applyMiddleware, combineReducers, createStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
-import { bookReducer } from './book/book.slice'
+import { bookReducer } from './book-detailed/book-detailed.slice'
 import { booksReducer } from './books/books.slice'
-import { categoriesReducer } from './categories/categories.slice'
 import { rootSaga } from './sagas'
 
 const sagaMiddleware = createSagaMiddleware()
@@ -11,10 +10,12 @@ const sagaMiddleware = createSagaMiddleware()
 const rootReducer = combineReducers({
   book: bookReducer,
   books: booksReducer,
-  categories: categoriesReducer,
 })
 
-export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: [sagaMiddleware],
+})
 
 sagaMiddleware.run(rootSaga)
 
