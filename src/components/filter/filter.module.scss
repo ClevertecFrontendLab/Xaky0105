@@ -5,30 +5,19 @@
   margin-bottom: 24px;
   .sorting {
     display: flex;
-    .block {
-      margin-right: 16px;
-
-      &:last-child {
-        margin-right: 0;
-      }
-      .searchInputWrapper {
-        width: 274px;
-
-        @media (max-width: 580px) {
-          display: none;
-        }
-      }
-      .wrapperSelect {
-        @media (max-width: 580px) {
-          display: none;
-        }
-      }
-
-      .wrapperButton {
+    .blockDesktop {
+      display: flex;
+      @media (max-width: 580px) {
         display: none;
-        @media (max-width: 580px) {
-          display: block;
-        }
+      }
+    }
+    .blockMobile {
+      display: none;
+      @media (max-width: 580px) {
+        display: flex;
+      }
+      button {
+        margin-right: 16px;
       }
     }
   }

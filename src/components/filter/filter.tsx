@@ -44,31 +44,23 @@ export const Filter = ({
       ) : (
         <Fragment>
           <div className={styles.sorting}>
-            <span className={styles.block}>
-              <div className={styles.searchInputWrapper}>
-                <SearchInput
-                  inputText={inputText}
-                  changeInputText={changeInputText}
-                  placeholder='Поиск книги или автора...'
-                  size='normal'
-                />
-              </div>
-              <div className={styles.wrapperButton}>
-                <RoundButton handler={setTrue} dataTestId='button-search-open'>
-                  <Search />
-                </RoundButton>
-              </div>
-            </span>
-            <span className={styles.block}>
-              <div className={styles.wrapperSelect}>
-                <CustomSelect placeholder='По рейтингу' />
-              </div>
-              <div className={styles.wrapperButton}>
-                <RoundButton>
-                  <Sort />
-                </RoundButton>
-              </div>
-            </span>
+            <div className={styles.blockDesktop}>
+              <SearchInput
+                inputText={inputText}
+                changeInputText={changeInputText}
+                placeholder='Поиск книги или автора...'
+                size='normal'
+              />
+              <CustomSelect placeholder='По рейтингу' />
+            </div>
+            <div className={styles.blockMobile}>
+              <RoundButton handler={setTrue} dataTestId='button-search-open'>
+                <Search />
+              </RoundButton>
+              <RoundButton>
+                <Sort />
+              </RoundButton>
+            </div>
           </div>
           <div className={styles.listType}>
             <RoundButton
