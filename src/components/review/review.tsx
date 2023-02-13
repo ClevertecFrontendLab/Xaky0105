@@ -1,6 +1,6 @@
 import { CommentType } from '@/types/books'
 
-import { formatDate } from '@/utils/date'
+import { formatDateReview } from '@/utils/date'
 
 import { BASE_URL } from '@/api/api'
 
@@ -20,7 +20,7 @@ export const Review = ({ text, user, rating, createdAt }: CommentType) => (
         <span>
           {user.firstName} {user.lastName}
         </span>
-        <span>{formatDate(createdAt)}</span>
+        <span>{formatDateReview(createdAt)}</span>
       </div>
     </div>
     <Rating value={rating ? rating : 0} />

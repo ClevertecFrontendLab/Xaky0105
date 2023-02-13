@@ -37,7 +37,7 @@ export type BookImageType = {
   url: string | null
 }
 
-type BookingType = {
+export type BookingType = {
   id: number
   order: boolean
   dateOrder: string | null
