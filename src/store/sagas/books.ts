@@ -1,10 +1,8 @@
-import { AxiosResponse } from 'axios'
 import { call, put, takeLatest } from 'redux-saga/effects'
+import { AxiosResponse } from 'axios'
 
-import { BookType } from '@/types/books'
-
-import { axiosInstance } from '@/api/api'
-
+import { axiosInstance } from '../../api/api'
+import { BookType } from '../../types/books'
 import { getBooksFailure, getBooksFetch, getBooksSuccess } from '../books/books.slice'
 
 function* booksRequestWorker() {

@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom'
 
-import { Container } from '@/components/container'
-import { MenuMobile } from '@/components/menu'
-import { OverlayMask } from '@/components/overlay-mask'
-import { Burger } from '@/components/ui/burger'
-
-import { useBooleanState } from '@/hooks/use-boolean-state'
+import { useBooleanState } from '../../../hooks/use-boolean-state'
+import { Container } from '../../container'
+import { MenuMobile } from '../../menu'
+import { OverlayMask } from '../../overlay-mask'
+import { Burger } from '../../ui/burger'
 
 import avatar from './assets/avatar.png'
 import logo from './assets/logo.png'

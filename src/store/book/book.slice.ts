@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { BookDetailedType } from '@/types/books'
+import { BookDetailedType } from '../../types/books'
 
 import { BookState } from './book.types'
 

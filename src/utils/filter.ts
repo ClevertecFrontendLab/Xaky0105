@@ -1,4 +1,4 @@
-import { BookType } from '@/types/books'
+import { BookType } from '../types/books'
 
 export const getFilterBooks = (books: BookType[], filter: string, category: string) =>
   books.filter(elem => {

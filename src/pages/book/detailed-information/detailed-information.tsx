@@ -1,4 +1,4 @@
-import { BookDetailedType } from '@/types/books'
+import { BookDetailedType } from '../../../types/books'
 
 import { detailInfoData } from './detailed-information.data'
 

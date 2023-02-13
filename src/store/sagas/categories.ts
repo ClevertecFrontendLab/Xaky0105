@@ -1,10 +1,8 @@
-import { AxiosResponse } from 'axios'
 import { call, put, takeLatest } from 'redux-saga/effects'
+import { AxiosResponse } from 'axios'
 
-import { CategoryType } from '@/types/categories'
-
-import { axiosInstance } from '@/api/api'
-
+import { axiosInstance } from '../../api/api'
+import { CategoryType } from '../../types/categories'
 import {
   getCategoriesFailure,
   getCategoriesFetch,

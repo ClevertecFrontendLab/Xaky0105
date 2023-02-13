@@ -1,4 +1,4 @@
-import { Container } from '@/components/container'
+import { Container } from '../../container'
 
 import { footerLinks } from './footer.data'
 

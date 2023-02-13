@@ -1,11 +1,9 @@
 import classNames from 'classnames'
 
-import { Review } from '@/components/review'
-import { Button } from '@/components/ui/button'
-
-import { useBooleanState } from '@/hooks/use-boolean-state'
-
-import { CommentType } from '@/types/books'
+import { useBooleanState } from '../../hooks/use-boolean-state'
+import { CommentType } from '../../types/books'
+import { Review } from '../review/review'
+import { Button } from '../ui/button'
 
 import Chevron from './assets/chevron-down.svg'
 

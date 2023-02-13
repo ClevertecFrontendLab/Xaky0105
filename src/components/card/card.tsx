@@ -2,20 +2,15 @@ import { Fragment, memo } from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 
-import { HightLight } from '@/components/hight-light'
-import { Button } from '@/components/ui/button'
-import { Rating } from '@/components/ui/rating'
-
-import { selectCategories } from '@/store/categories/categories.selector'
-
-import { useAppSelector } from '@/hooks/use-redux'
-
-import { BookType } from '@/types/books'
-import { TypeSortMainPage } from '@/types/other'
-
-import { buttonBookingMessage } from '@/utils/buttons'
-
-import { BASE_URL } from '@/api/api'
+import { BASE_URL } from '../../api/api'
+import { useAppSelector } from '../../hooks/use-redux'
+import { selectCategories } from '../../store/categories/categories.selector'
+import { BookType } from '../../types/books'
+import { TypeSortMainPage } from '../../types/other'
+import { buttonBookingMessage } from '../../utils/buttons'
+import { HightLight } from '../hight-light'
+import { Button } from '../ui/button'
+import { Rating } from '../ui/rating'
 
 import styles from './card.module.scss'
 

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import classNames from 'classnames'
 
-import { TypeSortMainPage } from '@/types/other'
+import { TypeSortMainPage } from '../../../types/other'
 
 import styles from './round-button.module.scss'
 

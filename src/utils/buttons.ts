@@ -1,4 +1,4 @@
-import { BookingType } from '@/types/books'
+import { BookingType } from '../types/books'
 
 import { formatDateButton } from './date'
 

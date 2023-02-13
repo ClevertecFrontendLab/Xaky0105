@@ -1,9 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 
-import { selectBookDetailed } from '@/store/book/book.selector'
-import { selectCategories } from '@/store/categories/categories.selector'
-
-import { useAppSelector } from '@/hooks/use-redux'
+import { useAppSelector } from '../../hooks/use-redux'
+import { selectBookDetailed } from '../../store/book/book.selector'
+import { selectCategories } from '../../store/categories/categories.selector'
 
 import styles from './breadcrumbs.module.scss'
 

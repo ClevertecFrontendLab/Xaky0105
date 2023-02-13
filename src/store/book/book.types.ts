@@ -1,4 +1,4 @@
-import { BookDetailedType } from '@/types/books'
+import { BookDetailedType } from '../../types/books'
 
 export type BookState = {
   book: BookDetailedType | null

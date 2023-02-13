@@ -1,4 +1,4 @@
-import { CategoryType } from '@/types/categories'
+import { CategoryType } from '../../types/categories'
 
 export type CategoriesState = {
   categories: CategoryType[] | null

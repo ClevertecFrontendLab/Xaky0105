@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import classNames from 'classnames'
 
-import { useBooleanState } from '@/hooks/use-boolean-state'
+import { useBooleanState } from '../../../hooks/use-boolean-state'
 
 import { ReactComponent as CloseIcon } from './assets/close.svg'
 import { ReactComponent as SearchIcon } from './assets/search.svg'

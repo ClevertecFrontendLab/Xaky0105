@@ -1,14 +1,12 @@
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 
-import { Layout } from '@/components/layout'
-import { LayoutMain } from '@/components/layout-main'
-
-import { BookPage } from '@/pages/book'
-import { MainPage } from '@/pages/main'
-import { ProfilePage } from '@/pages/profile'
-import { TermsPage } from '@/pages/terms'
-
-import { RoutePath } from '@/types/other'
+import { Layout } from './components/layout'
+import { LayoutMain } from './components/layout-main'
+import { BookPage } from './pages/book'
+import { MainPage } from './pages/main'
+import { ProfilePage } from './pages/profile'
+import { TermsPage } from './pages/terms'
+import { RoutePath } from './types/other'
 
 export const AppRouter = () => (
   <HashRouter>

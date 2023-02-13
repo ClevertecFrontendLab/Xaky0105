@@ -1,9 +1,6 @@
-import { CommentType } from '@/types/books'
-
-import { formatDateReview } from '@/utils/date'
-
-import { BASE_URL } from '@/api/api'
-
+import { BASE_URL } from '../../api/api'
+import { CommentType } from '../../types/books'
+import { formatDateReview } from '../../utils/date'
 import { Rating } from '../ui/rating'
 
 import userAvatar from './assets/user-review.png'

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { CategoryType } from '@/types/categories'
+import { CategoryType } from '../../types/categories'
 
 import { CategoriesState } from './categories.types'
 

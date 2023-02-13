@@ -2,17 +2,16 @@ import { Fragment, useEffect, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
 
-import { Toast } from '@/components/ui/toast'
-
-import { selectBooks } from '@/store/books/books.selector'
-import { selectCategories } from '@/store/categories/categories.selector'
-import { getCategoriesFailure, setCurrentCategory } from '@/store/categories/categories.slice'
-
-import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
-
-import { RoutePath } from '@/types/other'
-
-import { createNavCategories } from '@/utils/categories'
+import { useAppDispatch, useAppSelector } from '../../../hooks/use-redux'
+import { selectBooks } from '../../../store/books/books.selector'
+import { selectCategories } from '../../../store/categories/categories.selector'
+import {
+  getCategoriesFailure,
+  setCurrentCategory,
+} from '../../../store/categories/categories.slice'
+import { RoutePath } from '../../../types/other'
+import { createNavCategories } from '../../../utils/categories'
+import { Toast } from '../../ui/toast'
 
 import { ReactComponent as Chevron } from './assets/chevron-down.svg'
 

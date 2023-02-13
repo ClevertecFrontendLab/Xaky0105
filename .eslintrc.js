@@ -32,36 +32,6 @@ module.exports = {
         props: false,
       },
     ],
-    'simple-import-sort/imports': [
-      'error',
-      {
-        groups: [
-          // Packages `react` related packages come first.
-          ['^react', '^@?\\w'],
-          // Internal packages.
-          ['^@/components/(.*)$'],
-          ['^@/pages/(.*)$'],
-          ['^@/ui/(.*)$'],
-          ['^@/data/(.*)$'],
-          ['^@/store/(.*)$'],
-          ['^@/hooks/(.*)$'],
-          ['^@/services/(.*)$'],
-          ['^@/types/(.*)$'],
-          ['^@/utils/(.*)$'],
-          ['^@/validation/(.*)$'],
-          ['^@/api/(.*)$'],
-          ['^@/assets/(.*)$'],
-          // Side effect imports.
-          ['^\\u0000'],
-          // Parent imports. Put `..` last.
-          ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
-          // Other relative imports. Put same-folder imports and `.` last.
-          ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
-          // Style imports.
-          ['^.+\\.?(css)$'],
-        ],
-      },
-    ],
   },
   ignorePatterns: ['coverage', 'cypress.config.ts'],
 }

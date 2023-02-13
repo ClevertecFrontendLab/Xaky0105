@@ -1,15 +1,13 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { Breadcrumbs } from '@/components/breadcrumbs'
-import { Container } from '@/components/container'
-import { ReviewsList } from '@/components/reviews-list'
-import { Toast } from '@/components/ui/toast'
-
-import { selectBookDetailed } from '@/store/book/book.selector'
-import { getBookFailure, getBookFetch } from '@/store/book/book.slice'
-
-import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
+import { Breadcrumbs } from '../../components/breadcrumbs'
+import { Container } from '../../components/container'
+import { ReviewsList } from '../../components/reviews-list'
+import { Toast } from '../../components/ui/toast'
+import { useAppDispatch, useAppSelector } from '../../hooks/use-redux'
+import { selectBookDetailed } from '../../store/book/book.selector'
+import { getBookFailure, getBookFetch } from '../../store/book/book.slice'
 
 import { DetailedInformation } from './detailed-information'
 import { MainInfo } from './main-info'

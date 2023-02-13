@@ -1,18 +1,14 @@
 import { useEffect, useState } from 'react'
 
-import { CardList } from '@/components/card-list'
-import { Filter } from '@/components/filter'
-import { Toast } from '@/components/ui/toast'
-
-import { selectBooks } from '@/store/books/books.selector'
-import { getBooksFailure, getBooksFetch } from '@/store/books/books.slice'
-import { selectCategories } from '@/store/categories/categories.selector'
-
-import { useAppDispatch, useAppSelector } from '@/hooks/use-redux'
-
-import { TypeSortMainPage } from '@/types/other'
-
-import { getFilterBooks } from '@/utils/filter'
+import { CardList } from '../../components/card-list'
+import { Filter } from '../../components/filter'
+import { Toast } from '../../components/ui/toast'
+import { useAppDispatch, useAppSelector } from '../../hooks/use-redux'
+import { selectBooks } from '../../store/books/books.selector'
+import { getBooksFailure, getBooksFetch } from '../../store/books/books.slice'
+import { selectCategories } from '../../store/categories/categories.selector'
+import { TypeSortMainPage } from '../../types/other'
+import { getFilterBooks } from '../../utils/filter'
 
 import styles from './main-page.module.scss'
 

@@ -1,9 +1,8 @@
 import classNames from 'classnames'
 
-import { Card } from '@/components/card/card'
-
-import { BookType } from '@/types/books'
-import { TypeSortMainPage } from '@/types/other'
+import { BookType } from '../../types/books'
+import { TypeSortMainPage } from '../../types/other'
+import { Card } from '../card/card'
 
 import styles from './card-list.module.scss'
 

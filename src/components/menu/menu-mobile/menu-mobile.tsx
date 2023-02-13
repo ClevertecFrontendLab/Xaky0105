@@ -1,8 +1,7 @@
 import { useLocation, useParams } from 'react-router-dom'
 import classNames from 'classnames'
 
-import { useBooleanState } from '@/hooks/use-boolean-state'
-
+import { useBooleanState } from '../../../hooks/use-boolean-state'
 import { MenuList } from '../menu-list/menu-list'
 
 import styles from './menu-mobile.module.scss'

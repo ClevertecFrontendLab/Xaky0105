@@ -1,12 +1,10 @@
 import { Fragment } from 'react'
 
-import { CustomSelect } from '@/components/ui/custom-select'
-import { RoundButton } from '@/components/ui/round-button'
-import { SearchInput } from '@/components/ui/search-input'
-
-import { useBooleanState } from '@/hooks/use-boolean-state'
-
-import { TypeSortMainPage } from '@/types/other'
+import { useBooleanState } from '../../hooks/use-boolean-state'
+import { TypeSortMainPage } from '../../types/other'
+import { CustomSelect } from '../ui/custom-select'
+import { RoundButton } from '../ui/round-button'
+import { SearchInput } from '../ui/search-input'
 
 import { ReactComponent as ListImg } from './assets/burger.svg'
 import { ReactComponent as Search } from './assets/search.svg'

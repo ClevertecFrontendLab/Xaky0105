@@ -1,4 +1,4 @@
-import { Rating } from '@/components/ui/rating'
+import { Rating } from '../../../components/ui/rating'
 
 import styles from './rating-block.module.scss'
 

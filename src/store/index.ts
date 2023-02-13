@@ -1,5 +1,5 @@
-import { applyMiddleware, combineReducers, createStore } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
+import { applyMiddleware, combineReducers, createStore } from '@reduxjs/toolkit'
 
 import { bookReducer } from './book/book.slice'
 import { booksReducer } from './books/books.slice'

@@ -1,11 +1,9 @@
 import { Fragment } from 'react'
 
-import { Slider } from '@/components/slider'
-import { Button } from '@/components/ui/button'
-
-import { BookDetailedType } from '@/types/books'
-
-import { buttonBookingMessage } from '@/utils/buttons'
+import { Slider } from '../../../components/slider'
+import { Button } from '../../../components/ui/button'
+import { BookDetailedType } from '../../../types/books'
+import { buttonBookingMessage } from '../../../utils/buttons'
 
 import styles from './main-info.module.scss'
 

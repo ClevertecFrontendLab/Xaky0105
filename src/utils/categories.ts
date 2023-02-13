@@ -1,5 +1,5 @@
-import { BookType } from '@/types/books'
-import { CategoryType } from '@/types/categories'
+import { BookType } from '../types/books'
+import { CategoryType } from '../types/categories'
 
 type CategoryWithQuantityType = {
   quantity: number
