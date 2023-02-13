@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button'
 
 import { BookDetailedType } from '@/types/books'
 
+import { buttonBookingMessage } from '@/utils/buttons'
+
 import styles from './main-info.module.scss'
 
 type MainInfoProps = {
@@ -12,7 +14,7 @@ type MainInfoProps = {
 }
 
 export const MainInfo = ({ book }: MainInfoProps) => {
-  const { images, title, authors, issueYear, description } = book
+  const { images, title, authors, issueYear, description, booking } = book
 
   return (
     <Fragment>
@@ -24,7 +26,14 @@ export const MainInfo = ({ book }: MainInfoProps) => {
             {authors && authors.map(author => <span key={author}>{author}</span>)}, {issueYear}
           </div>
           <div className={styles.btnWrapper}>
-            <Button size='large' name='Забронировать' type='button' clickHandler={() => {}} />
+            <Button
+              size='large'
+              name={buttonBookingMessage(booking)}
+              type='button'
+              clickHandler={() => {}}
+              isDisabled={!!booking}
+              variant={booking ? 'secondary' : 'primary'}
+            />
           </div>
           <div className={styles.aboutBookFullScreen}>
             <h3 className={styles.subTitle}>О книге</h3>

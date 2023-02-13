@@ -13,6 +13,8 @@ import { useAppSelector } from '@/hooks/use-redux'
 import { BookType } from '@/types/books'
 import { TypeSortMainPage } from '@/types/other'
 
+import { buttonBookingMessage } from '@/utils/buttons'
+
 import { BASE_URL } from '@/api/api'
 
 import styles from './card.module.scss'
@@ -30,14 +32,6 @@ export const Card = memo(
     cardData: { title, image, rating, authors, issueYear, id, booking },
   }: CardProps) => {
     const { currentCategory } = useAppSelector(selectCategories)
-
-    const buttonMessage = () => {
-      if (booking) {
-        return 'Занята до 03.05'
-      }
-
-      return 'Забронировать'
-    }
 
     return (
       <li key={id} data-test-id='card'>
@@ -69,7 +63,7 @@ export const Card = memo(
             )}
             <div className={styles.btnWrap}>
               <Button
-                name={buttonMessage()}
+                name={buttonBookingMessage(booking)}
                 type='button'
                 clickHandler={() => {}}
                 isDisabled={!!booking}
