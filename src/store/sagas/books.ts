@@ -5,7 +5,7 @@ import { BookType } from '@/types/books'
 
 import { axiosInstance } from '@/api/api'
 
-import { getBooksFailure, getBooksSuccess } from '../books/books.slice'
+import { getBooksFailure, getBooksFetch, getBooksSuccess } from '../books/books.slice'
 
 function* booksRequestWorker() {
   try {
@@ -18,5 +18,5 @@ function* booksRequestWorker() {
 }
 
 export function* booksRequestWatcher() {
-  yield takeLatest('books/getBooksFetch', booksRequestWorker)
+  yield takeLatest(getBooksFetch.type, booksRequestWorker)
 }

@@ -5,7 +5,11 @@ import { CategoryType } from '@/types/categories'
 
 import { axiosInstance } from '@/api/api'
 
-import { getCategoriesFailure, getCategoriesSuccess } from '../categories/categories.slice'
+import {
+  getCategoriesFailure,
+  getCategoriesFetch,
+  getCategoriesSuccess,
+} from '../categories/categories.slice'
 
 function* categoriesRequestWorker() {
   try {
@@ -18,5 +22,5 @@ function* categoriesRequestWorker() {
 }
 
 export function* categoriesRequestWatcher() {
-  yield takeLatest('categories/getCategoriesFetch', categoriesRequestWorker)
+  yield takeLatest(getCategoriesFetch.type, categoriesRequestWorker)
 }
