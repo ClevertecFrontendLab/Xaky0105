@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 
 import { useBooleanState } from '../../hooks/use-boolean-state'
-import { TypeSortMainPage } from '../../types/other'
+import { DataTestId, Size, TypeSortMainPage } from '../../types/other'
 import { CustomSelect } from '../ui/custom-select'
 import { RoundButton } from '../ui/round-button'
 import { SearchInput } from '../ui/search-input'
@@ -35,7 +35,7 @@ export const Filter = ({
           inputText={inputText}
           changeInputText={changeInputText}
           placeholder='Поиск книги или автора...'
-          size='small'
+          size={Size.small}
           closeHandler={setFalse}
           autofocus={true}
         />
@@ -47,12 +47,12 @@ export const Filter = ({
                 inputText={inputText}
                 changeInputText={changeInputText}
                 placeholder='Поиск книги или автора...'
-                size='normal'
+                size={Size.medium}
               />
               <CustomSelect placeholder='По рейтингу' />
             </div>
             <div className={styles.blockMobile}>
-              <RoundButton handler={setTrue} dataTestId='button-search-open'>
+              <RoundButton handler={setTrue} dataTestId={DataTestId['button-search-open']}>
                 <Search />
               </RoundButton>
               <RoundButton>
@@ -65,7 +65,7 @@ export const Filter = ({
               changeSorting={changeSorting}
               selectSorting={selectSorting}
               sortingType={TypeSortMainPage.tile}
-              dataTestId='button-menu-view-window'
+              dataTestId={DataTestId['button-menu-view-window']}
             >
               <TileImg />
             </RoundButton>
@@ -73,7 +73,7 @@ export const Filter = ({
               changeSorting={changeSorting}
               selectSorting={selectSorting}
               sortingType={TypeSortMainPage.list}
-              dataTestId='button-menu-view-list'
+              dataTestId={DataTestId['button-menu-view-list']}
             >
               <ListImg />
             </RoundButton>

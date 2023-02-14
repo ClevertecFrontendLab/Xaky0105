@@ -3,6 +3,7 @@ import { Fragment } from 'react'
 import { Slider } from '../../../components/slider'
 import { Button } from '../../../components/ui/button'
 import { BookDetailedType } from '../../../types/books'
+import { BtnType, BtnVariant, Size } from '../../../types/other'
 import { buttonBookingMessage } from '../../../utils/buttons'
 
 import styles from './main-info.module.scss'
@@ -25,12 +26,12 @@ export const MainInfo = ({ book }: MainInfoProps) => {
           </div>
           <div className={styles.btnWrapper}>
             <Button
-              size='large'
+              size={Size.large}
               name={buttonBookingMessage(booking)}
-              type='button'
+              type={BtnType.button}
               clickHandler={() => {}}
               isDisabled={!!booking}
-              variant={booking ? 'secondary' : 'primary'}
+              variant={booking ? BtnVariant.secondary : BtnVariant.primary}
             />
           </div>
           <div className={styles.aboutBookFullScreen}>

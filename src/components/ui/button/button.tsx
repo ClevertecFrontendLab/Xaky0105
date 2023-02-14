@@ -1,37 +1,39 @@
 import classNames from 'classnames'
 
+import { BtnType, BtnVariant, DataTestId, Size } from '../../../types/other'
+
 import styles from './button.module.scss'
 
 type ButtonProps = {
-  type: 'button' | 'submit'
+  type: BtnType
   name: string
   clickHandler: () => void
   isDisabled?: boolean
-  variant?: 'secondary' | 'primary'
-  size?: 'large' | 'small'
-  dataTestId?: string
+  variant?: BtnVariant
+  size?: Size
+  dataTestId?: DataTestId
 }
 
 export const Button = ({
-  type = 'button',
+  type = BtnType.button,
   name,
   clickHandler,
   isDisabled = false,
-  variant = 'primary',
-  size = 'small',
+  variant = BtnVariant.primary,
+  size = Size.small,
   dataTestId,
 }: ButtonProps) => (
   <button
     className={classNames(
       styles.btn,
-      variant === 'primary' && styles.primary,
-      variant === 'secondary' && styles.secondary,
-      size === 'large' && styles.large,
-      size === 'small' && styles.small
+      variant === BtnVariant.primary && styles.primary,
+      variant === BtnVariant.secondary && styles.secondary,
+      size === Size.large && styles.large,
+      size === Size.small && styles.small
     )}
-    type={type === 'button' ? 'button' : 'submit'}
+    type={type === BtnType.button ? 'button' : 'submit'}
     onClick={e => {
-      if (type === 'button') {
+      if (type === BtnType.button) {
         e.preventDefault()
       }
       clickHandler()

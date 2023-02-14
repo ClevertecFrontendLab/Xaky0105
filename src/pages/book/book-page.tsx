@@ -8,11 +8,12 @@ import { OverlayWithPortal } from '../../components/overlay-with-portal'
 import { ReviewsList } from '../../components/reviews-list'
 import { Toast } from '../../components/ui/toast'
 import { useAppDispatch, useAppSelector } from '../../hooks/use-redux'
-import { selectBookDetailed } from '../../store/book-detailed/book-detailed.selector'
+import { bookDetailedSelector } from '../../store/book-detailed/book-detailed.selector'
 import {
   getBookDetailedFailure,
-  getBookDetailedFetch,
+  getBookDetailedRequest,
 } from '../../store/book-detailed/book-detailed.slice'
+import { ToastVariant } from '../../types/other'
 
 import { DetailedInformation } from './detailed-information'
 import { MainInfo } from './main-info'
@@ -25,11 +26,11 @@ export const BookPage = () => {
 
   const dispatch = useAppDispatch()
 
-  const { book, error, isLoading } = useAppSelector(selectBookDetailed)
+  const { book, error, isLoading } = useAppSelector(bookDetailedSelector)
 
   useEffect(() => {
     if (bookId) {
-      dispatch(getBookDetailedFetch(bookId))
+      dispatch(getBookDetailedRequest(bookId))
     }
   }, [dispatch, bookId])
 
@@ -51,7 +52,7 @@ export const BookPage = () => {
 
       {error && (
         <Toast
-          type='negative'
+          type={ToastVariant.negative}
           onClose={() => dispatch(getBookDetailedFailure(null))}
           message={error}
         />

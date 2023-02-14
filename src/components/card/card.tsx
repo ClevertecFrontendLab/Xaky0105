@@ -4,9 +4,9 @@ import classNames from 'classnames'
 
 import { BASE_URL } from '../../api/api'
 import { useAppSelector } from '../../hooks/use-redux'
-import { selectBooks } from '../../store/books/books.selector'
+import { booksSelector } from '../../store/books/books.selector'
 import { BookType } from '../../types/books'
-import { TypeSortMainPage } from '../../types/other'
+import { BtnType, BtnVariant, DataTestId, TypeSortMainPage } from '../../types/other'
 import { buttonBookingMessage } from '../../utils/buttons'
 import { HightLight } from '../hight-light'
 import { Button } from '../ui/button'
@@ -26,15 +26,15 @@ export const Card = memo(
     inputText,
     cardData: { title, image, rating, authors, issueYear, id, booking },
   }: CardProps) => {
-    const { currentCategory } = useAppSelector(selectBooks)
+    const { currentCategory } = useAppSelector(booksSelector)
 
     return (
-      <li key={id} data-test-id='card'>
+      <li key={id} data-test-id={DataTestId.card}>
         <Link
           className={classNames(
             styles.card,
-            selectSorting === 'tile' && styles.cardTile,
-            selectSorting === 'list' && styles.cardList
+            selectSorting === TypeSortMainPage.tile && styles.cardTile,
+            selectSorting === TypeSortMainPage.list && styles.cardList
           )}
           to={`/books/${currentCategory?.path}/${id}`}
         >
@@ -57,10 +57,10 @@ export const Card = memo(
             <div className={styles.btnWrap}>
               <Button
                 name={buttonBookingMessage(booking)}
-                type='button'
+                type={BtnType.button}
                 clickHandler={() => {}}
                 isDisabled={!!booking}
-                variant={booking ? 'secondary' : 'primary'}
+                variant={booking ? BtnVariant.secondary : BtnVariant.primary}
               />
             </div>
           </div>

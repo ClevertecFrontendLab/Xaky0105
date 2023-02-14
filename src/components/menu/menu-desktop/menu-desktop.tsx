@@ -1,6 +1,7 @@
 import { useLocation, useParams } from 'react-router-dom'
 
 import { useBooleanState } from '../../../hooks/use-boolean-state'
+import { NavType } from '../../../types/other'
 import { MenuList } from '../menu-list/menu-list'
 
 import styles from './menu-desktop.module.scss'
@@ -23,7 +24,7 @@ export const MenuDesktop = () => {
         toggleIsOpenGenre={toggleIsOpenGenre}
         showGenreList={showGenreList}
         isOpenGenre={isOpenGenre}
-        type='desktop'
+        type={NavType.desktop}
       />
     </nav>
   )

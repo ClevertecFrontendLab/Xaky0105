@@ -18,7 +18,7 @@ export const bookDetailedSlice = createSlice({
       state.isLoading = false
       state.book = action.payload
     },
-    getBookDetailedFetch: (state, _: PayloadAction<string>) => {
+    getBookDetailedRequest: (state, _: PayloadAction<string>) => {
       state.book = null
       state.error = null
       state.isLoading = true
@@ -30,7 +30,7 @@ export const bookDetailedSlice = createSlice({
   },
 })
 
-export const { getBookDetailedSuccess, getBookDetailedFetch, getBookDetailedFailure } =
+export const { getBookDetailedSuccess, getBookDetailedRequest, getBookDetailedFailure } =
   bookDetailedSlice.actions
 
-export const bookReducer = bookDetailedSlice.reducer
+export const bookDetailedReducer = bookDetailedSlice.reducer

@@ -2,6 +2,7 @@ import classNames from 'classnames'
 
 import { useBooleanState } from '../../hooks/use-boolean-state'
 import { CommentType } from '../../types/books'
+import { BtnType, BtnVariant, DataTestId, Size } from '../../types/other'
 import { Review } from '../review/review'
 import { Button } from '../ui/button'
 
@@ -25,7 +26,7 @@ export const ReviewsList = ({ reviews }: ReviewListProps) => {
           className={classNames(styles.chevronBtn, shouldShowReviews && styles.active)}
           onClick={toggle}
           type='button'
-          data-test-id='button-hide-reviews'
+          data-test-id={DataTestId['button-hide-reviews']}
         >
           <div className={styles.chevron}>
             <img src={Chevron} alt='chevron' />
@@ -39,12 +40,12 @@ export const ReviewsList = ({ reviews }: ReviewListProps) => {
 
       <div className={styles.btnWrapper}>
         <Button
-          type='button'
-          size='large'
+          type={BtnType.button}
+          size={Size.large}
           name='Оценить книгу'
           clickHandler={() => {}}
-          variant='primary'
-          dataTestId='button-rating'
+          variant={BtnVariant.primary}
+          dataTestId={DataTestId['button-rating']}
         />
       </div>
     </div>

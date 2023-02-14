@@ -1,3 +1,3 @@
 import { RootState } from '..'
 
-export const selectBookDetailed = (state: RootState) => state.book
+export const bookDetailedSelector = (state: RootState) => state.bookDetailed

@@ -3,9 +3,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/use-redux'
-import { selectBooks } from '../../../store/books/books.selector'
+import { booksSelector } from '../../../store/books/books.selector'
 import { setCurrentCategory } from '../../../store/books/books.slice'
-import { RoutePath } from '../../../types/other'
+import { AllBooks, DataTestId, NavType, Pages, RoutePath } from '../../../types/other'
 import { createNavCategories } from '../../../utils/categories'
 
 import { ReactComponent as Chevron } from './assets/chevron-down.svg'
@@ -13,11 +13,11 @@ import { ReactComponent as Chevron } from './assets/chevron-down.svg'
 import styles from './menu-list.module.scss'
 
 const getDataTestIdBooks = (path: string, navType: string) => {
-  if (path === 'all' && navType === 'desktop') {
-    return 'navigation-books'
+  if (path === AllBooks.path && navType === NavType.desktop) {
+    return DataTestId['navigation-books']
   }
-  if (path === 'all' && navType === 'mobile') {
-    return 'burger-books'
+  if (path === AllBooks.path && navType === NavType.mobile) {
+    return DataTestId['burger-books']
   }
 
   return ''
@@ -27,8 +27,8 @@ type MenuListProps = {
   pathname: string
   toggleIsOpenGenre: () => void
   isOpenGenre: boolean
-  categoryLocation: string | undefined
-  type: 'desktop' | 'mobile'
+  categoryLocation?: string
+  type: NavType
   hideMobileMenu?: () => void
   showGenreList: () => void
 }
@@ -45,8 +45,7 @@ export const MenuList = ({
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const { categories } = useAppSelector(selectBooks)
-  const { books } = useAppSelector(selectBooks)
+  const { categories, books } = useAppSelector(booksSelector)
 
   const navCategories = useMemo(
     () => books && categories && createNavCategories(books, categories),
@@ -58,7 +57,9 @@ export const MenuList = ({
   useEffect(() => {
     if (categoryLocation) {
       dispatch(
-        setCurrentCategory(findCategory ? findCategory : { id: 0, name: 'Все книги', path: 'all' })
+        setCurrentCategory(
+          findCategory ? findCategory : { id: 0, name: AllBooks.name, path: AllBooks.path }
+        )
       )
     }
   }, [dispatch, categoryLocation, findCategory])
@@ -70,35 +71,39 @@ export const MenuList = ({
           <button
             className={classNames(
               styles.categoriesMenuItem,
-              pathname.includes('/books') && styles.active
+              pathname.includes(Pages.books) && styles.active
             )}
             onClick={() => {
-              if (pathname.includes('/books')) {
+              if (pathname.includes(Pages.books)) {
                 toggleIsOpenGenre()
               } else {
                 showGenreList()
               }
-              navigate('/books/all')
+              navigate(RoutePath.booksAll)
             }}
-            data-test-id={type === 'desktop' ? 'navigation-showcase' : 'burger-showcase'}
+            data-test-id={
+              type === NavType.desktop
+                ? DataTestId['navigation-showcase']
+                : DataTestId['burger-showcase']
+            }
             type='button'
           >
             <span>Витрина книг</span>
             <span
               className={classNames(
                 styles.iconWrapper,
-                isOpenGenre && pathname.includes('/books') && styles.active
+                isOpenGenre && pathname.includes(Pages.books) && styles.active
               )}
             >
               <Chevron
-                className={classNames(styles.icon, pathname.includes('/books') && styles.active)}
+                className={classNames(styles.icon, pathname.includes(Pages.books) && styles.active)}
               />
             </span>
           </button>
           <ul
             className={classNames(
               styles.genreList,
-              isOpenGenre && pathname.includes('/books') && styles.visible
+              isOpenGenre && pathname.includes(Pages.books) && styles.visible
             )}
           >
             {navCategories &&
@@ -109,7 +114,7 @@ export const MenuList = ({
                   data-test-id={getDataTestIdBooks(path, type)}
                 >
                   <Link
-                    to={`/books/${path}`}
+                    to={`/${Pages.books}/${path}`}
                     className={classNames(
                       styles.genreLink,
                       categoryLocation === path && styles.activeGenreLink
@@ -128,7 +133,9 @@ export const MenuList = ({
             styles.categoriesMenuItem,
             pathname === RoutePath.terms && styles.active
           )}
-          data-test-id={type === 'desktop' ? 'navigation-terms' : 'burger-terms'}
+          data-test-id={
+            type === NavType.desktop ? DataTestId['navigation-terms'] : DataTestId['burger-terms']
+          }
         >
           <Link to={RoutePath.terms} onClick={hideMobileMenu}>
             Правила пользования
@@ -139,14 +146,18 @@ export const MenuList = ({
             styles.categoriesMenuItem,
             pathname === RoutePath.contract && styles.active
           )}
-          data-test-id={type === 'desktop' ? 'navigation-contract' : 'burger-contract'}
+          data-test-id={
+            type === NavType.desktop
+              ? DataTestId['navigation-contract']
+              : DataTestId['burger-contract']
+          }
         >
           <Link to={RoutePath.contract} onClick={hideMobileMenu}>
             Договор оферты
           </Link>
         </li>
       </ul>
-      {type === 'mobile' && (
+      {type === NavType.mobile && (
         <ul className={styles.categoriesMenuList}>
           <li
             className={classNames(

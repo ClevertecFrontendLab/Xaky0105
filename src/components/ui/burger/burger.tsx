@@ -1,5 +1,7 @@
 import classNames from 'classnames'
 
+import { DataTestId } from '../../../types/other'
+
 import styles from './burger.module.scss'
 
 type BurgerProps = {
@@ -11,7 +13,7 @@ export const Burger = ({ isMenuOpen, toggle }: BurgerProps) => (
   <button
     className={classNames(styles.burger, isMenuOpen && styles.cross)}
     onClick={toggle}
-    data-test-id='button-burger'
+    data-test-id={DataTestId['button-burger']}
     type='button'
   >
     <span className={styles.burgerItem} />

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import { useBooleanState } from '../../../hooks/use-boolean-state'
+import { RoutePath } from '../../../types/other'
 import { Container } from '../../container'
 import { MenuMobile } from '../../menu'
 import { OverlayMask } from '../../overlay-mask'
@@ -23,7 +24,7 @@ export const Header = () => {
       <header className={styles.header}>
         <div className={styles.titleBlock}>
           <Burger toggle={toggleMenu} isMenuOpen={isShowMobileMenu} />
-          <Link to='/' className={styles.logoWrapper}>
+          <Link to={RoutePath.main} className={styles.logoWrapper}>
             <img src={logo} alt='logo' />
           </Link>
           <h1 className={styles.title}>Библиотека</h1>

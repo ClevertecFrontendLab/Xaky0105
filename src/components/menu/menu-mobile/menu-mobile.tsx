@@ -2,6 +2,7 @@ import { useLocation, useParams } from 'react-router-dom'
 import classNames from 'classnames'
 
 import { useBooleanState } from '../../../hooks/use-boolean-state'
+import { DataTestId, NavType } from '../../../types/other'
 import { MenuList } from '../menu-list/menu-list'
 
 import styles from './menu-mobile.module.scss'
@@ -24,7 +25,7 @@ export const MenuMobile = ({ hideMobileMenu, isOpened }: MenuMobileProps) => {
   return (
     <nav
       className={classNames(styles.navMobile, isOpened && styles.active)}
-      data-test-id='burger-navigation'
+      data-test-id={DataTestId['burger-navigation']}
     >
       <MenuList
         pathname={pathname}
@@ -33,7 +34,7 @@ export const MenuMobile = ({ hideMobileMenu, isOpened }: MenuMobileProps) => {
         showGenreList={showGenreList}
         isOpenGenre={isOpenGenre}
         hideMobileMenu={hideMobileMenu}
-        type='mobile'
+        type={NavType.mobile}
       />
     </nav>
   )

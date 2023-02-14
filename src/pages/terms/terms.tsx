@@ -1,11 +1,13 @@
+import { TermContentView } from '../../types/other'
+
 import styles from './terms.module.scss'
 
 type TermsPageProps = {
-  contentView: 'terms' | 'contract'
+  contentView: TermContentView
 }
 
 export const TermsPage = ({ contentView }: TermsPageProps) => {
-  const title = contentView === 'terms' ? 'Правила пользования' : 'Договор оферты'
+  const title = contentView === TermContentView.terms ? 'Правила пользования' : 'Договор оферты'
 
   return (
     <section className={styles.termPage}>

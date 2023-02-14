@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import classNames from 'classnames'
 
-import { TypeSortMainPage } from '../../../types/other'
+import { DataTestId, TypeSortMainPage } from '../../../types/other'
 
 import styles from './round-button.module.scss'
 
@@ -10,7 +10,7 @@ type RoundButtonProps = {
   changeSorting?: (type: TypeSortMainPage) => void
   sortingType?: TypeSortMainPage
   handler?: () => void
-  dataTestId?: string
+  dataTestId?: DataTestId
   children: ReactNode
 }
 

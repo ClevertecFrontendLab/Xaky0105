@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import classNames from 'classnames'
 
 import { useBooleanState } from '../../../hooks/use-boolean-state'
+import { DataTestId, Size } from '../../../types/other'
 
 import { ReactComponent as CloseIcon } from './assets/close.svg'
 import { ReactComponent as SearchIcon } from './assets/search.svg'
@@ -10,7 +11,7 @@ import styles from './search-input.module.scss'
 
 type SearchInputType = {
   placeholder: string
-  size?: 'normal' | 'small'
+  size?: Size
   inputText: string
   changeInputText: (value: string) => void
   closeHandler?: () => void
@@ -19,7 +20,7 @@ type SearchInputType = {
 
 export const SearchInput = ({
   placeholder,
-  size = 'normal',
+  size = Size.medium,
   inputText,
   changeInputText,
   closeHandler,
@@ -40,18 +41,18 @@ export const SearchInput = ({
 
   return (
     <div
-      className={classNames(styles.inputWrap, size === 'small' && styles.small)}
-      data-test-id='input-search'
+      className={classNames(styles.inputWrap, size === Size.small && styles.small)}
+      data-test-id={DataTestId['input-search']}
     >
-      {size === 'normal' && (
+      {size === Size.medium && (
         <SearchIcon className={classNames(styles.searchIcon, isFocus && styles.searchIconColor)} />
       )}
       <input
         type='text'
         className={classNames(
           styles.searchInput,
-          size === 'normal' && styles.normal,
-          size === 'small' && styles.small
+          size === Size.medium && styles.normal,
+          size === Size.small && styles.small
         )}
         placeholder={placeholder}
         onBlur={setFalse}
@@ -63,7 +64,7 @@ export const SearchInput = ({
       <CloseIcon
         className={classNames(styles.closeIcon, isFocus && styles.closeIconColor)}
         onClick={closeHandler}
-        data-test-id='button-search-close'
+        data-test-id={DataTestId['button-search-close']}
       />
     </div>
   )

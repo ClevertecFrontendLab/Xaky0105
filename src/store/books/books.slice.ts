@@ -21,7 +21,7 @@ export const booksSlice = createSlice({
       state.isLoading = false
       state.books = action.payload
     },
-    getBooksFetch: state => {
+    getBooksRequest: state => {
       state.books = null
       state.categories = null
       state.error = null
@@ -43,7 +43,7 @@ export const booksSlice = createSlice({
 
 export const {
   getBooksSuccess,
-  getBooksFetch,
+  getBooksRequest,
   getBooksFailure,
   getCategoriesSuccess,
   setCurrentCategory,

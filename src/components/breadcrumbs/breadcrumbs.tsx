@@ -1,15 +1,15 @@
 import { Link, useParams } from 'react-router-dom'
 
 import { useAppSelector } from '../../hooks/use-redux'
-import { selectBookDetailed } from '../../store/book-detailed/book-detailed.selector'
-import { selectBooks } from '../../store/books/books.selector'
+import { bookDetailedSelector } from '../../store/book-detailed/book-detailed.selector'
+import { booksSelector } from '../../store/books/books.selector'
 
 import styles from './breadcrumbs.module.scss'
 
 export const Breadcrumbs = () => {
   const { bookId } = useParams()
-  const { book } = useAppSelector(selectBookDetailed)
-  const { currentCategory } = useAppSelector(selectBooks)
+  const { book } = useAppSelector(bookDetailedSelector)
+  const { currentCategory } = useAppSelector(booksSelector)
 
   return (
     <div className={styles.breadcrumbs}>

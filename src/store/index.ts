@@ -1,20 +1,20 @@
 import createSagaMiddleware from 'redux-saga'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
-import { bookReducer } from './book-detailed/book-detailed.slice'
+import { bookDetailedReducer } from './book-detailed/book-detailed.slice'
 import { booksReducer } from './books/books.slice'
 import { rootSaga } from './sagas'
 
 const sagaMiddleware = createSagaMiddleware()
 
 const rootReducer = combineReducers({
-  book: bookReducer,
+  bookDetailed: bookDetailedReducer,
   books: booksReducer,
 })
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: [sagaMiddleware],
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(sagaMiddleware),
 })
 
 sagaMiddleware.run(rootSaga)

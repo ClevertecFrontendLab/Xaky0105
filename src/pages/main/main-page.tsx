@@ -6,9 +6,9 @@ import { Loader } from '../../components/loader'
 import { OverlayWithPortal } from '../../components/overlay-with-portal'
 import { Toast } from '../../components/ui/toast'
 import { useAppDispatch, useAppSelector } from '../../hooks/use-redux'
-import { selectBooks } from '../../store/books/books.selector'
-import { getBooksFailure, getBooksFetch } from '../../store/books/books.slice'
-import { TypeSortMainPage } from '../../types/other'
+import { booksSelector } from '../../store/books/books.selector'
+import { getBooksFailure, getBooksRequest } from '../../store/books/books.slice'
+import { ToastVariant, TypeSortMainPage } from '../../types/other'
 import { getFilterBooks } from '../../utils/filter'
 
 import styles from './main-page.module.scss'
@@ -18,8 +18,7 @@ export const MainPage = () => {
   const [selectSorting, setSelectSorting] = useState(TypeSortMainPage.tile)
   const [inputText, setInputText] = useState('')
 
-  const { books: booksAll, error, isLoading } = useAppSelector(selectBooks)
-  const { currentCategory } = useAppSelector(selectBooks)
+  const { books: booksAll, error, isLoading, currentCategory } = useAppSelector(booksSelector)
 
   const [books, setBooks] = useState(booksAll)
 
@@ -39,7 +38,7 @@ export const MainPage = () => {
 
   useEffect(() => {
     if (!books) {
-      dispatch(getBooksFetch())
+      dispatch(getBooksRequest())
     }
   }, [dispatch, books])
 
@@ -61,7 +60,11 @@ export const MainPage = () => {
         </div>
       )}
       {error && (
-        <Toast message={error} onClose={() => dispatch(getBooksFailure(null))} type='negative' />
+        <Toast
+          message={error}
+          onClose={() => dispatch(getBooksFailure(null))}
+          type={ToastVariant.negative}
+        />
       )}
       {isLoading && (
         <OverlayWithPortal>
