@@ -12,10 +12,10 @@ export const DetailedInformation = ({ book }: DetailedInformationProps) => (
   <div className={styles.detailedInformation}>
     <h3 className={styles.subTitle}>Подробная информация</h3>
     <ul className={styles.infoList}>
-      {detailInfoData(book).map(info => (
-        <li className={styles.infoItem} key={info.type}>
-          <span className={styles.typeInfo}>{info.type}</span>
-          <span className={styles.valueInfo}>{info.value}</span>
+      {detailInfoData(book).map(({ type, value }) => (
+        <li className={styles.infoItem} key={type}>
+          <span className={styles.typeInfo}>{type}</span>
+          <span className={styles.valueInfo}>{value ? value : 'Нет информации'}</span>
         </li>
       ))}
     </ul>

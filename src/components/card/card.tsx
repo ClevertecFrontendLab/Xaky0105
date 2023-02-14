@@ -40,7 +40,9 @@ export const Card = memo(
             {image && <img src={`${BASE_URL}${image.url}`} alt={title} />}
           </div>
           <div className={styles.cardContent}>
-            <HightLight classNameHL={styles.name} searchWord={inputText} text={title} />
+            <div className={styles.nameWrap}>
+              <HightLight classNameHL={styles.name} searchWord={inputText} text={title} />
+            </div>
             <p className={styles.author}>
               {authors && authors.map(author => <Fragment key={author}>{author}, </Fragment>)}
               {issueYear}

@@ -4,7 +4,7 @@
   gap: 21px 24px;
   justify-content: center;
 
-  @media (max-width: 360px) {
+  @media (max-width: 420px) {
     grid-template-columns: none;
   }
 }

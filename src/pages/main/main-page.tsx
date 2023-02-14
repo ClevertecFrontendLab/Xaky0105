@@ -55,7 +55,7 @@ export const MainPage = () => {
             inputText={inputText}
             changeInputText={changeInputText}
           />
-          {books ? (
+          {books?.length ? (
             <CardList selectSorting={selectSorting} cardsData={books} inputText={inputText} />
           ) : (
             <p className={styles.notFound}>По запросу ничего не найдено</p>
