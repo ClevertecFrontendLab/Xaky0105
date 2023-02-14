@@ -1,0 +1,42 @@
+.checkbox > input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.checkbox > span {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.checkbox > span::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 1px solid var(--black40);
+  border-radius: 6px;
+  margin-right: 8px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.checkbox > input:checked + span::before {
+  background-image: url('../../../assets/images/action/checkbox-active.svg');
+  border: 1px solid var(--accent);
+}
+
+.checkbox > input:focus + span::before {
+  box-shadow: 0px 0px 3px var(--accent);
+}
+
+.checkbox > input:disabled + span::before {
+  background-color: var(--black5);
+  border: 1px solid var(--black40);
+}

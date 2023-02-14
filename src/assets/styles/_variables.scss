@@ -1,0 +1,28 @@
+:root {
+  --dark: #363636;
+  --dark30: #3636364d;
+  --accent: #ff5253;
+  --white: #ffffff;
+
+  --black70: #727272;
+  --black40: #a7a7a7;
+  --black20: #bfc4c9;
+  --black10: #ebebeb;
+  --black5: #f9f9fa;
+  --orange: #ff740f;
+
+  --warning: #ffbc1f;
+  --positive: #00ca71;
+  --negative: #f42c4f;
+
+  --positive-background: #ebf9f1;
+  --negative-background: #feebea;
+
+  --box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
+    0px 1px 5px rgba(191, 196, 201, 0.24);
+  --box-shadow-hover: 0px 2px 5px rgba(54, 54, 54, 0.1);
+
+  --button-hover: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+
+  --transition: all 0.1s linear;
+}

@@ -1,0 +1,41 @@
+.ratingBlock {
+  margin-bottom: 62px;
+  .subTitle {
+    margin-bottom: 32px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      max-width: 350px;
+      width: 100%;
+      border-bottom: 1px solid var(--black10);
+    }
+
+    @media (max-width: 400px) {
+      margin-bottom: 24px;
+    }
+  }
+  .ratingWrap {
+    display: flex;
+    align-items: center;
+    span {
+      font-weight: 700;
+      font-size: 18px;
+      margin-left: 10px;
+    }
+    .dontRating {
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+
+  @media (max-width: 500px) {
+    margin-bottom: 24px;
+  }
+}

@@ -1,0 +1,36 @@
+.footer {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  border-top: 1px solid var(--black20);
+  .sub {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .linkList {
+    display: flex;
+    .linkItem {
+      margin-left: 24px;
+    }
+  }
+
+  @media (max-width: 610px) {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 104px;
+    .sub {
+      width: 200px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 15px;
+    }
+    .linkList {
+      .linkItem {
+        margin: 0 12px;
+      }
+    }
+  }
+}
