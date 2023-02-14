@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 import { CardList } from '../../components/card-list'
 import { Filter } from '../../components/filter'
@@ -18,7 +19,9 @@ export const MainPage = () => {
   const [selectSorting, setSelectSorting] = useState(TypeSortMainPage.tile)
   const [inputText, setInputText] = useState('')
 
-  const { books: booksAll, error, isLoading, currentCategory } = useAppSelector(booksSelector)
+  const { category } = useParams()
+
+  const { books: booksAll, error, isLoading, categories } = useAppSelector(booksSelector)
 
   const [books, setBooks] = useState(booksAll)
 
@@ -31,10 +34,10 @@ export const MainPage = () => {
   }
 
   useEffect(() => {
-    if (booksAll && currentCategory) {
-      setBooks(getFilterBooks(booksAll, inputText, currentCategory.name))
+    if (booksAll && category) {
+      setBooks(getFilterBooks(booksAll, inputText, categories, category))
     }
-  }, [inputText, booksAll, currentCategory])
+  }, [inputText, booksAll, categories, category])
 
   useEffect(() => {
     if (!books) {

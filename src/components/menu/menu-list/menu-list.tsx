@@ -1,10 +1,9 @@
-import { Fragment, useEffect, useMemo } from 'react'
+import { Fragment, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
 
-import { useAppDispatch, useAppSelector } from '../../../hooks/use-redux'
+import { useAppSelector } from '../../../hooks/use-redux'
 import { booksSelector } from '../../../store/books/books.selector'
-import { setCurrentCategory } from '../../../store/books/books.slice'
 import { AllBooks, DataTestId, NavType, Pages, RoutePath } from '../../../types/other'
 import { createNavCategories } from '../../../utils/categories'
 
@@ -43,7 +42,6 @@ export const MenuList = ({
   showGenreList,
 }: MenuListProps) => {
   const navigate = useNavigate()
-  const dispatch = useAppDispatch()
 
   const { categories, books } = useAppSelector(booksSelector)
 
@@ -51,18 +49,6 @@ export const MenuList = ({
     () => books && categories && createNavCategories(books, categories),
     [books, categories]
   )
-
-  const findCategory = categories && categories.find(category => category.path === categoryLocation)
-
-  useEffect(() => {
-    if (categoryLocation) {
-      dispatch(
-        setCurrentCategory(
-          findCategory ? findCategory : { id: 0, name: AllBooks.name, path: AllBooks.path }
-        )
-      )
-    }
-  }, [dispatch, categoryLocation, findCategory])
 
   return (
     <Fragment>

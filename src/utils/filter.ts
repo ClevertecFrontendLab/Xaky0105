@@ -1,14 +1,23 @@
 import { BookType } from '../types/books'
-import { AllBooks } from '../types/other'
+import { CategoryType } from '../types/categories'
 
-export const getFilterBooks = (books: BookType[], filter: string, category: string) =>
-  books.filter(elem => {
-    if (category !== AllBooks.name) {
-      return (
-        elem.title.toLowerCase().includes(filter.toLowerCase()) &&
-        elem.categories?.includes(category)
-      )
-    }
+export const getFilterBooks = (
+  books: BookType[],
+  filter: string,
+  categories: CategoryType[] | null,
+  category: string
+) => {
+  const categoryName = categories?.find(({ path }) => path === category)?.name
 
-    return elem.title.toLowerCase().includes(filter.toLowerCase())
-  })
+  if (!categoryName) {
+    return books
+  }
+
+  const filterBooks = books.filter(
+    elem =>
+      elem.title.toLowerCase().includes(filter.toLowerCase()) &&
+      elem.categories?.includes(categoryName)
+  )
+
+  return filterBooks
+}

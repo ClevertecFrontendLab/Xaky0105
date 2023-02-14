@@ -8,7 +8,6 @@ import { BooksState } from './books.types'
 const initialState: BooksState = {
   books: null,
   categories: null,
-  currentCategory: null,
   isLoading: false,
   error: null,
 }
@@ -21,6 +20,10 @@ export const booksSlice = createSlice({
       state.isLoading = false
       state.books = action.payload
     },
+    getCategoriesSuccess: (state, action: PayloadAction<CategoryType[]>) => {
+      state.isLoading = false
+      state.categories = action.payload
+    },
     getBooksRequest: state => {
       state.books = null
       state.categories = null
@@ -31,22 +34,10 @@ export const booksSlice = createSlice({
       state.isLoading = false
       state.error = action.payload
     },
-    getCategoriesSuccess: (state, action: PayloadAction<CategoryType[]>) => {
-      state.isLoading = false
-      state.categories = action.payload
-    },
-    setCurrentCategory: (state, action: PayloadAction<CategoryType>) => {
-      state.currentCategory = action.payload
-    },
   },
 })
 
-export const {
-  getBooksSuccess,
-  getBooksRequest,
-  getBooksFailure,
-  getCategoriesSuccess,
-  setCurrentCategory,
-} = booksSlice.actions
+export const { getBooksSuccess, getBooksRequest, getBooksFailure, getCategoriesSuccess } =
+  booksSlice.actions
 
 export const booksReducer = booksSlice.reducer

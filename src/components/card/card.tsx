@@ -1,10 +1,8 @@
 import { Fragment, memo } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import classNames from 'classnames'
 
 import { BASE_URL } from '../../api/api'
-import { useAppSelector } from '../../hooks/use-redux'
-import { booksSelector } from '../../store/books/books.selector'
 import { BookType } from '../../types/books'
 import { BtnType, BtnVariant, DataTestId, TypeSortMainPage } from '../../types/other'
 import { buttonBookingMessage } from '../../utils/buttons'
@@ -26,7 +24,7 @@ export const Card = memo(
     inputText,
     cardData: { title, image, rating, authors, issueYear, id, booking },
   }: CardProps) => {
-    const { currentCategory } = useAppSelector(booksSelector)
+    const { category } = useParams()
 
     return (
       <li key={id} data-test-id={DataTestId.card}>
@@ -36,7 +34,7 @@ export const Card = memo(
             selectSorting === TypeSortMainPage.tile && styles.cardTile,
             selectSorting === TypeSortMainPage.list && styles.cardList
           )}
-          to={`/books/${currentCategory?.path}/${id}`}
+          to={`/books/${category}/${id}`}
         >
           <div className={classNames(styles.imageWrapper, !image && styles.notFoundImage)}>
             {image && <img src={`${BASE_URL}${image.url}`} alt={title} />}
