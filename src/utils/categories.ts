@@ -34,6 +34,9 @@ export const createNavCategories = (books: BookType[], categories: CategoryType[
       ]
     }
 
-    return [...acc, { ...category, quantity: quantityMap[category.name] }]
+    return [
+      ...acc,
+      { ...category, quantity: quantityMap[category.name] ? quantityMap[category.name] : 0 },
+    ]
   }, [])
 }

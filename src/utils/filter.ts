@@ -10,13 +10,13 @@ export const getFilterBooks = (
   const categoryName = categories?.find(({ path }) => path === category)?.name
 
   if (!categoryName) {
-    return books
+    return books.filter(book => book.title.toLowerCase().includes(filter.toLowerCase()))
   }
 
   const filterBooks = books.filter(
-    elem =>
-      elem.title.toLowerCase().includes(filter.toLowerCase()) &&
-      elem.categories?.includes(categoryName)
+    book =>
+      book.title.toLowerCase().includes(filter.toLowerCase()) &&
+      book.categories?.includes(categoryName)
   )
 
   return filterBooks
