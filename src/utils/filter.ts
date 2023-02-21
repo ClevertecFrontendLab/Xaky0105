@@ -21,3 +21,16 @@ export const getFilterBooks = (
 
   return filterBooks
 }
+
+export const sortBooksByRating = (books: BookType[], isSortBooksDescendingOrder: boolean) => {
+  const booksWithRating: BookType[] = []
+  const booksWithoutRating: BookType[] = []
+
+  books.forEach(book => (book.rating ? booksWithRating.push(book) : booksWithoutRating.push(book)))
+
+  if (isSortBooksDescendingOrder) {
+    return [...booksWithRating.sort((a, b) => b.rating! - a.rating!), ...booksWithoutRating]
+  }
+
+  return [...booksWithoutRating, ...booksWithRating.sort((a, b) => a.rating! - b.rating!)]
+}

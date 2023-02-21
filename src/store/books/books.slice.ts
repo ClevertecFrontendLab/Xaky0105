@@ -24,9 +24,14 @@ export const booksSlice = createSlice({
       state.isLoading = false
       state.categories = action.payload
     },
-    getBooksRequest: state => {
+    getBooksWithCategoryRequest: state => {
       state.books = null
       state.categories = null
+      state.error = null
+      state.isLoading = true
+    },
+    getBooksRequest: state => {
+      state.books = null
       state.error = null
       state.isLoading = true
     },
@@ -37,7 +42,12 @@ export const booksSlice = createSlice({
   },
 })
 
-export const { getBooksSuccess, getBooksRequest, getBooksFailure, getCategoriesSuccess } =
-  booksSlice.actions
+export const {
+  getBooksSuccess,
+  getBooksWithCategoryRequest,
+  getBooksFailure,
+  getCategoriesSuccess,
+  getBooksRequest,
+} = booksSlice.actions
 
 export const booksReducer = booksSlice.reducer

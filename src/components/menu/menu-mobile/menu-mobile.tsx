@@ -25,7 +25,7 @@ export const MenuMobile = ({ hideMobileMenu, isOpened }: MenuMobileProps) => {
   return (
     <nav
       className={classNames(styles.navMobile, isOpened && styles.active)}
-      data-test-id={DataTestId['burger-navigation']}
+      data-test-id={DataTestId.BurgerNavigation}
     >
       <MenuList
         pathname={pathname}

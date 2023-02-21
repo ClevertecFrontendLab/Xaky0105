@@ -26,7 +26,7 @@ export const ReviewsList = ({ reviews }: ReviewListProps) => {
           className={classNames(styles.chevronBtn, shouldShowReviews && styles.active)}
           onClick={toggle}
           type='button'
-          data-test-id={DataTestId['button-hide-reviews']}
+          data-test-id={DataTestId.ButtonHideReviews}
         >
           <div className={styles.chevron}>
             <img src={Chevron} alt='chevron' />
@@ -45,7 +45,7 @@ export const ReviewsList = ({ reviews }: ReviewListProps) => {
           name='Оценить книгу'
           clickHandler={() => {}}
           variant={BtnVariant.primary}
-          dataTestId={DataTestId['button-rating']}
+          dataTestId={DataTestId.ButtonRating}
         />
       </div>
     </div>

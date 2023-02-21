@@ -13,10 +13,16 @@ import styles from './menu-list.module.scss'
 
 const getDataTestIdBooks = (path: string, navType: string) => {
   if (path === AllBooks.path && navType === NavType.desktop) {
-    return DataTestId['navigation-books']
+    return DataTestId.NavigationBooks
   }
   if (path === AllBooks.path && navType === NavType.mobile) {
-    return DataTestId['burger-books']
+    return DataTestId.BurgerBooks
+  }
+  if (navType === NavType.desktop) {
+    return `navigation-${path}`
+  }
+  if (navType === NavType.mobile) {
+    return `burger-${path}`
   }
 
   return ''
@@ -68,9 +74,7 @@ export const MenuList = ({
               navigate(RoutePath.booksAll)
             }}
             data-test-id={
-              type === NavType.desktop
-                ? DataTestId['navigation-showcase']
-                : DataTestId['burger-showcase']
+              type === NavType.desktop ? DataTestId.NavigationShowcase : DataTestId.BurgerShowcase
             }
             type='button'
           >
@@ -94,11 +98,7 @@ export const MenuList = ({
           >
             {navCategories &&
               navCategories.map(({ id, path, name, quantity }) => (
-                <li
-                  className={classNames(styles.genre)}
-                  key={id}
-                  data-test-id={getDataTestIdBooks(path, type)}
-                >
+                <li className={classNames(styles.genre)} key={id}>
                   <Link
                     to={`/${Pages.books}/${path}`}
                     className={classNames(
@@ -106,9 +106,19 @@ export const MenuList = ({
                       categoryLocation === path && styles.activeGenreLink
                     )}
                     onClick={hideMobileMenu}
+                    state={{ quantityBooks: quantity }}
                   >
-                    {name}
-                    <span className={styles.quantity}>{quantity}</span>
+                    <span data-test-id={getDataTestIdBooks(path, type)}>{name}</span>
+                    <span
+                      data-test-id={
+                        type === NavType.desktop
+                          ? `navigation-book-count-for-${path}`
+                          : `burger-book-count-for-${path}`
+                      }
+                      className={styles.quantity}
+                    >
+                      {quantity}
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -120,7 +130,7 @@ export const MenuList = ({
             pathname === RoutePath.terms && styles.active
           )}
           data-test-id={
-            type === NavType.desktop ? DataTestId['navigation-terms'] : DataTestId['burger-terms']
+            type === NavType.desktop ? DataTestId.NavigationTerms : DataTestId.BurgerTerms
           }
         >
           <Link to={RoutePath.terms} onClick={hideMobileMenu}>
@@ -133,9 +143,7 @@ export const MenuList = ({
             pathname === RoutePath.contract && styles.active
           )}
           data-test-id={
-            type === NavType.desktop
-              ? DataTestId['navigation-contract']
-              : DataTestId['burger-contract']
+            type === NavType.desktop ? DataTestId.NavigationContract : DataTestId.BurgerContract
           }
         >
           <Link to={RoutePath.contract} onClick={hideMobileMenu}>

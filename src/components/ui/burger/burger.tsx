@@ -13,7 +13,7 @@ export const Burger = ({ isMenuOpen, toggle }: BurgerProps) => (
   <button
     className={classNames(styles.burger, isMenuOpen && styles.cross)}
     onClick={toggle}
-    data-test-id={DataTestId['button-burger']}
+    data-test-id={DataTestId.ButtonBurger}
     type='button'
   >
     <span className={styles.burgerItem} />

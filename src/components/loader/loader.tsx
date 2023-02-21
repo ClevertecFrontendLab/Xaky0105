@@ -5,7 +5,7 @@ import loaderIcon from './assets/loader.svg'
 import styles from './loader.module.scss'
 
 export const Loader = () => (
-  <div className={styles.loader} data-test-id={DataTestId.loader}>
+  <div className={styles.loader} data-test-id={DataTestId.Loader}>
     <img src={loaderIcon} alt='Loader...' />
   </div>
 )

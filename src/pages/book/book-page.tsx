@@ -13,6 +13,7 @@ import {
   getBookDetailedFailure,
   getBookDetailedRequest,
 } from '../../store/book-detailed/book-detailed.slice'
+import { getBooksRequest } from '../../store/books/books.slice'
 import { ToastVariant } from '../../types/other'
 
 import { DetailedInformation } from './detailed-information'
@@ -31,6 +32,10 @@ export const BookPage = () => {
   useEffect(() => {
     if (bookId) {
       dispatch(getBookDetailedRequest(bookId))
+    }
+
+    return () => {
+      dispatch(getBooksRequest())
     }
   }, [dispatch, bookId])
 

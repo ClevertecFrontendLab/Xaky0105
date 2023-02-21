@@ -27,7 +27,7 @@ export const Card = memo(
     const { category } = useParams()
 
     return (
-      <li key={id} data-test-id={DataTestId.card}>
+      <li key={id} data-test-id={DataTestId.Card}>
         <Link
           className={classNames(
             styles.card,

@@ -38,7 +38,7 @@ export const Slider = ({ images }: SliderProps) => {
             modules={[FreeMode, Thumbs, EffectFade, Pagination]}
             className='main-swiper'
             effect='fade'
-            data-test-id={DataTestId['slide-big']}
+            data-test-id={DataTestId.SlideBig}
             pagination={{
               clickable: true,
               dynamicBullets: true,
@@ -61,7 +61,7 @@ export const Slider = ({ images }: SliderProps) => {
             className={classNames('second-swiper', images?.length < 5 && 'second-swiper-center')}
           >
             {images.map(image => (
-              <SwiperSlide key={image.url} data-test-id={DataTestId['slide-mini']}>
+              <SwiperSlide key={image.url} data-test-id={DataTestId.SlideMini}>
                 <img src={`${BASE_URL}${image.url}`} alt='img' />
               </SwiperSlide>
             ))}
