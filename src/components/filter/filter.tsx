@@ -18,6 +18,8 @@ type FilterProps = {
   selectSorting: TypeSortMainPage
   inputText: string
   changeInputText: (value: string) => void
+  toggleSortBooksByRating: () => void
+  isSortBooksDescendingOrder: boolean
 }
 
 export const Filter = ({
@@ -25,6 +27,8 @@ export const Filter = ({
   selectSorting,
   inputText,
   changeInputText,
+  toggleSortBooksByRating,
+  isSortBooksDescendingOrder,
 }: FilterProps) => {
   const { state: isShowOnlySearchInput, setFalse, setTrue } = useBooleanState()
 
@@ -46,16 +50,24 @@ export const Filter = ({
               <SearchInput
                 inputText={inputText}
                 changeInputText={changeInputText}
-                placeholder='Поиск книги или автора...'
+                placeholder='Поиск книги или автора…'
                 size={Size.medium}
               />
-              <CustomSelect placeholder='По рейтингу' />
+              <CustomSelect
+                placeholder='По рейтингу'
+                dataTestId={DataTestId.SortRatingButton}
+                handler={toggleSortBooksByRating}
+                isChangeImage={isSortBooksDescendingOrder}
+              />
             </div>
             <div className={styles.blockMobile}>
-              <RoundButton handler={setTrue} dataTestId={DataTestId['button-search-open']}>
+              <RoundButton handler={setTrue} dataTestId={DataTestId.ButtonSearchOpen}>
                 <Search />
               </RoundButton>
-              <RoundButton>
+              <RoundButton
+                handler={toggleSortBooksByRating}
+                isChangeImage={isSortBooksDescendingOrder}
+              >
                 <Sort />
               </RoundButton>
             </div>
@@ -65,7 +77,7 @@ export const Filter = ({
               changeSorting={changeSorting}
               selectSorting={selectSorting}
               sortingType={TypeSortMainPage.tile}
-              dataTestId={DataTestId['button-menu-view-window']}
+              dataTestId={DataTestId.ButtonMenuViewWindow}
             >
               <TileImg />
             </RoundButton>
@@ -73,7 +85,7 @@ export const Filter = ({
               changeSorting={changeSorting}
               selectSorting={selectSorting}
               sortingType={TypeSortMainPage.list}
-              dataTestId={DataTestId['button-menu-view-list']}
+              dataTestId={DataTestId.ButtonMenuViewList}
             >
               <ListImg />
             </RoundButton>

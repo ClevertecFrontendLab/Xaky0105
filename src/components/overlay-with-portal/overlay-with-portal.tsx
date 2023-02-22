@@ -26,12 +26,11 @@ export const OverlayWithPortal = ({ children, onClose, type = OverlayType.blur }
     <Portal>
       <div className={styles.container}>
         <div
-          className={classNames(
-            styles.overlay,
-            type === OverlayType.orange && styles.orange,
-            type === OverlayType.blur && styles.blur,
-            type === OverlayType.transparent && styles.transparent
-          )}
+          className={classNames(styles.overlay, {
+            [styles.orange]: type === OverlayType.orange,
+            [styles.blur]: type === OverlayType.blur,
+            [styles.transparent]: type === OverlayType.transparent,
+          })}
           onClick={onClose}
           role='presentation'
         />

@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import { Slider } from '../../../components/slider'
 import { Button } from '../../../components/ui/button'
 import { BookDetailedType } from '../../../types/books'
-import { BtnType, BtnVariant, Size } from '../../../types/other'
+import { BtnType, BtnVariant, DataTestId, Size } from '../../../types/other'
 import { buttonBookingMessage } from '../../../utils/buttons'
 
 import styles from './main-info.module.scss'
@@ -20,7 +20,9 @@ export const MainInfo = ({ book }: MainInfoProps) => {
       <div className={styles.mainInfo}>
         <Slider images={images} />
         <div className={styles.aboutBlock}>
-          <h2 className={styles.title}>{title}</h2>
+          <h2 data-test-id={DataTestId.BookTitle} className={styles.title}>
+            {title}
+          </h2>
           <div className={styles.author}>
             {authors && authors.map(author => <span key={author}>{author}</span>)}, {issueYear}
           </div>

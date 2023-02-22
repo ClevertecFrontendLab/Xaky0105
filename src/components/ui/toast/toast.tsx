@@ -16,12 +16,11 @@ type ToastProps = {
 
 export const Toast = ({ message, type, onClose }: ToastProps) => (
   <div
-    className={classNames(
-      styles.toast,
-      type === ToastVariant.positive && styles.positive,
-      type === ToastVariant.negative && styles.negative
-    )}
-    data-test-id={DataTestId.error}
+    className={classNames(styles.toast, {
+      [styles.positive]: type === ToastVariant.positive,
+      [styles.negative]: type === ToastVariant.negative,
+    })}
+    data-test-id={DataTestId.Error}
   >
     <div className={styles.message}>
       {type === ToastVariant.positive ? (

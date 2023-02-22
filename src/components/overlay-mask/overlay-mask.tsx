@@ -14,7 +14,7 @@ export const OverlayMask = ({ onClose, isOpened }: OverlayMaskProps) => {
 
   return (
     <div
-      className={classNames(styles.overlay, !isOpened && styles.hide)}
+      className={classNames(styles.overlay, { [styles.hide]: !isOpened })}
       onClick={onClose}
       role='presentation'
     />

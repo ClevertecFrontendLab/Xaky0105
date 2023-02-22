@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useEffect, useMemo, useState } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
 
 import { CardList } from '../../components/card-list'
 import { Filter } from '../../components/filter'
@@ -8,18 +8,20 @@ import { OverlayWithPortal } from '../../components/overlay-with-portal'
 import { Toast } from '../../components/ui/toast'
 import { useAppDispatch, useAppSelector } from '../../hooks/use-redux'
 import { booksSelector } from '../../store/books/books.selector'
-import { getBooksFailure, getBooksRequest } from '../../store/books/books.slice'
-import { ToastVariant, TypeSortMainPage } from '../../types/other'
-import { getFilterBooks } from '../../utils/filter'
+import { getBooksFailure, getBooksWithCategoryRequest } from '../../store/books/books.slice'
+import { DataTestId, ToastVariant, TypeSortMainPage } from '../../types/other'
+import { getFilterBooks, sortBooksByRating } from '../../utils/filter'
 
 import styles from './main-page.module.scss'
 
 export const MainPage = () => {
   const dispatch = useAppDispatch()
   const [selectSorting, setSelectSorting] = useState(TypeSortMainPage.tile)
+  const [isSortBooksDescendingOrder, setIsSortBooksDescendingOrder] = useState(true)
   const [inputText, setInputText] = useState('')
 
   const { category } = useParams()
+  const { state } = useLocation()
 
   const { books: booksAll, error, isLoading, categories } = useAppSelector(booksSelector)
 
@@ -27,6 +29,10 @@ export const MainPage = () => {
 
   const changeInputText = (value: string) => {
     setInputText(value)
+  }
+
+  const toggleSortBooksByRating = () => {
+    setIsSortBooksDescendingOrder(!isSortBooksDescendingOrder)
   }
 
   const changeSorting = (type: TypeSortMainPage) => {
@@ -39,11 +45,19 @@ export const MainPage = () => {
     }
   }, [inputText, booksAll, categories, category])
 
-  useEffect(() => {
-    if (!books) {
-      dispatch(getBooksRequest())
+  const sortedBooksByRating = useMemo(() => {
+    if (books) {
+      return sortBooksByRating(books, isSortBooksDescendingOrder)
     }
-  }, [dispatch, books])
+
+    return null
+  }, [books, isSortBooksDescendingOrder])
+
+  useEffect(() => {
+    if (!categories) {
+      dispatch(getBooksWithCategoryRequest())
+    }
+  }, [dispatch, categories])
 
   return (
     <section className={styles.mainPage}>
@@ -54,11 +68,23 @@ export const MainPage = () => {
             selectSorting={selectSorting}
             inputText={inputText}
             changeInputText={changeInputText}
+            toggleSortBooksByRating={toggleSortBooksByRating}
+            isSortBooksDescendingOrder={isSortBooksDescendingOrder}
           />
-          {books?.length ? (
-            <CardList selectSorting={selectSorting} cardsData={books} inputText={inputText} />
+          {sortedBooksByRating?.length ? (
+            <CardList
+              selectSorting={selectSorting}
+              cardsData={sortedBooksByRating}
+              inputText={inputText}
+            />
           ) : (
-            <p className={styles.notFound}>По запросу ничего не найдено</p>
+            <div className={styles.notFound}>
+              {state && state.quantityBooks === 0 ? (
+                <p data-test-id={DataTestId.EmptyCategory}>В этой категории книг ещё нет</p>
+              ) : (
+                <p data-test-id={DataTestId.SearchResultNotFound}>По запросу ничего не найдено</p>
+              )}
+            </div>
           )}
         </div>
       )}

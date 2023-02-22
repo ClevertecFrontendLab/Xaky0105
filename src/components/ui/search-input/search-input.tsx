@@ -40,31 +40,30 @@ export const SearchInput = ({
   }, [autofocus])
 
   return (
-    <div
-      className={classNames(styles.inputWrap, size === Size.small && styles.small)}
-      data-test-id={DataTestId['input-search']}
-    >
+    <div className={classNames(styles.inputWrap, { [styles.small]: size === Size.small })}>
       {size === Size.medium && (
-        <SearchIcon className={classNames(styles.searchIcon, isFocus && styles.searchIconColor)} />
+        <SearchIcon
+          className={classNames(styles.searchIcon, { [styles.searchIconColor]: isFocus })}
+        />
       )}
       <input
         type='text'
-        className={classNames(
-          styles.searchInput,
-          size === Size.medium && styles.normal,
-          size === Size.small && styles.small
-        )}
+        className={classNames(styles.searchInput, {
+          [styles.normal]: size === Size.medium,
+          [styles.small]: size === Size.small,
+        })}
         placeholder={placeholder}
         onBlur={setFalse}
         onFocus={setTrue}
         onChange={e => changeInputText(e.target.value)}
         value={inputText}
         ref={inputElement}
+        data-test-id={DataTestId.InputSearch}
       />
       <CloseIcon
-        className={classNames(styles.closeIcon, isFocus && styles.closeIconColor)}
+        className={classNames(styles.closeIcon, { [styles.closeIconColor]: isFocus })}
         onClick={closeHandler}
-        data-test-id={DataTestId['button-search-close']}
+        data-test-id={DataTestId.ButtonSearchClose}
       />
     </div>
   )

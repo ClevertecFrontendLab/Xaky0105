@@ -19,7 +19,7 @@ export const Rating = ({ value, size = Size.medium }: RatingProps) => {
     <div className={styles.rating}>
       {stars.map(star => (
         <div
-          className={classNames(styles.ratingItem, size === Size.large && styles.large)}
+          className={classNames(styles.ratingItem, { [styles.large]: size === Size.large })}
           key={star}
         >
           {value < star ? (

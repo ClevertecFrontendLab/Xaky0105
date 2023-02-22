@@ -27,16 +27,15 @@ export const Card = memo(
     const { category } = useParams()
 
     return (
-      <li key={id} data-test-id={DataTestId.card}>
+      <li key={id} data-test-id={DataTestId.Card}>
         <Link
-          className={classNames(
-            styles.card,
-            selectSorting === TypeSortMainPage.tile && styles.cardTile,
-            selectSorting === TypeSortMainPage.list && styles.cardList
-          )}
+          className={classNames(styles.card, {
+            [styles.cardTile]: selectSorting === TypeSortMainPage.tile,
+            [styles.cardList]: selectSorting === TypeSortMainPage.list,
+          })}
           to={`/books/${category}/${id}`}
         >
-          <div className={classNames(styles.imageWrapper, !image && styles.notFoundImage)}>
+          <div className={classNames(styles.imageWrapper, { [styles.notFoundImage]: !image })}>
             {image && <img src={`${BASE_URL}${image.url}`} alt={title} />}
           </div>
           <div className={styles.cardContent}>

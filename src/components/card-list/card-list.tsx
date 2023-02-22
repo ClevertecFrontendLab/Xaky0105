@@ -14,10 +14,9 @@ type CardListProps = {
 
 export const CardList = ({ selectSorting, cardsData, inputText }: CardListProps) => (
   <ul
-    className={classNames(
-      styles.cardList,
-      selectSorting === TypeSortMainPage.list && styles.cardListLine
-    )}
+    className={classNames(styles.cardList, {
+      [styles.cardListLine]: selectSorting === TypeSortMainPage.list,
+    })}
   >
     {cardsData.map(cardData => (
       <Card
