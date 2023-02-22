@@ -24,11 +24,10 @@ export const Slider = ({ images }: SliderProps) => {
 
   return (
     <div
-      className={classNames(
-        'slider',
-        !images?.length && 'not-found-image',
-        images?.length === 1 && 'one-image'
-      )}
+      className={classNames('slider', {
+        'not-found-image': !images?.length,
+        'one-image': images?.length === 1,
+      })}
     >
       {images?.length === 1 && <img src={`${BASE_URL}${images[0].url}`} alt='img' />}
       {images?.length > 1 && (
@@ -58,7 +57,9 @@ export const Slider = ({ images }: SliderProps) => {
             scrollbar={{ draggable: true }}
             modules={[Thumbs, Scrollbar]}
             watchSlidesProgress={true}
-            className={classNames('second-swiper', images?.length < 5 && 'second-swiper-center')}
+            className={classNames('second-swiper', {
+              'second-swiper-center': images?.length < 5,
+            })}
           >
             {images.map(image => (
               <SwiperSlide key={image.url} data-test-id={DataTestId.SlideMini}>

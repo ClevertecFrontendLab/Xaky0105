@@ -34,15 +34,14 @@ export const RoundButton = ({
 
   return (
     <button
-      className={classNames(
-        styles.roundButton,
-        sortingType && sortingType === selectSorting && styles.active
-      )}
+      className={classNames(styles.roundButton, {
+        [styles.active]: sortingType && sortingType === selectSorting,
+      })}
       onClick={clickHandler}
       type='button'
       data-test-id={dataTestId}
     >
-      <div className={classNames(styles.icon, !isChangeImage && styles.rotate)}>{children}</div>
+      <div className={classNames(styles.icon, { [styles.rotate]: !isChangeImage })}>{children}</div>
     </button>
   )
 }

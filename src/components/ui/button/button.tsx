@@ -24,13 +24,12 @@ export const Button = ({
   dataTestId,
 }: ButtonProps) => (
   <button
-    className={classNames(
-      styles.btn,
-      variant === BtnVariant.primary && styles.primary,
-      variant === BtnVariant.secondary && styles.secondary,
-      size === Size.large && styles.large,
-      size === Size.small && styles.small
-    )}
+    className={classNames(styles.btn, {
+      [styles.primary]: variant === BtnVariant.primary,
+      [styles.secondary]: variant === BtnVariant.secondary,
+      [styles.large]: size === Size.large,
+      [styles.small]: size === Size.small,
+    })}
     type={type === BtnType.button ? 'button' : 'submit'}
     onClick={e => {
       if (type === BtnType.button) {

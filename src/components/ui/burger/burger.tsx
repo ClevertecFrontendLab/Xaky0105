@@ -11,7 +11,7 @@ type BurgerProps = {
 
 export const Burger = ({ isMenuOpen, toggle }: BurgerProps) => (
   <button
-    className={classNames(styles.burger, isMenuOpen && styles.cross)}
+    className={classNames(styles.burger, { [styles.cross]: isMenuOpen })}
     onClick={toggle}
     data-test-id={DataTestId.ButtonBurger}
     type='button'

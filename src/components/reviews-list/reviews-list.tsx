@@ -19,11 +19,11 @@ export const ReviewsList = ({ reviews }: ReviewListProps) => {
 
   return (
     <div className={styles.reviews}>
-      <h3 className={classNames(styles.subTitle, shouldShowReviews && styles.withUnderline)}>
+      <h3 className={classNames(styles.subTitle, { [styles.withUnderline]: shouldShowReviews })}>
         <span className={styles.subTitleName}>Отзывы</span>
         <span className={styles.amountReviews}>{reviews?.length}</span>
         <button
-          className={classNames(styles.chevronBtn, shouldShowReviews && styles.active)}
+          className={classNames(styles.chevronBtn, { [styles.active]: shouldShowReviews })}
           onClick={toggle}
           type='button'
           data-test-id={DataTestId.ButtonHideReviews}
@@ -34,7 +34,7 @@ export const ReviewsList = ({ reviews }: ReviewListProps) => {
         </button>
       </h3>
 
-      <ul className={classNames(styles.reviewsList, shouldShowReviews && styles.active)}>
+      <ul className={classNames(styles.reviewsList, { [styles.active]: shouldShowReviews })}>
         {reviews && reviews.map(review => <Review key={review.id} {...review} />)}
       </ul>
 

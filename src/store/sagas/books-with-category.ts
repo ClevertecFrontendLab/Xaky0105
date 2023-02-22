@@ -5,11 +5,10 @@ import { ApiPath, axiosInstance } from '../../api/api'
 import { BookType } from '../../types/books'
 import { CategoryType } from '../../types/categories'
 import { RequestErrors } from '../../types/other'
-
 import {
   getBooksFailure,
-  getBooksWithCategoryRequest,
   getBooksSuccess,
+  getBooksWithCategoryRequest,
   getCategoriesSuccess,
 } from '../books/books.slice'
 

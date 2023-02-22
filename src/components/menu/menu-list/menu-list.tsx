@@ -51,20 +51,22 @@ export const MenuList = ({
 
   const { categories, books } = useAppSelector(booksSelector)
 
-  const navCategories = useMemo(
-    () => books && categories && createNavCategories(books, categories),
-    [books, categories]
-  )
+  const navCategories = useMemo(() => {
+    if (books && categories) {
+      return createNavCategories(books, categories)
+    }
+
+    return null
+  }, [books, categories])
 
   return (
     <Fragment>
       <ul className={styles.categoriesMenuList}>
         <li>
           <button
-            className={classNames(
-              styles.categoriesMenuItem,
-              pathname.includes(Pages.books) && styles.active
-            )}
+            className={classNames(styles.categoriesMenuItem, {
+              [styles.active]: pathname.includes(Pages.books),
+            })}
             onClick={() => {
               if (pathname.includes(Pages.books)) {
                 toggleIsOpenGenre()
@@ -80,31 +82,30 @@ export const MenuList = ({
           >
             <span>Витрина книг</span>
             <span
-              className={classNames(
-                styles.iconWrapper,
-                isOpenGenre && pathname.includes(Pages.books) && styles.active
-              )}
+              className={classNames(styles.iconWrapper, {
+                [styles.active]: isOpenGenre && pathname.includes(Pages.books),
+              })}
             >
               <Chevron
-                className={classNames(styles.icon, pathname.includes(Pages.books) && styles.active)}
+                className={classNames(styles.icon, {
+                  [styles.active]: pathname.includes(Pages.books),
+                })}
               />
             </span>
           </button>
           <ul
-            className={classNames(
-              styles.genreList,
-              isOpenGenre && pathname.includes(Pages.books) && styles.visible
-            )}
+            className={classNames(styles.genreList, {
+              [styles.visible]: isOpenGenre && pathname.includes(Pages.books),
+            })}
           >
             {navCategories &&
               navCategories.map(({ id, path, name, quantity }) => (
-                <li className={classNames(styles.genre)} key={id}>
+                <li className={styles.genre} key={id}>
                   <Link
                     to={`/${Pages.books}/${path}`}
-                    className={classNames(
-                      styles.genreLink,
-                      categoryLocation === path && styles.activeGenreLink
-                    )}
+                    className={classNames(styles.genreLink, {
+                      [styles.activeGenreLink]: categoryLocation === path,
+                    })}
                     onClick={hideMobileMenu}
                     state={{ quantityBooks: quantity }}
                   >
@@ -125,10 +126,9 @@ export const MenuList = ({
           </ul>
         </li>
         <li
-          className={classNames(
-            styles.categoriesMenuItem,
-            pathname === RoutePath.terms && styles.active
-          )}
+          className={classNames(styles.categoriesMenuItem, {
+            [styles.active]: pathname === RoutePath.terms,
+          })}
           data-test-id={
             type === NavType.desktop ? DataTestId.NavigationTerms : DataTestId.BurgerTerms
           }
@@ -138,10 +138,9 @@ export const MenuList = ({
           </Link>
         </li>
         <li
-          className={classNames(
-            styles.categoriesMenuItem,
-            pathname === RoutePath.contract && styles.active
-          )}
+          className={classNames(styles.categoriesMenuItem, {
+            [styles.active]: pathname === RoutePath.contract,
+          })}
           data-test-id={
             type === NavType.desktop ? DataTestId.NavigationContract : DataTestId.BurgerContract
           }
@@ -154,20 +153,15 @@ export const MenuList = ({
       {type === NavType.mobile && (
         <ul className={styles.categoriesMenuList}>
           <li
-            className={classNames(
-              styles.categoriesMenuItem,
-              pathname === RoutePath.profile && styles.active
-            )}
+            className={classNames(styles.categoriesMenuItem, {
+              [styles.active]: pathname === RoutePath.profile,
+            })}
             onClick={hideMobileMenu}
             role='presentation'
           >
             <Link to={RoutePath.profile}>Профиль</Link>
           </li>
-          <li
-            className={classNames(styles.categoriesMenuItem)}
-            onClick={hideMobileMenu}
-            role='presentation'
-          >
+          <li className={styles.categoriesMenuItem} onClick={hideMobileMenu} role='presentation'>
             Выход
           </li>
         </ul>

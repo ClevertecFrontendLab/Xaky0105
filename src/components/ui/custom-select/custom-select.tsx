@@ -20,7 +20,7 @@ export const CustomSelect = ({
   isChangeImage,
 }: CustomSelectProps) => (
   <button type='button' className={styles.select} data-test-id={dataTestId} onClick={handler}>
-    <div className={classNames(styles.imgWrap, !isChangeImage && styles.rotate)}>
+    <div className={classNames(styles.imgWrap, { [styles.rotate]: !isChangeImage })}>
       <img src={sort} alt={placeholder} />
     </div>
     {placeholder}

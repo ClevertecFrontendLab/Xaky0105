@@ -21,8 +21,7 @@ export const MainPage = () => {
   const [inputText, setInputText] = useState('')
 
   const { category } = useParams()
-  const location = useLocation()
-  const state = location.state && location.state
+  const { state } = useLocation()
 
   const { books: booksAll, error, isLoading, categories } = useAppSelector(booksSelector)
 
@@ -46,10 +45,13 @@ export const MainPage = () => {
     }
   }, [inputText, booksAll, categories, category])
 
-  const sortedBooksByRating = useMemo(
-    () => books && sortBooksByRating(books, isSortBooksDescendingOrder),
-    [books, isSortBooksDescendingOrder]
-  )
+  const sortedBooksByRating = useMemo(() => {
+    if (books) {
+      return sortBooksByRating(books, isSortBooksDescendingOrder)
+    }
+
+    return null
+  }, [books, isSortBooksDescendingOrder])
 
   useEffect(() => {
     if (!categories) {
