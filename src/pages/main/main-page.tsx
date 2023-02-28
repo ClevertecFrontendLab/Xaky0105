@@ -9,6 +9,7 @@ import { Toast } from '../../components/ui/toast'
 import { useAppDispatch, useAppSelector } from '../../hooks/use-redux'
 import { booksSelector } from '../../store/books/books.selector'
 import { getBooksFailure, getBooksWithCategoryRequest } from '../../store/books/books.slice'
+import { BookSortingByRating } from '../../types/books'
 import { DataTestId, ToastVariant, TypeSortMainPage } from '../../types/other'
 import { getFilterBooks, sortBooksByRating } from '../../utils/filter'
 
@@ -17,7 +18,9 @@ import styles from './main-page.module.scss'
 export const MainPage = () => {
   const dispatch = useAppDispatch()
   const [selectSorting, setSelectSorting] = useState(TypeSortMainPage.tile)
-  const [isSortBooksDescendingOrder, setIsSortBooksDescendingOrder] = useState(true)
+  const [selectSortingBooksByRating, setSelectSortingBooksByRating] = useState(
+    BookSortingByRating.Descending
+  )
   const [inputText, setInputText] = useState('')
 
   const { category } = useParams()
@@ -32,7 +35,11 @@ export const MainPage = () => {
   }
 
   const toggleSortBooksByRating = () => {
-    setIsSortBooksDescendingOrder(!isSortBooksDescendingOrder)
+    if (selectSortingBooksByRating === BookSortingByRating.Descending) {
+      setSelectSortingBooksByRating(BookSortingByRating.Ascending)
+    } else {
+      setSelectSortingBooksByRating(BookSortingByRating.Descending)
+    }
   }
 
   const changeSorting = (type: TypeSortMainPage) => {
@@ -47,11 +54,11 @@ export const MainPage = () => {
 
   const sortedBooksByRating = useMemo(() => {
     if (books) {
-      return sortBooksByRating(books, isSortBooksDescendingOrder)
+      return sortBooksByRating(books, selectSortingBooksByRating)
     }
 
     return null
-  }, [books, isSortBooksDescendingOrder])
+  }, [books, selectSortingBooksByRating])
 
   useEffect(() => {
     if (!categories) {
@@ -69,7 +76,7 @@ export const MainPage = () => {
             inputText={inputText}
             changeInputText={changeInputText}
             toggleSortBooksByRating={toggleSortBooksByRating}
-            isSortBooksDescendingOrder={isSortBooksDescendingOrder}
+            selectSortingBooksByRating={selectSortingBooksByRating}
           />
           {sortedBooksByRating?.length ? (
             <CardList

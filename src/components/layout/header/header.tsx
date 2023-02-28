@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 
 import { useBooleanState } from '../../../hooks/use-boolean-state'
+import { useAppSelector } from '../../../hooks/use-redux'
+import { loginSelector } from '../../../store/login/login.selector'
 import { RoutePath } from '../../../types/other'
 import { Container } from '../../container'
 import { MenuMobile } from '../../menu'
@@ -19,6 +21,8 @@ export const Header = () => {
     toggle: toggleMenu,
   } = useBooleanState()
 
+  const { user } = useAppSelector(loginSelector)
+
   return (
     <Container>
       <header className={styles.header}>
@@ -30,7 +34,7 @@ export const Header = () => {
           <h1 className={styles.title}>Библиотека</h1>
         </div>
         <div className={styles.user}>
-          <span className={styles.userName}>Привет, Иван</span>
+          <span className={styles.userName}>Привет, {user?.firstName}</span>
           <div className={styles.avatarWrapper}>
             <img src={avatar} alt='user' />
           </div>

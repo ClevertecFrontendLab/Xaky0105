@@ -73,3 +73,8 @@ export type CommentType = {
     avatarUrl: string | null
   }
 }
+
+export enum BookSortingByRating {
+  Descending = 'descending',
+  Ascending = 'ascending',
+}

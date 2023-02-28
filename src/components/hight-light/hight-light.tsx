@@ -1,7 +1,6 @@
 import { Fragment, memo, useCallback } from 'react'
+import classNames from 'classnames'
 import { v4 as uuidv4 } from 'uuid'
-
-import { DataTestId } from '../../types/other'
 
 import styles from './hight-light.module.scss'
 
@@ -9,15 +8,18 @@ type HightLightProps = {
   searchWord: string
   text: string
   classNameHL: string
+  dataTestId?: string
 }
 
-export const HightLight = memo(({ searchWord, text, classNameHL }: HightLightProps) => {
+export const HightLight = memo(({ searchWord, text, classNameHL, dataTestId }: HightLightProps) => {
   const generateHightLightText = useCallback(
     (str: string) => {
       if (!searchWord) {
         return str
       }
+
       const regexp = new RegExp(searchWord, 'ig')
+
       const matchValue = str.match(regexp)
 
       if (matchValue) {
@@ -28,9 +30,7 @@ export const HightLight = memo(({ searchWord, text, classNameHL }: HightLightPro
             return (
               <Fragment key={uuidv4()}>
                 {el}
-                <span data-test-id={DataTestId.HighLightMatches} className={styles.selectionColor}>
-                  {selectionLetters}
-                </span>
+                <span className={styles.selectionColor}>{selectionLetters}</span>
               </Fragment>
             )
           }
@@ -44,5 +44,12 @@ export const HightLight = memo(({ searchWord, text, classNameHL }: HightLightPro
     [searchWord]
   )
 
-  return <p className={classNameHL}>{generateHightLightText(text)}</p>
+  return (
+    <p
+      data-test-id={dataTestId}
+      className={classNames(styles[classNameHL], { [styles.color]: searchWord === text })}
+    >
+      {generateHightLightText(text)}
+    </p>
+  )
 })

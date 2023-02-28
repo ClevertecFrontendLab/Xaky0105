@@ -11,6 +11,9 @@ export enum RoutePath {
   contract = '/contract',
   bookPage = '/books/:category/:bookId',
   profile = '/profile',
+  registration = '/registration',
+  authorization = '/auth',
+  recovery = '/forgot-pass',
 }
 
 export enum Pages {
@@ -18,10 +21,6 @@ export enum Pages {
   terms = 'terms',
   contract = 'contract',
   profile = 'profile',
-}
-
-export enum RequestErrors {
-  smthWrong = 'Что-то пошло не так. Обновите страницу через некоторое время',
 }
 
 export enum ToastVariant {
@@ -96,4 +95,15 @@ export enum DataTestId {
   BookName = 'book-name',
   BookTitle = 'book-title',
   HighLightMatches = 'highlight-matches',
+  Auth = 'auth',
+  AuthForm = 'auth-form',
+  RegisterForm = 'register-form',
+  SendEmailForm = 'send-email-form',
+  ResetPasswordForm = 'reset-password-form',
+  Hint = 'hint',
+  EyeClosed = 'eye-closed',
+  EyeOpened = 'eye-opened',
+  CheckMark = 'checkmark',
+  ExitButton = 'exit-button',
+  StatusBlock = 'status-block',
 }

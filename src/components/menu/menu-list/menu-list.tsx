@@ -2,8 +2,9 @@ import { Fragment, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
 
-import { useAppSelector } from '../../../hooks/use-redux'
+import { useAppDispatch, useAppSelector } from '../../../hooks/use-redux'
 import { booksSelector } from '../../../store/books/books.selector'
+import { logout } from '../../../store/login/login.slice'
 import { AllBooks, DataTestId, NavType, Pages, RoutePath } from '../../../types/other'
 import { createNavCategories } from '../../../utils/categories'
 
@@ -48,6 +49,7 @@ export const MenuList = ({
   showGenreList,
 }: MenuListProps) => {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   const { categories, books } = useAppSelector(booksSelector)
 
@@ -58,6 +60,12 @@ export const MenuList = ({
 
     return null
   }, [books, categories])
+
+  const onClickLogout = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    dispatch(logout())
+  }
 
   return (
     <Fragment>
@@ -161,7 +169,12 @@ export const MenuList = ({
           >
             <Link to={RoutePath.profile}>Профиль</Link>
           </li>
-          <li className={styles.categoriesMenuItem} onClick={hideMobileMenu} role='presentation'>
+          <li
+            className={styles.categoriesMenuItem}
+            onClick={onClickLogout}
+            role='presentation'
+            data-test-id={DataTestId.ExitButton}
+          >
             Выход
           </li>
         </ul>

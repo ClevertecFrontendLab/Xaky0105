@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios'
 
 import { ApiPath, axiosInstance } from '../../api/api'
 import { BookType } from '../../types/books'
-import { RequestErrors } from '../../types/other'
+import { RequestErrors } from '../../types/errors'
 import { getBooksFailure, getBooksRequest, getBooksSuccess } from '../books/books.slice'
 
 function* booksRequestWorker() {

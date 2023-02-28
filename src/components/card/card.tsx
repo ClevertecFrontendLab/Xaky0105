@@ -40,7 +40,12 @@ export const Card = memo(
           </div>
           <div className={styles.cardContent}>
             <div className={styles.nameWrap}>
-              <HightLight classNameHL={styles.name} searchWord={inputText} text={title} />
+              <HightLight
+                classNameHL='name'
+                searchWord={inputText}
+                text={title}
+                dataTestId={DataTestId.HighLightMatches}
+              />
             </div>
             <p className={styles.author}>
               {authors && authors.map(author => <Fragment key={author}>{author}, </Fragment>)}

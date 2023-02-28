@@ -1,3 +1,26 @@
+.inputErrorText {
+  color: var(--black40);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  margin-left: 12px;
+  margin-top: 4px;
+
+  &.color {
+    color: var(--negative);
+  }
+}
+
+.name {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  font-weight: 600;
+  line-height: 18px;
+}
+
 .selectionColor {
-  color: var(--hightlight);
+  color: var(--negative);
 }

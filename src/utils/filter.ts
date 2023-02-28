@@ -1,4 +1,4 @@
-import { BookType } from '../types/books'
+import { BookSortingByRating, BookType } from '../types/books'
 import { CategoryType } from '../types/categories'
 
 export const getFilterBooks = (
@@ -22,13 +22,16 @@ export const getFilterBooks = (
   return filterBooks
 }
 
-export const sortBooksByRating = (books: BookType[], isSortBooksDescendingOrder: boolean) => {
+export const sortBooksByRating = (
+  books: BookType[],
+  selectSortingBooksByRating: BookSortingByRating
+) => {
   const booksWithRating: BookType[] = []
   const booksWithoutRating: BookType[] = []
 
   books.forEach(book => (book.rating ? booksWithRating.push(book) : booksWithoutRating.push(book)))
 
-  if (isSortBooksDescendingOrder) {
+  if (selectSortingBooksByRating === BookSortingByRating.Descending) {
     return [...booksWithRating.sort((a, b) => b.rating! - a.rating!), ...booksWithoutRating]
   }
 

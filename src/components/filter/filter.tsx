@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 
 import { useBooleanState } from '../../hooks/use-boolean-state'
+import { BookSortingByRating } from '../../types/books'
 import { DataTestId, Size, TypeSortMainPage } from '../../types/other'
 import { CustomSelect } from '../ui/custom-select'
 import { RoundButton } from '../ui/round-button'
@@ -19,7 +20,7 @@ type FilterProps = {
   inputText: string
   changeInputText: (value: string) => void
   toggleSortBooksByRating: () => void
-  isSortBooksDescendingOrder: boolean
+  selectSortingBooksByRating: BookSortingByRating
 }
 
 export const Filter = ({
@@ -28,7 +29,7 @@ export const Filter = ({
   inputText,
   changeInputText,
   toggleSortBooksByRating,
-  isSortBooksDescendingOrder,
+  selectSortingBooksByRating,
 }: FilterProps) => {
   const { state: isShowOnlySearchInput, setFalse, setTrue } = useBooleanState()
 
@@ -57,7 +58,7 @@ export const Filter = ({
                 placeholder='По рейтингу'
                 dataTestId={DataTestId.SortRatingButton}
                 handler={toggleSortBooksByRating}
-                isChangeImage={isSortBooksDescendingOrder}
+                shouldRotateImage={selectSortingBooksByRating === BookSortingByRating.Ascending}
               />
             </div>
             <div className={styles.blockMobile}>
@@ -66,7 +67,7 @@ export const Filter = ({
               </RoundButton>
               <RoundButton
                 handler={toggleSortBooksByRating}
-                isChangeImage={isSortBooksDescendingOrder}
+                shouldRotateImage={selectSortingBooksByRating === BookSortingByRating.Ascending}
               >
                 <Sort />
               </RoundButton>
