@@ -7,35 +7,23 @@ export type RegistrationFieldsType = {
   email: string
 }
 
-export type RegistrationStepOneFieldsType = {
-  username: string
-  password: string
-}
-export type RegistrationStepTwoFieldsType = {
-  firstName: string
-  lastName: string
-}
-export type RegistrationStepThreeFieldsType = {
-  phone: string
-  email: string
-}
+export type RegistrationStepOneFieldsType = Pick<RegistrationFieldsType, 'username' | 'password'>
+export type RegistrationStepTwoFieldsType = Pick<RegistrationFieldsType, 'firstName' | 'lastName'>
+export type RegistrationStepThreeFieldsType = Pick<RegistrationFieldsType, 'phone' | 'email'>
 
 export type LoginFieldsType = {
   identifier: string
   password: string
 }
 
-export type ResetPasswordRequestType = {
+type PasswordType = {
   password: string
   passwordConfirmation: string
-  code: string
 }
 
-export type RecoveryFieldType = {
-  email: string
-  password: string
-  passwordConfirmation: string
-}
+export type ResetPasswordRequestType = PasswordType & { code: string }
+
+export type RecoveryFieldType = PasswordType & { email: string }
 
 export type ForgotPasswordRequestType = Pick<RecoveryFieldType, 'email'>
 

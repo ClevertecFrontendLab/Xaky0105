@@ -16,7 +16,7 @@ function* forgotPasswordRequestWorker({ payload }: PayloadAction<ForgotPasswordR
     })
 
     yield put(getForgotPasswordSuccess())
-  } catch (err) {
+  } catch {
     yield put(getForgotPasswordFailure('error'))
   }
 }
