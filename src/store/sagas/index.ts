@@ -3,6 +3,7 @@ import { fork } from 'redux-saga/effects'
 import { bookDetailedRequestWatcher } from './book-detailed'
 import { booksRequestWatcher } from './books'
 import { booksWithCategoryRequestWatcher } from './books-with-category'
+import { categoriesRequestWatcher } from './categories'
 import { forgotPasswordRequestWatcher } from './forgot-password'
 import { loginRequestWatcher } from './login'
 import { registrationRequestWatcher } from './registration'
@@ -16,4 +17,5 @@ export function* rootSaga() {
   yield fork(loginRequestWatcher)
   yield fork(forgotPasswordRequestWatcher)
   yield fork(resetPasswordRequestWatcher)
+  yield fork(categoriesRequestWatcher)
 }

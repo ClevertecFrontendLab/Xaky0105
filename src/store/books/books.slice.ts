@@ -8,7 +8,8 @@ import { BooksState } from './books.types'
 const initialState: BooksState = {
   books: null,
   categories: null,
-  isLoading: false,
+  isLoadingBooks: false,
+  isLoadingCategories: false,
   error: null,
 }
 
@@ -17,26 +18,36 @@ export const booksSlice = createSlice({
   initialState,
   reducers: {
     getBooksSuccess: (state, action: PayloadAction<BookType[]>) => {
-      state.isLoading = false
+      state.isLoadingBooks = false
       state.books = action.payload
-    },
-    getCategoriesSuccess: (state, action: PayloadAction<CategoryType[]>) => {
-      state.isLoading = false
-      state.categories = action.payload
     },
     getBooksWithCategoryRequest: state => {
       state.books = null
       state.categories = null
       state.error = null
-      state.isLoading = true
+      state.isLoadingBooks = true
+      state.isLoadingCategories = true
     },
     getBooksRequest: state => {
       state.books = null
       state.error = null
-      state.isLoading = true
+      state.isLoadingBooks = true
     },
     getBooksFailure: (state, action: PayloadAction<string | null>) => {
-      state.isLoading = false
+      state.isLoadingBooks = false
+      state.error = action.payload
+    },
+    getCategoriesSuccess: (state, action: PayloadAction<CategoryType[]>) => {
+      state.isLoadingCategories = false
+      state.categories = action.payload
+    },
+    getCategoriesRequest: state => {
+      state.categories = null
+      state.error = null
+      state.isLoadingCategories = true
+    },
+    getCategoriesFailure: (state, action: PayloadAction<string | null>) => {
+      state.isLoadingCategories = false
       state.error = action.payload
     },
   },
@@ -48,6 +59,8 @@ export const {
   getBooksFailure,
   getCategoriesSuccess,
   getBooksRequest,
+  getCategoriesRequest,
+  getCategoriesFailure,
 } = booksSlice.actions
 
 export const booksReducer = booksSlice.reducer

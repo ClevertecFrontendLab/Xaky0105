@@ -4,6 +4,7 @@ import { CategoryType } from '../../types/categories'
 export type BooksState = {
   books: BookType[] | null
   categories: CategoryType[] | null
-  isLoading: boolean
+  isLoadingBooks: boolean
+  isLoadingCategories: boolean
   error: string | null
 }

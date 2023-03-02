@@ -8,7 +8,12 @@ import { OverlayWithPortal } from '../../components/overlay-with-portal'
 import { Toast } from '../../components/ui/toast'
 import { useAppDispatch, useAppSelector } from '../../hooks/use-redux'
 import { booksSelector } from '../../store/books/books.selector'
-import { getBooksFailure, getBooksWithCategoryRequest } from '../../store/books/books.slice'
+import {
+  getBooksFailure,
+  getBooksRequest,
+  getBooksWithCategoryRequest,
+  getCategoriesRequest,
+} from '../../store/books/books.slice'
 import { BookSortingByRating } from '../../types/books'
 import { DataTestId, ToastVariant, TypeSortMainPage } from '../../types/other'
 import { getFilterBooks, sortBooksByRating } from '../../utils/filter'
@@ -26,7 +31,13 @@ export const MainPage = () => {
   const { category } = useParams()
   const { state } = useLocation()
 
-  const { books: booksAll, error, isLoading, categories } = useAppSelector(booksSelector)
+  const {
+    books: booksAll,
+    error,
+    isLoadingCategories,
+    isLoadingBooks,
+    categories,
+  } = useAppSelector(booksSelector)
 
   const [books, setBooks] = useState(booksAll)
 
@@ -60,11 +71,16 @@ export const MainPage = () => {
     return null
   }, [books, selectSortingBooksByRating])
 
+  // useEffect(() => {
+  //   if (!categories) {
+  //     dispatch(getCategoriesRequest())
+  //   }
+  // }, [dispatch, categories])
+
   useEffect(() => {
-    if (!categories) {
-      dispatch(getBooksWithCategoryRequest())
-    }
-  }, [dispatch, categories])
+    dispatch(getBooksRequest())
+    dispatch(getCategoriesRequest())
+  }, [dispatch])
 
   return (
     <section className={styles.mainPage}>
@@ -102,7 +118,7 @@ export const MainPage = () => {
           type={ToastVariant.negative}
         />
       )}
-      {isLoading && (
+      {(isLoadingCategories || isLoadingBooks) && (
         <OverlayWithPortal>
           <Loader />
         </OverlayWithPortal>

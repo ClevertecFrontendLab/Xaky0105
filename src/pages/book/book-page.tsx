@@ -33,10 +33,6 @@ export const BookPage = () => {
     if (bookId) {
       dispatch(getBookDetailedRequest(bookId))
     }
-
-    return () => {
-      dispatch(getBooksRequest())
-    }
   }, [dispatch, bookId])
 
   return (
