@@ -11,7 +11,6 @@ import { booksSelector } from '../../store/books/books.selector'
 import {
   getBooksFailure,
   getBooksRequest,
-  getBooksWithCategoryRequest,
   getCategoriesRequest,
 } from '../../store/books/books.slice'
 import { BookSortingByRating } from '../../types/books'
@@ -71,15 +70,14 @@ export const MainPage = () => {
     return null
   }, [books, selectSortingBooksByRating])
 
-  // useEffect(() => {
-  //   if (!categories) {
-  //     dispatch(getCategoriesRequest())
-  //   }
-  // }, [dispatch, categories])
+  useEffect(() => {
+    if (!categories) {
+      dispatch(getCategoriesRequest())
+    }
+  }, [dispatch, categories])
 
   useEffect(() => {
     dispatch(getBooksRequest())
-    dispatch(getCategoriesRequest())
   }, [dispatch])
 
   return (

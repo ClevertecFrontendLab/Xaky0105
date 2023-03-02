@@ -126,6 +126,7 @@ export const RecoveryPage = () => {
                 placeholder='Email'
                 watchName={watch('email')}
                 type='email'
+                clearErrors={clearErrors}
               />
               {error && (
                 <p className={styles.hintError} data-test-id={DataTestId.Hint}>

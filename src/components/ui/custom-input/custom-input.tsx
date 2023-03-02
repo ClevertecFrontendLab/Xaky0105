@@ -60,7 +60,7 @@ export const CustomInput = ({
           maskChar={maskPlaceholder}
           mask={mask}
           {...register}
-          alwaysShowMask={!error?.message && !watchName}
+          alwaysShowMask={!error?.message && !watchName && label !== 'phone'}
           onFocus={() => clearErrors && clearErrors()}
         />
       ) : (
