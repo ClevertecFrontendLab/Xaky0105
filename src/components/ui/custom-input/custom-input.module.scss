@@ -10,6 +10,10 @@
     margin-bottom: 0;
   }
 
+  .hightLight {
+    color: red;
+  }
+
   .placeholder {
     color: var(--dark);
     position: absolute;
@@ -48,7 +52,7 @@
       outline: none;
     }
 
-    &:focus ~ span {
+    &:focus ~ .placeholder {
       transform: translateY(-10px);
       font-size: 12px;
       line-height: 16px;
@@ -58,6 +62,23 @@
 
   .inputError {
     border-bottom: 1px solid var(--accent);
+  }
+
+  .errorPhone {
+    color: var(--black40);
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    margin-left: 12px;
+    margin-top: 4px;
+
+    &.active {
+      color: var(--negative);
+    }
+
+    // &.hideError {
+    //   display: none;
+    // }
   }
 
   .error {
@@ -70,8 +91,8 @@
     display: none;
 
     &.visibleError {
-      display: block;
       color: var(--negative);
+      display: block;
     }
 
     &.hideError {

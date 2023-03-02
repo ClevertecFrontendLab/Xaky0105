@@ -1,49 +1,71 @@
-import { object, string } from 'yup'
+import { lazy, object, ref, string } from 'yup'
+
+import { ErrorsMessages } from '../types/errors'
 
 import { Regex } from './regex'
 
 export const registerStepOneSchema = object({
   username: string()
-    .required('Поле не может быть пустым')
+    .required(ErrorsMessages.required)
     .matches(Regex.loginLetter, 'латинский алфавит')
     .matches(Regex.loginNumber, 'цифры'),
   password: string()
-    .required('Поле не может быть пустым')
-    .matches(Regex.passwordBase, {
-      message: 'Пароль не менее 8 символов, с заглавной буквой и цифрой',
-    })
-    .min(8, 'не менее 8 символов')
-    .matches(Regex.passwordUpperLetter, { message: 'с заглавной буквой' })
-    .matches(Regex.passwordMinOneNum, { message: 'цифрой' }),
+    .required(ErrorsMessages.required)
+    .min(8, ErrorsMessages.atLeastEightCharacters)
+    .matches(Regex.passwordUpperLetter, { message: ErrorsMessages.withUpperLater })
+    .matches(Regex.passwordMinOneNum, { message: ErrorsMessages.withNumber }),
 })
 
 export const registerStepTwoSchema = object({
-  firstName: string().required('Поле не может быть пустым'),
-  lastName: string().required('Поле не может быть пустым'),
+  firstName: string().required(ErrorsMessages.required),
+  lastName: string().required(ErrorsMessages.required),
 })
 
 export const registerStepThreeSchema = object({
   phone: string()
-    .required('Поле не может быть пустым')
+    .required(ErrorsMessages.required)
     .matches(Regex.phone, { message: 'В формате +375 (xx) xxx-xx-xx' }),
-  email: string().email('Введите корректный e-mail').required('Поле не может быть пустым'),
+  email: string()
+    .required(ErrorsMessages.required)
+    .matches(Regex.email, 'Введите корректный e-mail'),
 })
 
 export const loginSchema = object({
-  identifier: string().required('Поле не может быть пустым'),
-  password: string().required('Поле не может быть пустым'),
+  identifier: string().required(ErrorsMessages.required),
+  password: string().required(ErrorsMessages.required),
 })
 
 export const forgotPasswordSchema = object({
-  email: string().email('Введите корректный e-mail').required('Поле не может быть пустым'),
+  email: string()
+    .required(ErrorsMessages.required)
+    .matches(Regex.email, 'Введите корректный e-mail'),
 })
 export const resetPasswordSchema = object({
   password: string()
-    .required('Поле не может быть пустым')
-    .matches(Regex.passwordBase, {
-      message: 'Пароль не менее 8 символов, с заглавной буквой и цифрой',
-    })
-    .min(8, 'не менее 8 символов')
-    .matches(Regex.passwordUpperLetter, { message: 'с заглавной буквой' })
-    .matches(Regex.passwordMinOneNum, { message: 'цифрой' }),
+    .required(ErrorsMessages.required)
+    .min(8, ErrorsMessages.atLeastEightCharacters)
+    .matches(Regex.passwordUpperLetter, { message: ErrorsMessages.withUpperLater })
+    .matches(Regex.passwordMinOneNum, { message: ErrorsMessages.withNumber }),
+  passwordConfirmation: lazy(value =>
+    string().when('passwordConfirmation', (_, schema) =>
+      value === ''
+        ? schema.required(ErrorsMessages.required)
+        : schema.oneOf([ref('password')], 'Пароли не совпадают')
+    )
+  ),
+})
+
+export const usernameSchema = object({
+  username: string()
+    .required(ErrorsMessages.required)
+    .matches(Regex.loginLetter, 'латинский алфавит')
+    .matches(Regex.loginNumber, 'цифры'),
+})
+
+export const passwordSchema = object({
+  password: string()
+    .required(ErrorsMessages.required)
+    .min(8, ErrorsMessages.atLeastEightCharacters)
+    .matches(Regex.passwordUpperLetter, { message: ErrorsMessages.withUpperLater })
+    .matches(Regex.passwordMinOneNum, { message: ErrorsMessages.withNumber }),
 })

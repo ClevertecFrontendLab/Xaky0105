@@ -15,3 +15,10 @@ export enum LoginRequestErrors {
 export enum RecoveryRequestErrors {
   requestSmthError = 'Что-то пошло не так. Попробуйте еще раз',
 }
+
+export enum ErrorsMessages {
+  required = 'Поле не может быть пустым',
+  atLeastEightCharacters = 'не менее 8 символов',
+  withNumber = 'цифрой',
+  withUpperLater = 'с заглавной буквой',
+}

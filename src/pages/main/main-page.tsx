@@ -61,10 +61,8 @@ export const MainPage = () => {
   }, [books, selectSortingBooksByRating])
 
   useEffect(() => {
-    if (!categories) {
-      dispatch(getBooksWithCategoryRequest())
-    }
-  }, [dispatch, categories])
+    dispatch(getBooksWithCategoryRequest())
+  }, [dispatch])
 
   return (
     <section className={styles.mainPage}>

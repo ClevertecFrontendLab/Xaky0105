@@ -10,6 +10,7 @@ import { ModalCompound } from '../../components/modal-compound'
 import { OverlayWithPortal } from '../../components/overlay-with-portal'
 import { Button } from '../../components/ui/button'
 import { CustomInput } from '../../components/ui/custom-input'
+import { useErrors } from '../../hooks/use-errors'
 import { useAppDispatch, useAppSelector } from '../../hooks/use-redux'
 import { recoverySelector } from '../../store/recovery/recovery.selector'
 import {
@@ -35,8 +36,9 @@ export const RecoveryPage = () => {
     handleSubmit,
     formState: { errors },
     watch,
+    clearErrors,
   } = useForm<RecoveryFieldType>({
-    mode: 'all',
+    mode: 'onBlur',
     resolver: yupResolver(code ? resetPasswordSchema : forgotPasswordSchema),
   })
 
@@ -64,6 +66,8 @@ export const RecoveryPage = () => {
     }
   }
 
+  const { errorsArr } = useErrors(resetPasswordSchema, watch('password'), 'password')
+
   return (
     <>
       {code && !isResetSuccess && !error && (
@@ -78,14 +82,17 @@ export const RecoveryPage = () => {
                 placeholder='Новый пароль'
                 watchName={watch('password')}
                 type='password'
+                errors={errorsArr}
+                clearErrors={clearErrors}
               />
               <CustomInput
-                label=''
+                label='passwordConfirmation'
                 register={register('passwordConfirmation')}
                 error={errors.passwordConfirmation}
                 placeholder='Повторите пароль'
                 watchName={watch('passwordConfirmation')}
                 type='password'
+                clearErrors={clearErrors}
               />
             </div>
             <Button
@@ -93,15 +100,12 @@ export const RecoveryPage = () => {
               name='Сохранить изменения'
               size={Size.large}
               type={BtnType.submit}
+              isDisabled={!!errors.passwordConfirmation}
             />
           </form>
-          <div className={styles.navigateToAnotherRoute}>
-            <div className={styles.navigationText}>Нет учетной записи?</div>
-            <Link className={styles.navigationLink} to={RoutePath.registration}>
-              Регистрация
-              <img src={Chevron} alt='chevron' />
-            </Link>
-          </div>
+          <p className={styles.message}>
+            После сохранения войдите в библиотеку, используя новый пароль
+          </p>
         </ModalCompound>
       )}
       {!code && !isForgotSuccess && !isResetSuccess && (

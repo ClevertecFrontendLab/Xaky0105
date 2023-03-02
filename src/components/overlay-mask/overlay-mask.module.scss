@@ -8,4 +8,7 @@
   &.hide {
     display: none;
   }
+  &.hightZIndex {
+    z-index: 1000;
+  }
 }

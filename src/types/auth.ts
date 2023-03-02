@@ -7,6 +7,19 @@ export type RegistrationFieldsType = {
   email: string
 }
 
+export type RegistrationStepOneFieldsType = {
+  username: string
+  password: string
+}
+export type RegistrationStepTwoFieldsType = {
+  firstName: string
+  lastName: string
+}
+export type RegistrationStepThreeFieldsType = {
+  phone: string
+  email: string
+}
+
 export type LoginFieldsType = {
   identifier: string
   password: string

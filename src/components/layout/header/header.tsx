@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 
 import { useBooleanState } from '../../../hooks/use-boolean-state'
-import { useAppSelector } from '../../../hooks/use-redux'
+import { useAppDispatch, useAppSelector } from '../../../hooks/use-redux'
 import { loginSelector } from '../../../store/login/login.selector'
+import { logout } from '../../../store/login/login.slice'
 import { RoutePath } from '../../../types/other'
 import { Container } from '../../container'
 import { MenuMobile } from '../../menu'
@@ -21,7 +22,20 @@ export const Header = () => {
     toggle: toggleMenu,
   } = useBooleanState()
 
+  const {
+    state: isShowUserMenu,
+    setFalse: hideUserMenu,
+    setTrue: showUserMenu,
+  } = useBooleanState(false)
+
   const { user } = useAppSelector(loginSelector)
+  const dispatch = useAppDispatch()
+
+  const onClickLogout = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    dispatch(logout())
+  }
 
   return (
     <Container>
@@ -35,12 +49,27 @@ export const Header = () => {
         </div>
         <div className={styles.user}>
           <span className={styles.userName}>Привет, {user?.firstName}</span>
-          <div className={styles.avatarWrapper}>
+          <div className={styles.avatarWrapper} onClick={showUserMenu} role='presentation'>
             <img src={avatar} alt='user' />
           </div>
         </div>
         <MenuMobile isOpened={isShowMobileMenu} hideMobileMenu={hideMobileMenu} />
-        <OverlayMask onClose={hideMobileMenu} isOpened={isShowMobileMenu} />
+        {isShowUserMenu && (
+          <div className={styles.userMenu}>
+            <ul className={styles.userList}>
+              <li className={styles.item}>Профиль</li>
+              <li className={styles.item} onClick={onClickLogout} role='presentation'>
+                Выйти
+              </li>
+            </ul>
+          </div>
+        )}
+
+        <OverlayMask
+          onClose={isShowMobileMenu ? hideMobileMenu : hideUserMenu}
+          isOpened={isShowMobileMenu || isShowUserMenu}
+          className={isShowUserMenu ? 'hightZIndex' : ''}
+        />
       </header>
     </Container>
   )

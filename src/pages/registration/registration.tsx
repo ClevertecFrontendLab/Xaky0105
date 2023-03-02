@@ -10,6 +10,7 @@ import { ModalCompound } from '../../components/modal-compound'
 import { OverlayWithPortal } from '../../components/overlay-with-portal'
 import { Button } from '../../components/ui/button'
 import { CustomInput } from '../../components/ui/custom-input'
+import { useErrors } from '../../hooks/use-errors'
 import { useAppDispatch, useAppSelector } from '../../hooks/use-redux'
 import { registrationSelector } from '../../store/registration/registration.selector'
 import {
@@ -20,11 +21,13 @@ import { RegistrationFieldsType } from '../../types/auth'
 import { RegistrationRequestErrors } from '../../types/errors'
 import { BtnType, DataTestId, RoutePath, Size } from '../../types/other'
 import { btnRegistrationMessage, selectRegistrationSchema } from '../../utils/registration'
+import { passwordSchema, usernameSchema } from '../../validation/scheme'
 
 import styles from './registration.module.scss'
 
 export const RegistrationPage = () => {
   const [registrationStep, setRegistrationStep] = useState(1)
+
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { error, isLoading, isSuccess } = useAppSelector(registrationSelector)
@@ -35,8 +38,10 @@ export const RegistrationPage = () => {
     formState: { errors },
     reset,
     watch,
+    clearErrors,
   } = useForm<RegistrationFieldsType>({
-    mode: 'all',
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
     resolver: yupResolver(selectRegistrationSchema(registrationStep)),
     shouldFocusError: false,
   })
@@ -58,6 +63,10 @@ export const RegistrationPage = () => {
       setRegistrationStep(1)
     }
   }
+
+  const { errorsArr: errorsPassword } = useErrors(passwordSchema, watch('password'), 'password')
+
+  const { errorsArr: errorsUsername } = useErrors(usernameSchema, watch('username'), 'username')
 
   return (
     <>
@@ -109,22 +118,26 @@ export const RegistrationPage = () => {
               {registrationStep === 1 && (
                 <>
                   <CustomInput
-                    label='login'
+                    label='username'
                     register={register('username')}
-                    messageHelper='Используйте для логина латинский алфавит и цифры'
                     error={errors.username}
                     placeholder='Придумайте логин для входа'
                     watchName={watch('username')}
                     type='text'
+                    errors={errorsUsername}
+                    shouldFullColorError={!!errors.username}
+                    clearErrors={clearErrors}
                   />
                   <CustomInput
                     label='password'
                     register={register('password')}
-                    messageHelper='Пароль не менее 8 символов, с заглавной буквой и цифрой'
                     error={errors.password}
                     placeholder='Пароль'
                     watchName={watch('password')}
                     type='password'
+                    errors={errorsPassword}
+                    shouldFullColorError={!!errors.password}
+                    clearErrors={clearErrors}
                   />
                 </>
               )}
@@ -137,6 +150,7 @@ export const RegistrationPage = () => {
                     placeholder='Имя'
                     watchName={watch('firstName')}
                     type='text'
+                    clearErrors={clearErrors}
                   />
                   <CustomInput
                     label='lastName'
@@ -145,6 +159,7 @@ export const RegistrationPage = () => {
                     placeholder='Фамилия'
                     watchName={watch('lastName')}
                     type='text'
+                    clearErrors={clearErrors}
                   />
                 </>
               )}
@@ -160,6 +175,7 @@ export const RegistrationPage = () => {
                     type='text'
                     mask='+375 (99) 999-99-99'
                     maskPlaceholder='x'
+                    clearErrors={clearErrors}
                   />
                   <CustomInput
                     label='email'
@@ -168,6 +184,7 @@ export const RegistrationPage = () => {
                     placeholder='E-mail'
                     watchName={watch('email')}
                     type='email'
+                    clearErrors={clearErrors}
                   />
                 </>
               )}
@@ -177,7 +194,14 @@ export const RegistrationPage = () => {
               name={btnRegistrationMessage(registrationStep)}
               size={Size.large}
               type={BtnType.submit}
-              isDisabled={!!errors.firstName || !!errors.lastName}
+              isDisabled={
+                !!errors.firstName ||
+                !!errors.lastName ||
+                !!errors.username ||
+                !!errors.password ||
+                !!errors.phone ||
+                !!errors.email
+              }
             />
           </form>
           <div className={styles.navigateToAnotherRoute}>
