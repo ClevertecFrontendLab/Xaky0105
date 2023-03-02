@@ -8,11 +8,7 @@ import { OverlayWithPortal } from '../../components/overlay-with-portal'
 import { Toast } from '../../components/ui/toast'
 import { useAppDispatch, useAppSelector } from '../../hooks/use-redux'
 import { booksSelector } from '../../store/books/books.selector'
-import {
-  getBooksFailure,
-  getBooksRequest,
-  getCategoriesRequest,
-} from '../../store/books/books.slice'
+import { getBooksFailure, getBooksWithCategoryRequest } from '../../store/books/books.slice'
 import { BookSortingByRating } from '../../types/books'
 import { DataTestId, ToastVariant, TypeSortMainPage } from '../../types/other'
 import { getFilterBooks, sortBooksByRating } from '../../utils/filter'
@@ -72,13 +68,9 @@ export const MainPage = () => {
 
   useEffect(() => {
     if (!categories) {
-      dispatch(getCategoriesRequest())
+      dispatch(getBooksWithCategoryRequest())
     }
   }, [dispatch, categories])
-
-  useEffect(() => {
-    dispatch(getBooksRequest())
-  }, [dispatch])
 
   return (
     <section className={styles.mainPage}>
