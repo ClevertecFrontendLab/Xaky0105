@@ -10,7 +10,7 @@ type HintErrorProps = {
   errorsArr: string[]
   hintType: string
   shouldShowError: boolean
-  shouldFullColorError: boolean
+  shouldFullColorError?: boolean
 }
 
 export const HintError = ({

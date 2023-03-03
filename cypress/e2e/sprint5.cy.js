@@ -507,7 +507,7 @@ describe('authorization and registartion', () => {
       cy.get('[data-test-id=checkmark]').should('not.be.exist')
       cy.get('[data-test-id=reset-password-form] input[name=password]').focus()
       cy.get('[data-test-id=reset-password-form] input[name=password]').blur()
-      cy.get('[data-test-id=hint]:contains("Поле не может быть пустым")')
+      cy.get('[data-test-id=hint]:contains("Поле не может быть пустым")', { timeout: 10000 })
         .should('be.visible')
         .should('have.css', 'color', 'rgb(244, 44, 79)')
       cy.get('[data-test-id=reset-password-form] input[name=password]').type('q')

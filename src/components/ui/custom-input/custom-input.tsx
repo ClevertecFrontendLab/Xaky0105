@@ -51,6 +51,17 @@ export const CustomInput = ({
     setIsOpenEye(!isOpenEye)
   }
 
+  const isWithoutErrorsAndInputDontPhone =
+    !messageHelper && !errors && error?.message && label !== 'phone'
+
+  const isWithErrorsAndErrorTypeRequired =
+    !messageHelper && errors && error?.message && error.type === 'required' && label !== 'phone'
+
+  const isPassword = !error?.message && !errors?.length && watchName && label === 'password'
+
+  const isPasswordOrConfirmPassword =
+    watchName && (label === 'password' || label === 'passwordConfirmation')
+
   return (
     <label className={styles.label}>
       {mask ? (
@@ -81,11 +92,11 @@ export const CustomInput = ({
           dataTestId={DataTestId.Hint}
           hintType={label}
           shouldShowError={!!watchName}
-          shouldFullColorError={shouldFullColorError!}
+          shouldFullColorError={shouldFullColorError}
         />
       )}
 
-      {!messageHelper && !errors && error?.message && label !== 'phone' && (
+      {isWithoutErrorsAndInputDontPhone && (
         <p
           className={classNames(styles.error, {
             [styles.visibleError]: error?.message,
@@ -97,21 +108,17 @@ export const CustomInput = ({
         </p>
       )}
 
-      {!messageHelper &&
-        errors &&
-        error?.message &&
-        error.type === 'required' &&
-        label !== 'phone' && (
-          <p
-            className={classNames(styles.error, {
-              [styles.visibleError]: error?.message,
-              [styles.hideError]: withoutErrorMessage,
-            })}
-            data-test-id={DataTestId.Hint}
-          >
-            {error?.message}
-          </p>
-        )}
+      {isWithErrorsAndErrorTypeRequired && (
+        <p
+          className={classNames(styles.error, {
+            [styles.visibleError]: error?.message,
+            [styles.hideError]: withoutErrorMessage,
+          })}
+          data-test-id={DataTestId.Hint}
+        >
+          {error?.message}
+        </p>
+      )}
 
       {label === 'phone' && (
         <p
@@ -125,7 +132,7 @@ export const CustomInput = ({
         </p>
       )}
 
-      {!error?.message && !errors?.length && watchName && label === 'password' && (
+      {isPassword && (
         <img
           className={styles.checkImg}
           src={Check}
@@ -133,7 +140,7 @@ export const CustomInput = ({
           data-test-id={DataTestId.CheckMark}
         />
       )}
-      {watchName && (label === 'password' || label === 'passwordConfirmation') && (
+      {isPasswordOrConfirmPassword && (
         <img
           src={isOpenEye ? OpenEye : CloseEye}
           className={styles.eyeImg}

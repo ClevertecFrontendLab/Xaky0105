@@ -39,7 +39,9 @@ export const RecoveryPage = () => {
     clearErrors,
   } = useForm<RecoveryFieldType>({
     mode: 'onBlur',
+    reValidateMode: 'onBlur',
     resolver: yupResolver(code ? resetPasswordSchema : forgotPasswordSchema),
+    shouldFocusError: false,
   })
 
   const onSubmit: SubmitHandler<RecoveryFieldType> = data => {
@@ -125,7 +127,7 @@ export const RecoveryPage = () => {
                 error={errors.email}
                 placeholder='Email'
                 watchName={watch('email')}
-                type='email'
+                type='text'
                 clearErrors={clearErrors}
               />
               {error && (
