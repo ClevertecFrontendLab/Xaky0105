@@ -11,7 +11,7 @@ export const registerStepOneSchema = object({
     .matches(Regex.loginNumber, 'цифры'),
   password: string()
     .required(ErrorsMessages.required)
-    .min(8, ErrorsMessages.atLeastEightCharacters)
+    .matches(Regex.minEightSymbol, ErrorsMessages.atLeastEightCharacters)
     .matches(Regex.passwordUpperLetter, { message: ErrorsMessages.withUpperLater })
     .matches(Regex.passwordMinOneNum, { message: ErrorsMessages.withNumber }),
 })
@@ -43,7 +43,7 @@ export const forgotPasswordSchema = object({
 export const resetPasswordSchema = object({
   password: string()
     .required(ErrorsMessages.required)
-    .min(8, ErrorsMessages.atLeastEightCharacters)
+    .matches(Regex.minEightSymbol, ErrorsMessages.atLeastEightCharacters)
     .matches(Regex.passwordUpperLetter, { message: ErrorsMessages.withUpperLater })
     .matches(Regex.passwordMinOneNum, { message: ErrorsMessages.withNumber }),
   passwordConfirmation: lazy(value =>
@@ -65,7 +65,7 @@ export const usernameSchema = object({
 export const passwordSchema = object({
   password: string()
     .required(ErrorsMessages.required)
-    .min(8, ErrorsMessages.atLeastEightCharacters)
+    .matches(Regex.minEightSymbol, ErrorsMessages.atLeastEightCharacters)
     .matches(Regex.passwordUpperLetter, { message: ErrorsMessages.withUpperLater })
     .matches(Regex.passwordMinOneNum, { message: ErrorsMessages.withNumber }),
 })

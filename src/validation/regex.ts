@@ -4,6 +4,7 @@ export const Regex = {
   passwordMinOneNum: /(?=.*[0-9])/,
   loginLetter: /(?=.*[a-zA-Z]).{1,}/,
   loginNumber: /(?=.*\d).{1,}/,
+  minEightSymbol: /[0-9a-zA-Z]{8,}/,
   phone:
     /^\+?375((\s\(33\)\s\d{3}-\d{2}-\d{2})|(\s\(29\)\s\d{3}-\d{2}-\d{2})|(\s\(44\)\s\d{3}-\d{2}-\d{2})|(\s\(25\)\s\d{3}-\d{2}-\d{2}))\s*$/,
   email:
