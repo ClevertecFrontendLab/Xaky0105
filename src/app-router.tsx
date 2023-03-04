@@ -16,6 +16,11 @@ import { RoutePath, TermContentView } from './types/other'
 export const AppRouter = () => (
   <HashRouter>
     <Routes>
+      <Route element={<LayoutAuthentication />}>
+        <Route path={RoutePath.registration} element={<RegistrationPage />} />
+        <Route path={RoutePath.authorization} element={<AuthorizationPage />} />
+        <Route path={RoutePath.recovery} element={<RecoveryPage />} />
+      </Route>
       <Route element={<PrivateRouter />}>
         <Route path={RoutePath.main} element={<Layout />}>
           <Route element={<LayoutMain />}>
@@ -33,11 +38,6 @@ export const AppRouter = () => (
           <Route path={RoutePath.bookPage} element={<BookPage />} />
           <Route path={RoutePath.profile} element={<ProfilePage />} />
         </Route>
-      </Route>
-      <Route element={<LayoutAuthentication />}>
-        <Route path={RoutePath.registration} element={<RegistrationPage />} />
-        <Route path={RoutePath.authorization} element={<AuthorizationPage />} />
-        <Route path={RoutePath.recovery} element={<RecoveryPage />} />
       </Route>
     </Routes>
   </HashRouter>

@@ -127,7 +127,7 @@ export const RecoveryPage = () => {
                 error={errors.email}
                 placeholder='Email'
                 watchName={watch('email')}
-                type='text'
+                type='email'
                 clearErrors={clearErrors}
               />
               {error && (
