@@ -45,6 +45,7 @@ export const CustomInput = ({
   clearErrors,
 }: CustomFieldProps) => {
   const [isOpenEye, setIsOpenEye] = useState(false)
+  const [isFocus, setIsFocus] = useState(false)
 
   const changeIsOpenEye = (e: MouseEvent<HTMLImageElement>) => {
     e.preventDefault()
@@ -79,7 +80,18 @@ export const CustomInput = ({
           className={classNames(styles.input, { [styles.inputError]: error?.message })}
           {...register}
           type={isOpenEye ? 'text' : type}
-          onFocus={() => clearErrors && clearErrors()}
+          onFocus={() => {
+            if (clearErrors) {
+              clearErrors()
+            }
+            setIsFocus(true)
+          }}
+          onBlur={e => {
+            setIsFocus(false)
+            if (register.onBlur) {
+              register.onBlur(e)
+            }
+          }}
         />
       )}
 

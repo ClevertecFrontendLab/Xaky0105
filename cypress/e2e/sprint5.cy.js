@@ -10,7 +10,7 @@ describe('authorization and registartion', () => {
       cy.intercept('/api/categories').as('categories')
       cy.intercept('/api/books').as('books')
       cy.intercept('/api/auth/local').as('authorize')
-      cy.visit('http://localhost:3000').wait(500)
+      cy.visit('http://localhost:3000')
     })
     it('check first loaded page', () => {
       cy.url().should('contain', '/auth')
@@ -394,7 +394,7 @@ describe('authorization and registartion', () => {
   })
   describe('password recovery', () => {
     beforeEach(() => {
-      cy.visit('http://localhost:3000').wait(500)
+      cy.visit('http://localhost:3000')
     })
     it('go to recovery page', () => {
       cy.url().should('contain', '/auth')
