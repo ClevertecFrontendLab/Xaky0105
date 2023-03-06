@@ -88,9 +88,7 @@ export const CustomInput = ({
           }}
           onBlur={e => {
             setIsFocus(false)
-            if (register.onBlur) {
-              register.onBlur(e)
-            }
+            register.onBlur(e)
           }}
         />
       )}
