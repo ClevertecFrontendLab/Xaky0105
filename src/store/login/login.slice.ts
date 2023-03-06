@@ -5,11 +5,14 @@ import { LoginRequestErrors } from '../../types/errors'
 
 import { LoginState } from './login.types'
 
-const storageUserData = localStorage.getItem('user')
+let initialUser: UserType | null = null
+let storageUserData: string | null = null
 
-let initialUser = null
+if (typeof window !== 'undefined') {
+  storageUserData = localStorage.getItem('user')
+}
 
-if (storageUserData !== null) {
+if (storageUserData === 'string') {
   initialUser = JSON.parse(storageUserData)
 }
 
