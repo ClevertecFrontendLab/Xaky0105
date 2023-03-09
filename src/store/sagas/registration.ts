@@ -11,7 +11,7 @@ import {
   getRegistrationSuccess,
 } from '../registration/registration.slice'
 
-function* registrationRequestWorker({ payload }: PayloadAction<RegistrationFieldsType>) {
+export function* registrationRequestWorker({ payload }: PayloadAction<RegistrationFieldsType>) {
   try {
     const { data }: AxiosResponse<AuthResponseType> = yield call(
       axiosInstance.post,

@@ -9,7 +9,9 @@ import {
   getForgotPasswordSuccess,
 } from '../recovery/recovery.slice'
 
-function* forgotPasswordRequestWorker({ payload }: PayloadAction<ForgotPasswordRequestType>) {
+export function* forgotPasswordRequestWorker({
+  payload,
+}: PayloadAction<ForgotPasswordRequestType>) {
   try {
     yield call(axiosInstance.post, `${ApiPath.forgotPass}`, {
       ...payload,

@@ -47,7 +47,5 @@ export const createCategoriesWithQuantity = (
 export const createNavCategories = (books: BookType[], categories: CategoryType[]) => {
   const quantityMap = getQuantityMap(books)
 
-  console.log(createCategoriesWithQuantity(categories, quantityMap))
-
   return createCategoriesWithQuantity(categories, quantityMap)
 }

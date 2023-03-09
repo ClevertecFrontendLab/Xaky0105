@@ -10,7 +10,7 @@ import {
   getCategoriesSuccess,
 } from '../books/books.slice'
 
-function* categoriesRequestWorker() {
+export function* categoriesRequestWorker() {
   try {
     const { data }: AxiosResponse<CategoryType[]> = yield call(
       axiosInstance.get,

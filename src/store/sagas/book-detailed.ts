@@ -11,7 +11,7 @@ import {
   getBookDetailedSuccess,
 } from '../book-detailed/book-detailed.slice'
 
-function* bookDetailedRequestWorker({ payload }: PayloadAction<number>) {
+export function* bookDetailedRequestWorker({ payload }: PayloadAction<number>) {
   try {
     const { data }: AxiosResponse<BookDetailedType> = yield call(
       axiosInstance.get,

@@ -8,16 +8,7 @@ export const formatDateButton = (dateString: string) => {
 }
 
 export const formatDateReview = (dateString: string) => {
-  console.log(dateString)
   const date = new Date(dateString)
-
-  console.log(
-    new Intl.DateTimeFormat('ru-Ru', {
-      day: '2-digit',
-      year: 'numeric',
-      month: 'long',
-    }).format(date)
-  )
 
   return new Intl.DateTimeFormat('ru-Ru', {
     day: '2-digit',

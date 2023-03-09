@@ -25,9 +25,3 @@ axiosInstance.interceptors.request.use(config => {
 
   return config
 })
-
-// axiosInstance.interceptors.response.use(config => {
-//   config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
-
-//   return config
-// })

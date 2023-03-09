@@ -8,6 +8,7 @@ import { LoginRequestErrors } from '../../types/errors'
 import { getLoginFailure, getLoginRequest, getLoginSuccess } from '../login/login.slice'
 
 function* loginRequestWorker({ payload }: PayloadAction<LoginFieldsType>) {
+  yield localStorage.clear()
   try {
     const { data }: AxiosResponse<AuthResponseType> = yield call(
       axiosInstance.post,

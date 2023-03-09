@@ -6,7 +6,7 @@ import { BookType } from '../../types/books'
 import { RequestErrors } from '../../types/errors'
 import { getBooksFailure, getBooksRequest, getBooksSuccess } from '../books/books.slice'
 
-function* booksRequestWorker() {
+export function* booksRequestWorker() {
   try {
     const { data }: AxiosResponse<BookType[]> = yield call(axiosInstance.get, ApiPath.books)
 

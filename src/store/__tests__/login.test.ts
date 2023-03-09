@@ -1,13 +1,13 @@
-import { UserType } from '../../../types/auth'
-import { LoginRequestErrors } from '../../../types/errors'
+import { UserType } from '../../types/auth'
+import { LoginRequestErrors } from '../../types/errors'
 import {
   getLoginFailure,
   getLoginRequest,
   getLoginSuccess,
   loginReducer,
   logout,
-} from '../login.slice'
-import { LoginState } from '../login.types'
+} from '../login/login.slice'
+import { LoginState } from '../login/login.types'
 
 const user = {
   username: 'stas777',
@@ -19,7 +19,7 @@ const user = {
 describe('login reducers testing', () => {
   let state: LoginState
 
-  test('should clear user data', () => {
+  it('should clear user data', () => {
     state = {
       user,
       isLoading: false,
@@ -37,7 +37,7 @@ describe('login reducers testing', () => {
       error: null,
     }
   })
-  test('should add user', () => {
+  it('should add user', () => {
     const newState = loginReducer(state, getLoginSuccess(user))
 
     expect(newState.user).toEqual(user)
@@ -45,14 +45,14 @@ describe('login reducers testing', () => {
     expect(newState.error).toBeNull()
   })
 
-  test('should add user error', () => {
+  it('should add user error', () => {
     const newState = loginReducer(state, getLoginFailure(LoginRequestErrors.wrongLoginOrPassword))
 
     expect(newState.error).toBe(LoginRequestErrors.wrongLoginOrPassword)
     expect(newState.isLoading).toBeFalsy()
     expect(newState.user).toBeNull()
   })
-  test('should loader set true', () => {
+  it('should loader set true', () => {
     const newState = loginReducer(state, getLoginRequest({ identifier: '123', password: '123' }))
 
     expect(newState.isLoading).toBeTruthy()
