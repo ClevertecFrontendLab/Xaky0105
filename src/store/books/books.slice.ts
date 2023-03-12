@@ -5,7 +5,7 @@ import { CategoryType } from '../../types/categories'
 
 import { BooksState } from './books.types'
 
-const initialState: BooksState = {
+export const initialState: BooksState = {
   books: null,
   categories: null,
   isLoadingBooks: false,

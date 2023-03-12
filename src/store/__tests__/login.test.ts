@@ -1,29 +1,22 @@
-import { UserType } from '../../types/auth'
 import { LoginRequestErrors } from '../../types/errors'
+import { user } from '../__mocks__/login'
 import {
   getLoginFailure,
   getLoginRequest,
   getLoginSuccess,
+  initialState,
   loginReducer,
   logout,
 } from '../login/login.slice'
 import { LoginState } from '../login/login.types'
-
-const user = {
-  username: 'stas777',
-  firstName: 'Станислав',
-  lastName: 'Иванов',
-  id: 1,
-} as UserType
 
 describe('login reducers testing', () => {
   let state: LoginState
 
   it('should clear user data', () => {
     state = {
+      ...initialState,
       user,
-      isLoading: false,
-      error: null,
     }
     const newState = loginReducer(state, logout)
 
@@ -31,11 +24,7 @@ describe('login reducers testing', () => {
   })
 
   beforeEach(() => {
-    state = {
-      user: null,
-      isLoading: false,
-      error: null,
-    }
+    state = initialState
   })
   it('should add user', () => {
     const newState = loginReducer(state, getLoginSuccess(user))

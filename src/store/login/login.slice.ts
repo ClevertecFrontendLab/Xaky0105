@@ -16,7 +16,7 @@ if (storageUserData === 'string') {
   initialUser = JSON.parse(storageUserData)
 }
 
-const initialState: LoginState = {
+export const initialState: LoginState = {
   user: initialUser,
   isLoading: false,
   error: null,

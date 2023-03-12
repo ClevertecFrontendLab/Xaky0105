@@ -5,7 +5,7 @@ import { RecoveryRequestErrors } from '../../types/errors'
 
 import { RecoveryState } from './recovery.types'
 
-const initialState: RecoveryState = {
+export const initialState: RecoveryState = {
   isLoading: false,
   isForgotSuccess: false,
   isResetSuccess: false,

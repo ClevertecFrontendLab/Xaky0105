@@ -5,7 +5,7 @@ import { RegistrationRequestErrors } from '../../types/errors'
 
 import { RegistrationState } from './registration.types'
 
-const initialState: RegistrationState = {
+export const initialState: RegistrationState = {
   isLoading: false,
   isSuccess: false,
   error: null,

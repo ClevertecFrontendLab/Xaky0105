@@ -1,11 +1,12 @@
-import { ForgotPasswordRequestType, ResetPasswordRequestType } from '../../types/auth'
 import { RecoveryRequestErrors } from '../../types/errors'
+import { recoveryDataMock, resetDataMock } from '../__mocks__/recovery'
 import {
   getForgotPasswordFailure,
   getForgotPasswordRequest,
   getForgotPasswordSuccess,
   getResetPasswordRequest,
   getResetPasswordSuccess,
+  initialState,
   recoveryReducer,
 } from '../recovery/recovery.slice'
 import { RecoveryState } from '../recovery/recovery.types'
@@ -14,18 +15,12 @@ describe('recovery reducers testing', () => {
   let state: RecoveryState
 
   beforeEach(() => {
-    state = {
-      isLoading: false,
-      isForgotSuccess: false,
-      isResetSuccess: false,
-      error: null,
-    }
+    state = initialState
   })
   it('forgot password request', () => {
-    const requestData: ForgotPasswordRequestType = { email: '123@mail.ru' }
     const { error, isForgotSuccess, isLoading, isResetSuccess } = recoveryReducer(
       state,
-      getForgotPasswordRequest(requestData)
+      getForgotPasswordRequest(recoveryDataMock)
     )
 
     expect(error).toBeNull()
@@ -34,14 +29,9 @@ describe('recovery reducers testing', () => {
     expect(isResetSuccess).toBeFalsy()
   })
   it('reset password request', () => {
-    const requestData: ResetPasswordRequestType = {
-      code: 'qwerty213131',
-      password: '123',
-      passwordConfirmation: '123',
-    }
     const { error, isForgotSuccess, isLoading, isResetSuccess } = recoveryReducer(
       state,
-      getResetPasswordRequest(requestData)
+      getResetPasswordRequest(resetDataMock)
     )
 
     expect(error).toBeNull()

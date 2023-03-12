@@ -1,9 +1,11 @@
 import { RegistrationRequestErrors } from '../../types/errors'
+import { registrationDataMock } from '../__mocks__/registration'
 import {
   clearRegistrationData,
   getRegistrationFailure,
   getRegistrationRequest,
   getRegistrationSuccess,
+  initialState,
   registrationReducer,
 } from '../registration/registration.slice'
 import { RegistrationState } from '../registration/registration.types'
@@ -12,25 +14,13 @@ describe('registration reducers testing', () => {
   let state: RegistrationState
 
   beforeEach(() => {
-    state = {
-      isLoading: false,
-      isSuccess: false,
-      error: null,
-    }
+    state = initialState
   })
 
   it('registration request', () => {
-    const requestData = {
-      username: 'Anton',
-      password: 'qwerty123',
-      firstName: 'Anton',
-      lastName: 'Starosotnikov',
-      phone: '+375441231212',
-      email: '123@mail.ru',
-    }
     const { error, isLoading, isSuccess } = registrationReducer(
       state,
-      getRegistrationRequest(requestData)
+      getRegistrationRequest(registrationDataMock)
     )
 
     expect(error).toBeNull()

@@ -1,5 +1,5 @@
-import { booksMock } from '../../utils/__mocks__/books'
 import { categoriesMock } from '../../utils/__mocks__/categories'
+import { booksMock } from '../__mocks__/books'
 import {
   booksReducer,
   getBooksFailure,
@@ -9,6 +9,7 @@ import {
   getCategoriesFailure,
   getCategoriesRequest,
   getCategoriesSuccess,
+  initialState,
 } from '../books/books.slice'
 import { BooksState } from '../books/books.types'
 
@@ -16,13 +17,7 @@ describe('books reducers testing', () => {
   let state: BooksState
 
   beforeEach(() => {
-    state = {
-      books: null,
-      categories: null,
-      isLoadingBooks: false,
-      isLoadingCategories: false,
-      error: null,
-    }
+    state = initialState
   })
 
   it('should added all books to store', () => {

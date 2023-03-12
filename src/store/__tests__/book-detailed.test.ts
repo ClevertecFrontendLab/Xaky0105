@@ -1,9 +1,10 @@
-import { BookDetailedType } from '../../types/books'
+import { bookMock } from '../__mocks__/book-detailed'
 import {
   bookDetailedReducer,
   getBookDetailedFailure,
   getBookDetailedRequest,
   getBookDetailedSuccess,
+  initialState,
 } from '../book-detailed/book-detailed.slice'
 import { BookDetailedState } from '../book-detailed/book-detailed.types'
 
@@ -11,19 +12,9 @@ describe('book-detailed reducers testing', () => {
   let state: BookDetailedState
 
   beforeEach(() => {
-    state = {
-      book: null,
-      isLoading: false,
-      error: null,
-    }
+    state = initialState
   })
   it('should add book-detailed', () => {
-    const bookMock = {
-      title: 'Книга 1',
-      id: 1,
-      rating: 4,
-    } as BookDetailedType
-
     const { book, isLoading } = bookDetailedReducer(state, getBookDetailedSuccess(bookMock))
 
     expect(book).toEqual(book)
