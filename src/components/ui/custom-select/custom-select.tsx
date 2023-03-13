@@ -10,17 +10,21 @@ type CustomSelectProps = {
   placeholder: string
   dataTestId: DataTestId
   handler: () => void
-  isChangeImage?: boolean
+  shouldRotateImage?: boolean
 }
 
 export const CustomSelect = ({
   placeholder,
   dataTestId,
   handler,
-  isChangeImage,
+  shouldRotateImage,
 }: CustomSelectProps) => (
   <button type='button' className={styles.select} data-test-id={dataTestId} onClick={handler}>
-    <div className={classNames(styles.imgWrap, { [styles.rotate]: !isChangeImage })}>
+    <div
+      className={classNames(styles.imgWrap, {
+        [styles.rotate]: shouldRotateImage && shouldRotateImage === true,
+      })}
+    >
       <img src={sort} alt={placeholder} />
     </div>
     {placeholder}

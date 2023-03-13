@@ -1,0 +1,23 @@
+@import '../../assets/styles/variables';
+
+.layoutAuthentication {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--button-hover);
+  padding: 16px;
+
+  .title {
+    @include text_title;
+    color: white;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @media (max-width: 500px) {
+      top: 30px;
+    }
+  }
+}

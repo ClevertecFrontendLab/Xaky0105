@@ -1,0 +1,18 @@
+.hint {
+  color: var(--black40);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  margin-left: 12px;
+  margin-top: 4px;
+
+  &.fullColor {
+    color: var(--negative);
+  }
+
+  .highlight {
+    &.active {
+      color: var(--negative);
+    }
+  }
+}

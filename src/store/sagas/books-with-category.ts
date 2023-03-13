@@ -4,7 +4,7 @@ import { AxiosResponse } from 'axios'
 import { ApiPath, axiosInstance } from '../../api/api'
 import { BookType } from '../../types/books'
 import { CategoryType } from '../../types/categories'
-import { RequestErrors } from '../../types/other'
+import { RequestErrors } from '../../types/errors'
 import {
   getBooksFailure,
   getBooksSuccess,

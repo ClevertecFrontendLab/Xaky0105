@@ -70,11 +70,17 @@
     transform: translateX(-40px);
     transition: var(--transition);
     height: 0px;
+    li {
+      height: 0px;
+    }
 
     &.active {
       opacity: 1;
       transform: translateX(0px);
       height: 100%;
+      li {
+        height: 100%;
+      }
     }
   }
 }

@@ -12,7 +12,7 @@ type RoundButtonProps = {
   handler?: () => void
   dataTestId?: DataTestId
   children: ReactNode
-  isChangeImage?: boolean
+  shouldRotateImage?: boolean
 }
 
 export const RoundButton = ({
@@ -22,7 +22,7 @@ export const RoundButton = ({
   sortingType,
   handler,
   dataTestId,
-  isChangeImage,
+  shouldRotateImage,
 }: RoundButtonProps) => {
   const clickHandler = () => {
     if (selectSorting && changeSorting && sortingType) {
@@ -41,7 +41,13 @@ export const RoundButton = ({
       type='button'
       data-test-id={dataTestId}
     >
-      <div className={classNames(styles.icon, { [styles.rotate]: !isChangeImage })}>{children}</div>
+      <div
+        className={classNames(styles.icon, {
+          [styles.rotate]: shouldRotateImage && shouldRotateImage === true,
+        })}
+      >
+        {children}
+      </div>
     </button>
   )
 }

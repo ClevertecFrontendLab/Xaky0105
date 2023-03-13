@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
+import classNames from 'classnames'
 
 import { useBooleanState } from '../../../hooks/use-boolean-state'
+import { useAppDispatch, useAppSelector } from '../../../hooks/use-redux'
+import { loginSelector } from '../../../store/login/login.selector'
+import { logout } from '../../../store/login/login.slice'
 import { RoutePath } from '../../../types/other'
 import { Container } from '../../container'
 import { MenuMobile } from '../../menu'
@@ -19,25 +23,59 @@ export const Header = () => {
     toggle: toggleMenu,
   } = useBooleanState()
 
+  const {
+    state: isShowUserMenu,
+    setFalse: hideUserMenu,
+    setTrue: showUserMenu,
+  } = useBooleanState(false)
+
+  const { user } = useAppSelector(loginSelector)
+  const dispatch = useAppDispatch()
+
+  const onClickLogout = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    dispatch(logout())
+  }
+
   return (
-    <Container>
-      <header className={styles.header}>
-        <div className={styles.titleBlock}>
-          <Burger toggle={toggleMenu} isMenuOpen={isShowMobileMenu} />
-          <Link to={RoutePath.main} className={styles.logoWrapper}>
-            <img src={logo} alt='logo' />
-          </Link>
-          <h1 className={styles.title}>Библиотека</h1>
-        </div>
-        <div className={styles.user}>
-          <span className={styles.userName}>Привет, Иван</span>
-          <div className={styles.avatarWrapper}>
-            <img src={avatar} alt='user' />
+    <>
+      <header className={classNames(styles.header, { [styles.active]: isShowUserMenu })}>
+        <Container>
+          <div className={styles.innerHeader}>
+            <div className={styles.titleBlock}>
+              <Burger toggle={toggleMenu} isMenuOpen={isShowMobileMenu} />
+              <Link to={RoutePath.main} className={styles.logoWrapper}>
+                <img src={logo} alt='logo' />
+              </Link>
+              <h1 className={styles.title}>Библиотека</h1>
+            </div>
+            <div className={styles.user}>
+              <span className={styles.userName}>Привет, {user?.firstName}</span>
+              <div className={styles.avatarWrapper} onClick={showUserMenu} role='presentation'>
+                <img src={avatar} alt='user' />
+              </div>
+            </div>
+            {isShowUserMenu && (
+              <div className={styles.userMenu}>
+                <ul className={styles.userList}>
+                  <li className={styles.item}>Профиль</li>
+                  <li className={styles.item} onClick={onClickLogout} role='presentation'>
+                    Выйти
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
-        </div>
-        <MenuMobile isOpened={isShowMobileMenu} hideMobileMenu={hideMobileMenu} />
-        <OverlayMask onClose={hideMobileMenu} isOpened={isShowMobileMenu} />
+        </Container>
       </header>
-    </Container>
+      <MenuMobile isOpened={isShowMobileMenu} hideMobileMenu={hideMobileMenu} />
+
+      <OverlayMask
+        onClose={isShowMobileMenu ? hideMobileMenu : hideUserMenu}
+        isOpened={isShowMobileMenu || isShowUserMenu}
+        className={isShowUserMenu ? 'hightZIndex' : ''}
+      />
+    </>
   )
 }

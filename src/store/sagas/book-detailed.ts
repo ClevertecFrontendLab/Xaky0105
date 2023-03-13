@@ -4,14 +4,14 @@ import { AxiosResponse } from 'axios'
 
 import { ApiPath, axiosInstance } from '../../api/api'
 import { BookDetailedType } from '../../types/books'
-import { RequestErrors } from '../../types/other'
+import { RequestErrors } from '../../types/errors'
 import {
   getBookDetailedFailure,
   getBookDetailedRequest,
   getBookDetailedSuccess,
 } from '../book-detailed/book-detailed.slice'
 
-function* bookDetailedRequestWorker({ payload }: PayloadAction<number>) {
+export function* bookDetailedRequestWorker({ payload }: PayloadAction<number>) {
   try {
     const { data }: AxiosResponse<BookDetailedType> = yield call(
       axiosInstance.get,

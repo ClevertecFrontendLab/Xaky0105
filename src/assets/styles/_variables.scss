@@ -13,7 +13,7 @@
 
   --warning: #ffbc1f;
   --positive: #00ca71;
-  --negative: #f42c4f;
+  --negative: rgb(244, 44, 79);
 
   --hightlight: rgb(255, 82, 83);
   --caret-color: rgb(248, 54, 0);
@@ -28,4 +28,16 @@
   --button-hover: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
 
   --transition: all 0.1s linear;
+}
+
+@mixin text_title {
+  font-family: 'Montserrat';
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+
+  @media (max-width: 360px) {
+    font-size: 18px;
+    line-height: 28px;
+  }
 }

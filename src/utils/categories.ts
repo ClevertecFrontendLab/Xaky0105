@@ -2,15 +2,15 @@ import { BookType } from '../types/books'
 import { CategoryType } from '../types/categories'
 import { AllBooks } from '../types/other'
 
-type CategoryWithQuantityType = {
+export type CategoryWithQuantityType = {
   quantity: number | null
   name: string
   path: string
   id: number
 }
 
-export const createNavCategories = (books: BookType[], categories: CategoryType[]) => {
-  const quantityMap = books.reduce((acc: Record<string, number>, book) => {
+export const getQuantityMap = (books: BookType[]) =>
+  books.reduce((acc: Record<string, number>, book) => {
     book.categories?.forEach(category => {
       if (acc[category]) {
         acc[category] += 1
@@ -25,7 +25,11 @@ export const createNavCategories = (books: BookType[], categories: CategoryType[
     return acc
   }, {})
 
-  return categories.reduce((acc: CategoryWithQuantityType[], category, index) => {
+export const createCategoriesWithQuantity = (
+  categories: CategoryType[],
+  quantityMap: Record<string, number>
+) =>
+  categories.reduce((acc: CategoryWithQuantityType[], category, index) => {
     if (index === 0) {
       return [
         ...acc,
@@ -39,4 +43,9 @@ export const createNavCategories = (books: BookType[], categories: CategoryType[
       { ...category, quantity: quantityMap[category.name] ? quantityMap[category.name] : 0 },
     ]
   }, [])
+
+export const createNavCategories = (books: BookType[], categories: CategoryType[]) => {
+  const quantityMap = getQuantityMap(books)
+
+  return createCategoriesWithQuantity(categories, quantityMap)
 }

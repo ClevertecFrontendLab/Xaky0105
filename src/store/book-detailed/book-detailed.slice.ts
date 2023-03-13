@@ -4,7 +4,7 @@ import { BookDetailedType } from '../../types/books'
 
 import { BookDetailedState } from './book-detailed.types'
 
-const initialState: BookDetailedState = {
+export const initialState: BookDetailedState = {
   book: null,
   isLoading: false,
   error: null,
